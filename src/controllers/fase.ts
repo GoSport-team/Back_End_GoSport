@@ -14,10 +14,10 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
     try {
       const { id } = params;
       const response = await getFase(id);
-      const data = response ? response : "CAMPEONATO NO ENCONTRADO";
+      const data = response ? response : "FASE NO ENCONTRADO";
       res.send(data)
     } catch (e) {
-      handleHttp(res, "ERROR AL OBTENER EL CAMPEONATO");
+      handleHttp(res, "ERROR AL OBTENER LA FASE");
     }
   };
   
@@ -26,7 +26,7 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
       const response = await getFases();
       res.send(response);
     } catch (e) {
-      handleHttp(res, "ERROR AL OBTENER EL CAMPEONATOS");
+      handleHttp(res, "ERROR AL OBTENER LA FASES");
     }
   };
   
@@ -36,7 +36,7 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
       const response = await updateFase(id, body);
       res.send(response);
     } catch (e) {
-      handleHttp(res, "ERROR AL ACTUALIZAR EL CAMPEONATO");
+      handleHttp(res, "ERROR AL ACTUALIZAR LA FASE");
     }
   };
   
@@ -48,7 +48,7 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
         _id: responseItem._id
        });
     } catch (e) {
-      handleHttp(res, "ERROR AL GUARDAR EL CAMPEONATO", e);
+      handleHttp(res, "ERROR AL GUARDAR LA FASE", e);
     }
   };
   
@@ -58,7 +58,7 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
       const response = await deleteFase(id);
       res.send(response);
     } catch (e) {
-      handleHttp(res, "ERROR AL ELIMINAR EL CAMPEONATO");
+      handleHttp(res, "ERROR AL ELIMINAR LA FASE");
     }
   };
 
