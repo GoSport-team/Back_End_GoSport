@@ -8,6 +8,7 @@ const checkJwt = (req: Request, res: Response, next: NextFunction) => {
     const jwtUsuario = req.headers.authorization || "";
     const jwt = jwtUsuario.split(' ').pop();
     const isOk = verificarToken(`${jwt}`);
+    console.log(isOk)
     if (!isOk) {
       res.status(401);
       res.send("  No tienes un jwt valido");

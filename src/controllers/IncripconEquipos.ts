@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import {
+  ganadores,
     insertInscripcion,
     getEquipo,
     getInscripcionEquipos,
@@ -9,6 +10,15 @@ import {
 } from '../services/inscripcionEquipos'
 
  
+const equiposGanadores = async ({headers}: Request, res: Response) => {
+  try {
+    const {IdCampeonato} = headers
+    const response = await ganadores(`${IdCampeonato}`);
+    res.send(response);
+  } catch (e) {
+    handleHttp(res, "ERROR AL OBTENER LOS EQUIPOS INSCRITOS");
+  }
+};
 const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) => {
     try {
       const {IdCampeonato} = headers
@@ -61,6 +71,7 @@ const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) =>
 
 
 export{
+  equiposGanadores,
     obtenerInscripcionesEquipos,
     obtenerInscripcionEquipo,
     guardarInscripcionDeEquipo,

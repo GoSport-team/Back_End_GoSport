@@ -18,15 +18,18 @@ const getItem = async ({ params }: Request, res: Response) => {
     }
   };
   
-  const getItems = async (res: Response) => {
+  const getItems = async (_req: Request, res: Response) => { 
     try {
       const response = await getCampeonatos();
-      res.send(response);
+      res.send({
+        campeonatos: response
+      });
     } catch (e) {
-      console.log(e)
-      handleHttp(res, "ERROR AL OBTENER EL CAMPEONATOS");
+      console.log(e);
+      handleHttp(res, "ERROR AL OBTENER LOS CAMPEONATOS");
     }
   };
+  
   
   const updateItem = async ({ params, body }: Request, res: Response) => {
     try {
