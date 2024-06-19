@@ -23,6 +23,7 @@ const getItem = async ({ params }: Request, res: Response) => {
       const response = await getCampeonatos();
       res.send(response);
     } catch (e) {
+      console.log(e)
       handleHttp(res, "ERROR AL OBTENER EL CAMPEONATOS");
     }
   };

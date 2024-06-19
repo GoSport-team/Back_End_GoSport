@@ -16,13 +16,9 @@ const registroNuevoUsuario = async ({
 }: Usuarios) => {
   const checkIs = await UsuarioModel.findOne({
     correo,
-    contrasena,
-    nombres,
     telefono,
-    genero,
-    url_foto,
     identificacion,
-    rol,
+    
   });
 
   if (checkIs) return "Este usuario ya existe";
@@ -50,6 +46,7 @@ const loginUsuario = async ({ correo, contrasena }: Auth) => {
   if (!esCorrecto) return "Contraseña incorrecta";
 
   const token = generarToken(checkIs.correo);
+  console.log(token)
   const data = {
     token,
     user: checkIs,

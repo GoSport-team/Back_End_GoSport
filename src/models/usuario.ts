@@ -22,6 +22,7 @@ const UsuarioSchema = new Schema<Usuarios>(
     },
     genero: {
       type: String,
+      enum: ["masculino", "femenino", "indefinido"],
       required: true,
     },
     url_foto: {
