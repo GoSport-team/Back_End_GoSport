@@ -8,4 +8,6 @@ const app = express();
 app.use(express.json());
 app.use(router);
 db()
+
+
 app.listen(PORT, () => console.log(`Listo por el puerto ${PORT}`));
