@@ -5,4 +5,4 @@ const router = Router();
 router.post("/register", registerController);
 router.post("/login", loginController);
 
-export { router };
+export { router }; 
