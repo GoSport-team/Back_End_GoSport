@@ -38,12 +38,17 @@ const registroNuevoUsuario = async ({
 
 const loginUsuario = async ({ correo, contrasena }: Auth) => {
   const checkIs = await UsuarioModel.findOne({ correo });
-  if (!checkIs) return "Datos inválidos";
+  if (!checkIs) {
+    return "Datos inválidos";
+  }
+    
 
   const contrasenaHash = checkIs.contrasena;
   const esCorrecto = await verified(contrasena, contrasenaHash);
 
-  if (!esCorrecto) return "Contraseña incorrecta";
+  if (!esCorrecto) {
+    return "Contraseña incorrecta";
+  }
 
   const token = generarToken(checkIs.correo);
   console.log(token)
