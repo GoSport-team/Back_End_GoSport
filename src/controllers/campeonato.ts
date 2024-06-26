@@ -18,7 +18,7 @@ const getItem = async ({ params }: Request, res: Response) => {
     }
   };
   
-  const getItems = async (res: Response) => {
+  const getItems = async (_req:Request, res: Response) => {
     try {
       const response = await getCampeonatos();
       res.send(response);
