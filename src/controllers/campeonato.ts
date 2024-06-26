@@ -21,11 +21,7 @@ const getItem = async ({ params }: Request, res: Response) => {
     }
   };
   
-<<<<<<< HEAD
   const getItems = async (_req:Request, res: Response) => {
-=======
-  const getItems = async (req: requestExtend, res: Response) => { 
->>>>>>> 5092e986ab34576323fd2eec0797a28f596ffe90
     try {
       const response = await getCampeonatos();
       res.send({
