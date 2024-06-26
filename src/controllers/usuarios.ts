@@ -53,7 +53,7 @@ const eliminarUsuario = async ({ params }: Request, res: Response) => {
     const response = await deleteUsuario(id);
     res.send(response);
   } catch (e) {
-    handleHttp(res, "ERROR AL ELIMINAR USUARIO");
+    handleHttp(res, "ERROR AL ELIMINAR USUARIOO");
   }
 };
 
