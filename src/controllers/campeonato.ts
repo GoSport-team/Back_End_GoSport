@@ -7,6 +7,9 @@ import {
     updateCampeonato,
     deleteCampeonato
     } from "../services/campeonato"
+import { requestExtend } from "../interfaces/request.interface";
+
+
 const getItem = async ({ params }: Request, res: Response) => {
     try {
       const { id } = params;
@@ -18,11 +21,13 @@ const getItem = async ({ params }: Request, res: Response) => {
     }
   };
   
-  const getItems = async (_req: Request, res: Response) => { 
+  const getItems = async (req: requestExtend, res: Response) => { 
     try {
       const response = await getCampeonatos();
       res.send({
-        campeonatos: response
+        campeonatos: response,
+        user: req.user,
+        
       });
     } catch (e) {
       console.log(e);
