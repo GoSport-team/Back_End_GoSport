@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+    siguienteFaseGanadores,
     guardarResultado,
     obtenerResultados,
     actualizarResultado,
@@ -8,6 +9,8 @@ import {
 } from '../controllers/resultados'
 
 const router = Router()
+
+router.get('/siguienteFase', siguienteFaseGanadores)
 
 router.get('/', obtenerResultados)
 

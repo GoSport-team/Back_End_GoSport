@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+    equiposGanadores,
     guardarInscripcionDeEquipo,
     obtenerInscripcionEquipo,
     obtenerInscripcionesEquipos,
@@ -10,6 +11,7 @@ import {
 
 const router = Router()
 
+router.get('/ganadores', equiposGanadores)
 router.get('/', obtenerInscripcionesEquipos)
 
 router.get('/:id', obtenerInscripcionEquipo)
