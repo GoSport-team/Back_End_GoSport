@@ -7,6 +7,9 @@ import {
     updateCampeonato,
     deleteCampeonato
     } from "../services/campeonato"
+import { requestExtend } from "../interfaces/request.interface";
+
+
 const getItem = async ({ params }: Request, res: Response) => {
     try {
       const { id } = params;
@@ -18,14 +21,24 @@ const getItem = async ({ params }: Request, res: Response) => {
     }
   };
   
+<<<<<<< HEAD
   const getItems = async (_req:Request, res: Response) => {
+=======
+  const getItems = async (req: requestExtend, res: Response) => { 
+>>>>>>> 5092e986ab34576323fd2eec0797a28f596ffe90
     try {
       const response = await getCampeonatos();
-      res.send(response);
+      res.send({
+        campeonatos: response,
+        user: req.user,
+        
+      });
     } catch (e) {
-      handleHttp(res, "ERROR AL OBTENER EL CAMPEONATOS");
+      console.log(e);
+      handleHttp(res, "ERROR AL OBTENER LOS CAMPEONATOS");
     }
   };
+  
   
   const updateItem = async ({ params, body }: Request, res: Response) => {
     try {
