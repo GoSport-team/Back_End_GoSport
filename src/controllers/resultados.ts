@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import {
+  seguirDeFase,
     insertResultado,
     getResultado,
     updateResultado,
@@ -8,6 +9,15 @@ import {
 } from '../services/resultado'
 
  
+const siguienteFaseGanadores = async ({headers}: Request, res: Response) => {
+  try {
+    const {IdFase} = headers
+    const response = await seguirDeFase(`${IdFase}`);
+    res.send(response);
+  } catch (e) {
+    handleHttp(res, "ERROR AL OBTENER LOS RESULTADOS");
+  }
+};
   const obtenerResultados = async ({headers}: Request, res: Response) => {
     try {
       const {IdFase} = headers
@@ -49,6 +59,7 @@ import {
 
 
 export {
+  siguienteFaseGanadores,
     obtenerResultados,
     actualizarResultado,
     guardarResultado,

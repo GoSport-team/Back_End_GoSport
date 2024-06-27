@@ -1,6 +1,18 @@
 import { Resultado } from "../interfaces/resultados";
 import ResultadoModel from "../models/resultado";
+import VSModel from "../models/vs";
 
+const seguirDeFase = async(IdFase:String)=>{
+
+  const resultado = await ResultadoModel.find({IdFase})
+  const vs = await VSModel.find({IdFase})
+
+  if (resultado.length == vs.length){
+    return {estadoFase:false}
+  }else{
+    return {estadoFase:true}
+  }
+}
 const insertResultado = async (item: Resultado) => {
     const responseInsert = await ResultadoModel.create(item);
     return responseInsert;
@@ -26,6 +38,7 @@ const insertResultado = async (item: Resultado) => {
   };
 
 export{
+  seguirDeFase,
     insertResultado,
     getResultado,
     updateResultado,
