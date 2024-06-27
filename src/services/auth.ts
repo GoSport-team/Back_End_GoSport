@@ -12,6 +12,8 @@ const registroNuevoUsuario = async ({
   url_foto,
   identificacion,
   ficha,
+  programa,
+  finFicha,
   
 }: Usuarios) => {
   const checkIs = await UsuarioModel.findOne({
@@ -31,6 +33,8 @@ const registroNuevoUsuario = async ({
     url_foto,
     identificacion,
     ficha,
+    programa,
+    finFicha,
     rol: 'jugador',
   });
   return registroNuevoUsuario;
