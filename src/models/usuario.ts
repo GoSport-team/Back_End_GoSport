@@ -27,7 +27,19 @@ const UsuarioSchema = new Schema<Usuarios>(
     },
     identificacion: {
       type: String,
+      required: true,
       
+    },
+    ficha: {
+    type: String,
+    required: true,
+    },
+    programa: {
+      type: String,
+    },
+    finFicha: {
+      type: String,
+      required: true,
     },
     rol: {
       type: String,
