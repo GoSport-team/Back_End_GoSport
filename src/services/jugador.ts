@@ -1,7 +1,13 @@
 
 
+
 import  Jugador  from "../interfaces/jugador.interface";
 import  JugadorModel  from "../models/Jugador";
+import multer from "multer";
+
+const Foticos = multer({dest: 'foticos/'});
+
+
 
 const upadate =async(id:any, body: Jugador)=>{
     const itemJugador = await JugadorModel.findOneAndUpdate( {
