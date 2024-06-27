@@ -20,18 +20,14 @@ const UsuarioSchema = new Schema<Usuarios>(
       type: String,
       required: true,
     },
-    genero: {
-      type: String,
-      enum: ["masculino", "femenino", "indefinido"],
-      required: true,
-    },
+    
     url_foto: {
       type: String,
-      required: true,
+      
     },
     identificacion: {
       type: String,
-      required: true,
+      
     },
     rol: {
       type: String,

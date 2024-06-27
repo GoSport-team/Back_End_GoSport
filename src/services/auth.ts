@@ -12,7 +12,8 @@ const registroNuevoUsuario = async ({
   genero,
   url_foto,
   identificacion,
-  rol,
+  ficha,
+  
 }: Usuarios) => {
   const checkIs = await UsuarioModel.findOne({
     correo,
@@ -31,7 +32,8 @@ const registroNuevoUsuario = async ({
     genero,
     url_foto,
     identificacion,
-    rol,
+    ficha,
+    rol: 'jugador',
   });
   return registroNuevoUsuario;
 };
@@ -50,7 +52,9 @@ const loginUsuario = async ({ correo, contrasena }: Auth) => {
     return "Contraseña incorrecta";
   }
 
-  const token = generarToken(checkIs.correo);
+  
+
+  const token = generarToken(checkIs.correo, checkIs.rol);
   console.log(token)
   const data = {
     token,

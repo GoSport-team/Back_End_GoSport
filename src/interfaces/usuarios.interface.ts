@@ -6,5 +6,6 @@ export interface Usuarios extends Auth {
   genero: String;
   url_foto: String;
   identificacion: String;
+  ficha: String,
   rol: "jugador" | "organizador";
 }

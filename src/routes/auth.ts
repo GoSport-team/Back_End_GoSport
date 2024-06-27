@@ -2,6 +2,8 @@ import { Router } from "express";
 import { registerController, loginController } from "../controllers/auth";
 import { check } from "express-validator";
 import { validateFields } from "../middleware/validateFields";
+import { checkJwt } from "../middleware/session";
+import { roleMiddleWare } from "../middleware/role";
 
 const router = Router();
 
@@ -25,5 +27,22 @@ router.post("/register",
     ],
     loginController
   );
+
+  router.get("/ruta-jugador",
+  checkJwt,
+  roleMiddleWare('jugador'),
+  (_req, res) => {
+    res.json({ message : "Acceso permitido exclusivo para jugadores"})
+  }
+  );
+  
+  router.get("/ruta-organizador",
+    checkJwt,
+    roleMiddleWare('organizador'),
+    (_req, res) => {
+      res.json({ message : "Acceso permitido exclusivo para organizadores"})
+    }
+    );
+
 
 export { router }; 
