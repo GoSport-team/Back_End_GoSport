@@ -7,11 +7,9 @@ import {
   updateItem,
 } from "../controllers/campeonato";
 
-
-
 const router = Router();
 
-router.get("/",  getItems);
+router.get("/", getItems);
 
 router.get("/:id", getItem);
 

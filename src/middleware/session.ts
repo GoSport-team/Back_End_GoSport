@@ -11,8 +11,7 @@ const checkJwt = (req: requestExtend, res: Response, next: NextFunction) => {
     const isUser = verificarToken(`${jwt}`);
     console.log(isUser);
     if (!isUser) {
-      res.status(401);
-      res.send("  No tienes un jwt valido");
+      res.status(401).send("  No tienes un jwt valido");
     } else {
       if (typeof isUser === "string") {
       } else {
