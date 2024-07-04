@@ -10,11 +10,11 @@ import {
 
 } from '../controllers/IncripconEquipos'
 
+
 const router = Router()
 
 router.get('/ganadores', equiposGanadores)
-
-router.get('/', obtenerInscripcionesEquipos)
+router.get('/',  obtenerInscripcionesEquipos)
 
 router.get('/:id', obtenerInscripcionEquipo)
 

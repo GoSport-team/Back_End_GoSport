@@ -2,23 +2,24 @@ import { Auth } from "../interfaces/auth.interface";
 import { Usuarios } from "../interfaces/usuarios.interface";
 import UsuarioModel from "../models/usuario";
 import { encrypt, verified } from "../utils/bcrypt.handle";
-import { generarToken } from "../utils/jwt.handle";
+import { configuracionCookie, generarToken } from "../utils/jwt.handle";
+import { Response } from "express";
 
 const registroNuevoUsuario = async ({
   correo,
   contrasena,
   nombres,
   telefono,
-  genero,
   url_foto,
   identificacion,
-  rol,
+  ficha,
+  programa,
+  finFicha,
 }: Usuarios) => {
   const checkIs = await UsuarioModel.findOne({
     correo,
     telefono,
     identificacion,
-    
   });
 
   if (checkIs) return "Este usuario ya existe";
@@ -28,31 +29,43 @@ const registroNuevoUsuario = async ({
     contrasena: contraHash,
     nombres,
     telefono,
-    genero,
     url_foto,
     identificacion,
-    rol,
+    ficha,
+    programa,
+    finFicha,
+    rol: "jugador",
   });
   return registroNuevoUsuario;
 };
 
-const loginUsuario = async ({ correo, contrasena }: Auth) => {
-  const checkIs = await UsuarioModel.findOne({ correo });
-  if (!checkIs) return "Datos inválidos";
+const loginUsuario = async ({ correo, contrasena }: Auth, res: Response) => {
+  try {
+    const checkIs = await UsuarioModel.findOne({ correo });
+    if (!checkIs) {
+      return "Datos inválidos";
+    }
 
-  const contrasenaHash = checkIs.contrasena;
-  const esCorrecto = await verified(contrasena, contrasenaHash);
+    const contrasenaHash = checkIs.contrasena;
+    const esCorrecto = await verified(contrasena, contrasenaHash);
 
-  if (!esCorrecto) return "Contraseña incorrecta";
+    if (!esCorrecto) {
+      return "Contraseña incorrecta";
+    }
 
-  const token = generarToken(checkIs.correo);
-  console.log(token)
-  const data = {
-    token,
-    user: checkIs,
-  };
+    const token = generarToken(checkIs.correo, checkIs.rol);
+    console.log(token);
+    configuracionCookie(res, token);
+    const data = {
+      token,
+      user: checkIs,
+    };
 
-  return data;
+    return data;
+  } catch (error: any) {
+    console.error("Error en el inicio de sesion:", error.message);
+    throw new Error("Error en el inicio de sesion");
+  }
 };
 
 export { registroNuevoUsuario, loginUsuario };

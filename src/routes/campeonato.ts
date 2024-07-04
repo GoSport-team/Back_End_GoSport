@@ -6,13 +6,10 @@ import {
   postItem,
   updateItem,
 } from "../controllers/campeonato";
-import { checkJwt } from "../middleware/session";
-
-
 
 const router = Router();
 
-router.get("/", checkJwt, getItems);
+router.get("/", getItems);
 
 router.get("/:id", getItem);
 

@@ -1,19 +1,23 @@
 //check auth
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import { verificarToken } from "../utils/jwt.handle";
+import { requestExtend } from "../interfaces/request.interface";
 
-const checkJwt = (req: Request, res: Response, next: NextFunction) => {
+const checkJwt = (req: requestExtend, res: Response, next: NextFunction) => {
   try {
     const jwtUsuario = req.headers.authorization || "";
-    const jwt = jwtUsuario.split(' ').pop();
-    const isOk = verificarToken(`${jwt}`);
-    console.log(isOk)
-    if (!isOk) {
-      res.status(401);
-      res.send("  No tienes un jwt valido");
+    const jwt = jwtUsuario.split(" ").pop();
+    const isUser = verificarToken(`${jwt}`);
+    console.log(isUser);
+    if (!isUser) {
+      res.status(401).send("  No tienes un jwt valido");
     } else {
-      console.log({ jwtUsuario });
+      if (typeof isUser === "string") {
+      } else {
+        req.user = isUser;
+        req.rol = isUser.rol;
+      }
       next();
     }
   } catch (e) {
