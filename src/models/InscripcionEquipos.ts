@@ -31,7 +31,7 @@ const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
             require: true,
             trim: true
         },
-        Idcampeonato:{
+        IdCampeonato:{
             type: String,
             require: true,
             trim: true
@@ -46,7 +46,6 @@ const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
     {
         timestamps: true
     }
-
 )
 
 
