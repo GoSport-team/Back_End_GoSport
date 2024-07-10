@@ -58,11 +58,10 @@ const UsuarioSchema = new Schema<Usuarios>(
       type: String,
       required: true,
       trim: true,
-      enum: ["Mañana", "Tarde", "Noche"],
+      enum: ["mañana", "tarde", "noche"],
     },
     estado: {
       type: Boolean,
-      required: true,
       trim: true,
       default: true,
     },
