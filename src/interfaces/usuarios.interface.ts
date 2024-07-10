@@ -8,5 +8,7 @@ export interface Usuarios extends Auth {
   ficha: String,
   programa: String,
   finFicha: String,
+  jornada: String,
+  estado: String,
   rol: "jugador" | "organizador";
 }
