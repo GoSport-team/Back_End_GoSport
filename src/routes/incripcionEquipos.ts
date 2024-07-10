@@ -4,21 +4,25 @@ import {
     guardarInscripcionDeEquipo,
     obtenerInscripcionEquipo,
     obtenerInscripcionesEquipos,
-    actualizaEquipo,
+    actualizarEquipo,
+    actualizarEquipoCompleto,
     eliminarEquipo
 
 } from '../controllers/IncripconEquipos'
 
+
 const router = Router()
 
 router.get('/ganadores', equiposGanadores)
-router.get('/', obtenerInscripcionesEquipos)
+router.get('/',  obtenerInscripcionesEquipos)
 
 router.get('/:id', obtenerInscripcionEquipo)
 
 router.post('/', guardarInscripcionDeEquipo)
 
-router.patch('/:id', actualizaEquipo),
+router.patch('/completo/:id', actualizarEquipoCompleto)
+
+router.patch('/:id', actualizarEquipo),
 
 router.delete('/:id', eliminarEquipo)
 

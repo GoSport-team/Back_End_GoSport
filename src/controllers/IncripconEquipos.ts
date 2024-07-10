@@ -1,19 +1,20 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import {
+  updateTeam,
   ganadores,
     insertInscripcion,
     getEquipo,
     getInscripcionEquipos,
-    updateIncripcion,
+    updateEstado,
     deleteIncripcion
 } from '../services/inscripcionEquipos'
 
  
 const equiposGanadores = async ({headers}: Request, res: Response) => {
   try {
-    const {IdCampeonato} = headers
-    const response = await ganadores(`${IdCampeonato}`);
+    const {idcampeonato} = headers
+    const response = await ganadores(`${idcampeonato}`);
     res.send(response);
   } catch (e) {
     handleHttp(res, "ERROR AL OBTENER LOS EQUIPOS INSCRITOS");
@@ -40,10 +41,22 @@ const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) =>
   };
   
   
-  const actualizaEquipo = async ({ params, body }: Request, res: Response) => {
+  const actualizarEquipo = async ({ params, body }: Request, res: Response) => {
     try {
       const { id } = params;
-      const response = await updateIncripcion(id, body);
+      console.log(id)
+      const response = await updateEstado(id, body);
+      res.send(response);
+    } catch (e) {
+      handleHttp(res, "ERROR AL ACTUALIZAR EL EQUIPO");
+    }
+  };
+
+  const actualizarEquipoCompleto = async ({ params, body }: Request, res: Response) => {
+    try {
+      const { id } = params;
+      console.log(id)
+      const response = await updateTeam(id, body);
       res.send(response);
     } catch (e) {
       handleHttp(res, "ERROR AL ACTUALIZAR EL EQUIPO");
@@ -75,6 +88,7 @@ export{
     obtenerInscripcionesEquipos,
     obtenerInscripcionEquipo,
     guardarInscripcionDeEquipo,
-    actualizaEquipo,
+    actualizarEquipoCompleto,
+    actualizarEquipo,
     eliminarEquipo
 }
