@@ -16,6 +16,11 @@ const getUsuario = async (id: string) => {
   return responseGet;
 };
 
+const gettingByIdentificacion= async(identificacion:any)=>{
+  const unJugador = await UsuarioModel.find({identificacion})
+  return unJugador; 
+}
+
 const updateUsuario = async (id: string, data: Usuarios) => {
   const responseUsuario = await UsuarioModel.findOneAndUpdate(
     { _id: id },
@@ -36,6 +41,7 @@ export {
   insertarUsuario,
   getUsuarios,
   getUsuario,
+  gettingByIdentificacion,
   updateUsuario,
   deleteUsuario,
 };

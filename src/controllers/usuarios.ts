@@ -6,6 +6,7 @@ import {
   updateUsuario,
   insertarUsuario,
   deleteUsuario,
+  gettingByIdentificacion,
 } from "../services/usuarios";
 
 const obtenerUsuarios = async (_req: Request, res: Response) => {
@@ -47,6 +48,23 @@ const crearUsuario = async ({ body }: Request, res: Response) => {
   }
 };
 
+
+ const obtenerIdIdenfiticacion = async(req:Request, res:Response)=>{
+  const { identificacion } = req.params;
+  try{
+      const obteniendoByInden = await gettingByIdentificacion(identificacion);
+      if(obteniendoByInden.length == 0){
+          handleHttp(res, "Error al traer el Jugador")
+      }else{
+         res.send(obteniendoByInden[0])
+      }
+  }
+  catch(error){
+      res.send(error).status(400);
+  }
+ 
+}
+
 const eliminarUsuario = async ({ params }: Request, res: Response) => {
   try {
     const { id } = params;
@@ -56,11 +74,11 @@ const eliminarUsuario = async ({ params }: Request, res: Response) => {
     handleHttp(res, "ERROR AL ELIMINAR USUARIOO");
   }
 };
-
 export {
   obtenerUsuarios,
   obtenerUsuarioId,
   actualizarUsuario,
+  obtenerIdIdenfiticacion,
   crearUsuario,
   eliminarUsuario,
 };
