@@ -15,6 +15,8 @@ const registroNuevoUsuario = async ({
   ficha,
   programa,
   finFicha,
+  jornada,
+  
 }: Usuarios) => {
   const checkIs = await UsuarioModel.findOne({
     correo,
@@ -34,6 +36,7 @@ const registroNuevoUsuario = async ({
     ficha,
     programa,
     finFicha,
+    jornada,
     rol: "jugador",
   });
   return registroNuevoUsuario;

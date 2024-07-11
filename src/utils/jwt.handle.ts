@@ -6,7 +6,7 @@ import {
 } from "jsonwebtoken";
 import { Response } from "express";
 
-const JWT_SECRET = process.env.JWT_SECRET || "secretSport";
+const JWT_SECRET = process.env.JWT_SECRETT || "secretSport";
 
 const generarToken = (id: string, rol: string) => {
   const jwt = sign({ id, rol }, JWT_SECRET, {
@@ -19,8 +19,9 @@ const generarToken = (id: string, rol: string) => {
 const configuracionCookie = (res: Response, jwt: string) => {
   res.cookie("jwt", jwt, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "development",
+    secure: process.env.NODE_ENV !== "development",
     maxAge: 2 * 60 * 60 * 1000,
+    sameSite: 'strict'
   });
 };
 

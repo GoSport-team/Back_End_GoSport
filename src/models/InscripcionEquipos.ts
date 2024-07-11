@@ -22,16 +22,16 @@ const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
             trim: true
         },
         contactoUno: {
-            type: Number,
+            type: String,
             require: true,
             trim: true
         },
         contactoDos: {
-            type: Number,
+            type: String,
             require: true,
             trim: true
         },
-        Idcampeonato:{
+        IdCampeonato:{
             type: String,
             require: true,
             trim: true
@@ -41,12 +41,15 @@ const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
             required:true,
             default: true 
         },
+        imgLogo:{
+            type: String,
+            required:true,
+        },
         participantes:[ParticipantesShema]
     },
     {
         timestamps: true
     }
-
 )
 
 

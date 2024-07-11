@@ -39,7 +39,8 @@ const guardar = async(body:Jugador) =>{
     const save = Guardando.save();
     return save;
 }
-export {upadate,
+export {
+    upadate,
     deleteJugador,
     Optener,
     gettingById,

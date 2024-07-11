@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
-import { Campeonato } from "../interfaces/campeonato.infertace";
+import { Modalidad } from "../interfaces/modalidad.interface";
 
-const CampeonatoShema = new Schema<Campeonato>(
+const ModalidadSchema = new Schema<Modalidad>(
    {
-      nombreDiciplinas: {
+      nombreModalidad: {
          type: String,
          required: true
       },
@@ -11,7 +11,7 @@ const CampeonatoShema = new Schema<Campeonato>(
          type: Number,
          required: true
       },
-      fechaIniciio: {
+      fechaInicio: {
          type: String,
          required: true
       },
@@ -43,8 +43,8 @@ const CampeonatoShema = new Schema<Campeonato>(
    {
       timestamps: true
    }
-)
+);
 
-const CampeonatoModel = model("campeonato", CampeonatoShema);
+const ModalidadModel = model("modalidad", ModalidadSchema);
 
-export default CampeonatoModel;
+export default ModalidadModel;
