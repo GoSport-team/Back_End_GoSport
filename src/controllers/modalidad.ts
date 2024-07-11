@@ -3,9 +3,7 @@ import { handleHttp } from "../utils/error.handle";
 import {
     insertModalidad,
     getModalidades,
-    getModalidad,
-    updateModalidad,
-    deleteModalidad
+    getModalidad
 } from "../services/modalidad"; 
 
 // Funciones de controlador para operaciones CRUD de Modalidad
@@ -32,16 +30,6 @@ const getItems = async (_req: Request, res: Response) => {
     }
 };
 
-const updateItem = async ({ params, body }: Request, res: Response) => {
-    try {
-        const { id } = params;
-        const response = await updateModalidad(id, body);
-        res.send(response);
-    } catch (e) {
-        handleHttp(res, "ERROR AL ACTUALIZAR LA MODALIDAD");
-    }
-};
-
 const postItem = async ({ body }: Request, res: Response) => {
     try {
         const responseItem = await insertModalidad(body);
@@ -51,14 +39,4 @@ const postItem = async ({ body }: Request, res: Response) => {
     }
 };
 
-const deleteItem = async ({ params }: Request, res: Response) => {
-    try {
-        const { id } = params;
-        const response = await deleteModalidad(id);
-        res.send(response);
-    } catch (e) {
-        handleHttp(res, "ERROR AL ELIMINAR LA MODALIDAD");
-    }
-};
-
-export { getItems, getItem, updateItem, postItem, deleteItem };
+export { getItems, getItem, postItem };

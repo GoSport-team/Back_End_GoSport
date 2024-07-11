@@ -7,25 +7,6 @@ const SedeSchema = new Schema<Sede>(
             type: String,
             required: true
         },
-        direccion: {
-            type: String,
-            required: true
-        },
-        ciudad: {
-            type: String,
-            required: true
-        },
-        capacidad: {
-            type: Number,
-            required: true
-        },
-        estado: {
-            type: String,
-            required: true 
-        }
-    },
-    {
-        timestamps: true
     }
 );
 

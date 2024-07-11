@@ -1,11 +1,10 @@
+
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import {
     getSede,
     getSedes,
-    insertSede,
-    updateSede,
-    deleteSede
+    insertSede
 } from '../services/sede';
 
 const getItem = async ({ params }: Request, res: Response) => {
@@ -31,16 +30,6 @@ const getItems = async (_req: Request, res: Response) => {
     }
 };
 
-const updateItem = async ({ params, body }: Request, res: Response) => {
-    try {
-        const { id } = params;
-        const response = await updateSede(id, body);
-        res.send(response);
-    } catch (e) {
-        handleHttp(res, "ERROR AL ACTUALIZAR LA SEDE");
-    }
-};
-
 const postItem = async ({ body }: Request, res: Response) => {
     try {
         const responseItem = await insertSede(body);
@@ -50,14 +39,4 @@ const postItem = async ({ body }: Request, res: Response) => {
     }
 };
 
-const deleteItem = async ({ params }: Request, res: Response) => {
-    try {
-        const { id } = params;
-        const response = await deleteSede(id);
-        res.send(response);
-    } catch (e) {
-        handleHttp(res, "ERROR AL ELIMINAR LA SEDE");
-    }
-};
-
-export { getItems as getSedes, getItem as getSede, updateItem as updateSede, postItem as insertSede, deleteItem as deleteSede };
+export { getItems as getSedes, getItem as getSede, postItem as insertSede };
