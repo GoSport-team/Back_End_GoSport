@@ -16,16 +16,6 @@ const getSede = async (id: string) => {
     return responseItem;
 };
 
-const updateSede = async (id: string, data: Sede) => {
-    const responseItem = await SedeModel.findOneAndUpdate({ _id: id }, data, {
-        new: true,
-    });
-    return responseItem;
-};
 
-const deleteSede = async (id: string) => {
-    const responseItem = await SedeModel.deleteOne({ _id: id });
-    return responseItem;
-};
 
-export { insertSede, getSedes, getSede, updateSede, deleteSede };
+export { insertSede, getSedes, getSede };

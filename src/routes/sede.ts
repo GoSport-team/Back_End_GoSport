@@ -1,3 +1,20 @@
 import { Router } from "express";
-const  router = Router();
-export {router};
+import {
+  
+  getSede,
+  getSedes,
+  insertSede,
+  
+} from "../controllers/sede"; 
+
+
+const router = Router();
+
+router.get("/", getSedes);
+
+router.get("/:id", getSede);
+
+router.post("/", insertSede);
+
+
+export { router };
