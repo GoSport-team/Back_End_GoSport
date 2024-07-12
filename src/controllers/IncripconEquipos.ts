@@ -66,7 +66,10 @@ const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) =>
   const guardarInscripcionDeEquipo = async ({ body }: Request, res: Response) => {
     try {
       const responseItem = await insertInscripcion(body);
-      res.send(responseItem);
+      res.send({
+        msg:"Equipo guardado Correctamente",
+        equipo: responseItem
+      });
     } catch (e) {
       handleHttp(res, "ERROR AL GUARDAR EL EQUIPO", e);
     }

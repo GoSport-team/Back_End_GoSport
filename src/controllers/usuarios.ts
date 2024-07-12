@@ -40,6 +40,7 @@ const actualizarUsuario = async ({ params, body }: Request, res: Response) => {
 };
 
 const crearUsuario = async ({ body }: Request, res: Response) => {
+  console.log(body)
   try {
     const responseUsuario = await insertarUsuario(body);
     res.send(responseUsuario);
