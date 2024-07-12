@@ -5,7 +5,6 @@ const ModalidadSchema = new Schema<Modalidad>(
    {
       nombreModalidad: {
          type: String,
-         required: true
       },
 
    }

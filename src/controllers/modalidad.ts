@@ -6,7 +6,7 @@ import {
     getModalidad
 } from "../services/modalidad"; 
 
-// Funciones de controlador para operaciones CRUD de Modalidad
+
 const getItem = async ({ params }: Request, res: Response) => {
     try {
         const { id } = params;

@@ -5,7 +5,6 @@ const SedeSchema = new Schema<Sede>(
     {
         nombreSede: {
             type: String,
-            required: true
         },
     }
 );
