@@ -3,8 +3,8 @@ import {
     obtenerVS,
     obtenerVS1,
     guardarVS,
-    actualizarVS,
-    eliminarVS
+    eliminarVS,
+    patchesVs
 } from '../controllers/vs'
 
 const router = Router()
@@ -12,7 +12,7 @@ const router = Router()
 router.get('/', obtenerVS);
 router.get('/:id', obtenerVS1)
 router.post('/', guardarVS)
-router.patch('/:id', actualizarVS)
+router.patch('/:id', patchesVs)
 router.delete('/:id', eliminarVS)
 
 export {router}

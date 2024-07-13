@@ -6,7 +6,8 @@ import {
     getVS,
     getVS1,
     updateVS,
-    deleteVS
+    deleteVS,
+    patchVs
 } from '../services/vs'
 
 
@@ -39,6 +40,16 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
       handleHttp(res, "ERROR AL ACTUALIZAR EL RESULTADOS");
     }
   };
+
+  const patchesVs = async({params, body}:Request, res:Response)=>{
+    try {
+      const { id } = params;
+      const response = await patchVs(id, body);
+      res.send(response);
+    } catch (e) {
+      handleHttp(res, "ERROR AL ACTUALIZAR EL RESULTADOS");
+    }
+  }
   
   const guardarVS = async ({ body }: Request, res: Response) => {
     try {
@@ -66,5 +77,6 @@ export{
     obtenerVS1,
     guardarVS,
     actualizarVS,
-    eliminarVS
+    eliminarVS,
+    patchesVs
 }

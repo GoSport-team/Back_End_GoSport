@@ -52,6 +52,20 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
     });
     return responseItem;
   };
+
+  const patchVs = async(id: string, data:VS)=>{
+    try{
+    const responseItemNecesseary = await VSModel.findOneAndUpdate({_id:id},
+       {$set:data},
+       {new:true});
+
+       return responseItemNecesseary;
+    }catch(error){
+      console.log("Error al hacer path", error);
+      throw error;
+    }
+
+  }
   
   const deleteVS = async (id: string) => {
     const responseItem = await VSModel.deleteOne({ _id: id });
@@ -64,5 +78,6 @@ export{
     getVS,
     getVS1,
     updateVS,
-    deleteVS
+    deleteVS,
+    patchVs
 }
