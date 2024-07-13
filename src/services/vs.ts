@@ -46,12 +46,7 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
     return responseItem;
   };
   
-  const updateVS = async (id: string, data: VS) => {
-    const responseItem = await VSModel.findOneAndUpdate({ _id: id }, data, {
-      new: true,
-    });
-    return responseItem;
-  };
+
 
   const patchVs = async(id: string, data:VS)=>{
     try{
@@ -77,7 +72,6 @@ export{
     insertVS,
     getVS,
     getVS1,
-    updateVS,
     deleteVS,
     patchVs
 }
