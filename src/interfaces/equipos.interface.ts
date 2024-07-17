@@ -1,11 +1,10 @@
-export interface EquipoInterCentros{
+export interface Equipo{
     nombreEquipo: string,
     nombreCapitan: string,
     contactoUno: number,
     contactoDos: number,
-    Idcampeonato: string,
     jornada:string,
     puntos: number,
-    ganador: boolean,
+    estado: boolean,
     participantes:[]
 }

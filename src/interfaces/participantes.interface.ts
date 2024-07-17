@@ -1,5 +1,5 @@
 export interface Participantes{
-    N:number,
+   id:string,
     nombreJugador:string,
     ficha: number,
     dorsal: number

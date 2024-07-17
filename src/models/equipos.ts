@@ -1,15 +1,15 @@
 import { Schema, model } from "mongoose";
-import { EquipoInterCentros } from "../interfaces/equipoInterCentro.interface";
-import { ParticipantesInterCentros } from "../interfaces/participantesInterCentros.interface";
+import { Participantes } from "../interfaces/participantes.interface";
+import { Equipo } from "../interfaces/equipos.interface";
 
-const ParticipantesInterShema = new Schema<ParticipantesInterCentros>(
+const ParticipantesShema = new Schema<Participantes>(
     {
-        N: { type: Number, required: true },
+        id:{type: String, required: true, unique: true },
         nombreJugador: { type: String, required: true },
         ficha: { type: Number, required: true },
         dorsal: { type: Number, required: true },
     })
-const EquiposInterCentrosShema = new Schema<EquipoInterCentros>(
+const EquiposShema = new Schema<Equipo>(
     {
         nombreEquipo: {
             type: String,
@@ -31,27 +31,18 @@ const EquiposInterCentrosShema = new Schema<EquipoInterCentros>(
             require: true,
             trim: true
         },
-        Idcampeonato:{
-            type: String,
-            require: true,
-            trim: true
-        },
         jornada: {
             type: String,
             require: true,
             trim: true
         },
-        puntos:{
-            type: Number,
-            require: true,
-            trim: true
-        },
-        ganador: {
+     
+        estado: {
             type:Boolean,
             required:true,
             default: true 
         },
-        participantes:[ParticipantesInterShema]
+        participantes:[ParticipantesShema]
     },
     {
         timestamps: true
@@ -60,6 +51,6 @@ const EquiposInterCentrosShema = new Schema<EquipoInterCentros>(
 )
 
 
-const EquipoInterCentrosModel = model('equipoInterCentro', EquiposInterCentrosShema )
+const EquipoModel = model('equipo', EquiposShema )
 
-export default EquipoInterCentrosModel;
+export default EquipoModel;
