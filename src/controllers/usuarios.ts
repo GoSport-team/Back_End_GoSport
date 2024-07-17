@@ -6,6 +6,7 @@ import {
   updateUsuario,
   insertarUsuario,
   deleteUsuario,
+  patchUsuario,
   gettingByIdentificacion,
 } from "../services/usuarios";
 
@@ -33,6 +34,16 @@ const actualizarUsuario = async ({ params, body }: Request, res: Response) => {
   try {
     const { id } = params;
     const response = await updateUsuario(id, body);
+    res.send(response);
+  } catch (e) {
+    handleHttp(res, "ERROR AL ACTUALIZAR USUARIO");
+  }
+};
+
+const PatchesUsuario = async ({ params, body }: Request, res: Response) => {
+  try {
+    const { id } = params;
+    const response = await patchUsuario(id, body);
     res.send(response);
   } catch (e) {
     handleHttp(res, "ERROR AL ACTUALIZAR USUARIO");
@@ -82,4 +93,5 @@ export {
   obtenerIdIdenfiticacion,
   crearUsuario,
   eliminarUsuario,
+  PatchesUsuario
 };

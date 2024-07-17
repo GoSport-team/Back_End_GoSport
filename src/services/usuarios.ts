@@ -36,6 +36,23 @@ const updateUsuario = async (id: string, data: Usuarios) => {
   return responseUsuario;
 };
 
+const patchUsuario = async(id: string, data:Usuarios)=>{
+  if(data.contrasena){
+    data.contrasena = hashSync(data.contrasena, 6);
+  }
+  try{
+  const responseItemNecesseary = await UsuarioModel.findOneAndUpdate({_id:id},
+     {$set:data},
+     {new:true});
+
+     return responseItemNecesseary;
+  }catch(error){
+    console.log("Error al hacer path", error);
+    throw error;
+  }
+
+}
+
 const deleteUsuario = async (id: string) => {
   const responseDelete = await UsuarioModel.deleteOne({ _id: id });
   return responseDelete;
@@ -48,5 +65,6 @@ export {
   gettingByIdentificacion,
   updateUsuario,
   deleteUsuario,
+  patchUsuario
 };
   

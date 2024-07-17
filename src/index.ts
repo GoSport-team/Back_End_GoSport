@@ -3,6 +3,9 @@ import cors from "cors";
 import { router } from "./routes";
 import db from "./config/db";
 import cookieParser from "cookie-parser";
+import path from "path";
+
+
 const PORT = 3001;
 const app = express();
 
@@ -16,6 +19,8 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+console.log(__dirname)
 app.use(router);
 
 db();
