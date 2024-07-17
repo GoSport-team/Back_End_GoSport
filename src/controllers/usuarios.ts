@@ -45,7 +45,7 @@ const crearUsuario = async ({ body }: Request, res: Response) => {
     const responseUsuario = await insertarUsuario(body);
     res.send(responseUsuario);
   } catch (e) {
-    handleHttp(res, "ERROR AL CREAR USUARIO");
+    handleHttp(res, "ERROR AL CREAR USUARIO", e);
   }
 };
 

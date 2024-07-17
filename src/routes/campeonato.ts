@@ -6,17 +6,19 @@ import {
   postItem,
   updateItem,
 } from "../controllers/campeonato";
+import { checkJwt } from "../middleware/session";
+import { validacionCampeonato } from "../middleware/validacionCampeonato";
 
 
 
 
 const router = Router();
 
-router.get("/", getItems);
+router.get("/",checkJwt,  getItems);
 
 router.get("/:id",  getItem);
 
-router.post("/", postItem);
+router.post("/",validacionCampeonato, postItem);
 
 router.put("/:id", updateItem);
 

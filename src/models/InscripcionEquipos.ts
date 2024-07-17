@@ -23,12 +23,14 @@ const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
         contactoUno: {
             type: String,
             require: true,
-            trim: true
+            trim: true,
+            unique:true
         },
         contactoDos: {
             type: String,
             require: true,
-            trim: true
+            trim: true,
+            unique:true
         },
         IdCampeonato:{
             type: String,

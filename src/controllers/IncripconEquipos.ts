@@ -1,3 +1,4 @@
+//separar la tabla equipos con inscripcion equipos
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import {
@@ -12,6 +13,7 @@ import {
 
  
 const equiposGanadores = async ({headers}: Request, res: Response) => {
+  //guardar los equipos ganadores en una fase 
   try {
     const {idcampeonato} = headers
     const response = await ganadores(`${idcampeonato}`);
@@ -20,6 +22,8 @@ const equiposGanadores = async ({headers}: Request, res: Response) => {
     handleHttp(res, "ERROR AL OBTENER LOS EQUIPOS INSCRITOS");
   }
 };
+
+//no funcionaaaa
 const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) => {
     try {
       const {IdCampeonato} = headers
@@ -64,6 +68,7 @@ const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) =>
   };
   
   const guardarInscripcionDeEquipo = async ({ body }: Request, res: Response) => {
+    //validar numeros de telefono
     try {
       const responseItem = await insertInscripcion(body);
       res.send({

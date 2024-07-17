@@ -5,39 +5,60 @@ const CampeonatoShema = new Schema<Campeonato>(
    {
       nombreDiciplinas: {
          type: String,
-         required: true
+         required: true,
+         trim:true
+      },
+      estadoCampeonato:{
+         type:String,
+         required:true,
+         trim:true,
+         enum:["Creado", "Inscripcion", "RegistroFecha", "Ejecucion", "Finalizacion"]
       },
       tamanoEquipos: {
          type: Number,
-         required: true
+         required: true,
+         trim:true
       },
-      fechaIniciio: {
+      fechaInicio: {
          type: String,
-         required: true
+         required: true,
+         trim:true
       },
       fechaFin: {
          type: String,
-         required: true
+         required: true,
+         trim:true
+      },
+      tipoCampeonato:{
+         type: String,
+         required:true,
+         trim:true,
+         enum:["InterCentros", "InterFichas", "Recreacional"]
       },
       nombreCampeonato: {
          type: String,
-         required: true
+         required: true,
+         trim:true
       },
       descripcion: {
          type: String,
-         required: true
+         required: true,
+         trim:true
       },
       inicioInscripcion: {
          type: String,
-         required: true
+         required: true,
+         trim:true
       },
       finInscripcion: {
          type: String,
-         required: true
+         required: true,
+         trim:true
       },
-      cantidadEquipos: {
-         type: Number,
-         required: true
+      añoCreacion:{
+         type:Number,
+         required:true,
+         trim:true
       }
    },
    {

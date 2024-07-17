@@ -12,7 +12,7 @@ import {
 
 
 const router = Router()
-
+//colocar id discriptivo
 router.get('/ganadores', equiposGanadores)
 router.get('/',  obtenerInscripcionesEquipos)
 
