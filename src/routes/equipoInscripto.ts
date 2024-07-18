@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
-    obtenerEquipoInscripto,
-    obtenerEquiposInscriptos,
+    //obtenerEquipoInscripto,
+    //obtenerEquiposInscriptos,
     actualizarEquipoInscripto,
     eliminarEquipoInscripto,
     GuardarEquiposInscriptos
