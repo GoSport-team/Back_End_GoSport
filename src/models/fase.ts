@@ -11,7 +11,17 @@ const FaseShema = new Schema<Fase>(
         nombre:{
             type: String,
             require:true
-        }
+        },
+        equiposGanadores:[{
+            type: Schema.Types.ObjectId,
+            ref:'resultado'
+        }],
+        equiposPerdedores:[{
+            type: Schema.Types.ObjectId,
+            ref:'resultado'
+        }]
+            
+      
     },
     {
         timestamps: true

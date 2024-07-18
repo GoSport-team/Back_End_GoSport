@@ -10,18 +10,17 @@ const equipoVs = (teams: Array<any>) => {
             vs.push({
                 id: id,
                 team1:{
-                     name:team1.nombreEquipo,
-                    idEquipo: team1._id
+                     team1,
                 },
                 team2:{ 
-                    name:team2.nombreEquipo,
-                    idEquipo: team2._id}
+                    team2,
+                }
             });
         } else {
             vs.push({
                 team1:{
-                     name:team1.nombreEquipo,
-                    idEquipo: team1._id},
+                     team1
+                    },
                 team2:{
                      name:'no tiene nombre',
                     idEquipo: 'no tiene id'

@@ -20,7 +20,7 @@ const getItem = async ({ params }: Request, res: Response) => {
   }
 };
 
-const getItems = async (res: Response) => {
+const getItems = async (_req: Request,  res: Response) => {
   //TODO: devolver solamente el campeonato ✅
   //estado campeonato  creado,  inscripcion, registro fecha, ejecucion, finalizacion ✅
   //agregar trim ✅ 

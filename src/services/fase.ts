@@ -30,6 +30,21 @@ const insertFase = async (item: Fase) => {
     return responseItem;
   };
   
+  const patchFase = async(id:string, data: Fase)=>{
+    try{
+      const responseItem = await FaseModel.findOneAndUpdate({_id:id},
+        {$set:data},
+        {new:true}
+      )
+      return responseItem;
+    }
+    catch(error){
+      console.log("Error al hacer path", error);
+      throw error;
+    }
+
+  }
+
   const deleteFase = async (id: string) => {
     const responseItem = await FaseModel.deleteOne({ _id: id });
     return responseItem;
@@ -41,5 +56,6 @@ export{
     getFase,
     getFases,
     updateFase,
-    deleteFase
+    deleteFase, 
+    patchFase
 }
