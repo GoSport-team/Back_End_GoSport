@@ -1,68 +1,33 @@
-import { Schema, model } from "mongoose";
-import InterfaceJugador from "../interfaces/jugador.interface"
+import { Schema } from "mongoose";
+import UsuarioModel from "./usuario";
+import Jugador from "../interfaces/jugador.interface";
 
-const jugadorSchema = new Schema<InterfaceJugador>({
-    nombres:{
-        type:String,
-        require:true,
-        trim:true
+const jugadorSchema = new Schema<Jugador>(
+  {
+    ficha: {
+      type: String,
+      required: true,
     },
-    correo:{
-        type:String,
-        require:true,
-        trim:true
+    programa: {
+      type: String,
+      required: true,
     },
-    telefono:{
-        type:Number,
-        require:true,
-        trim:true
-    
+    finFicha: {
+      type: Date,
+      required: true,
     },
-    genero:{
-          type:String,
-        require:true,
-        trim:true,
-        enum:['Femenino','Masculino','Mixto']
-
+    jornada: {
+      type: String,
+      required: true,
+      enum: ["Mañana", "Tarde", "Noche"],
     },
-    urlFoto:{ 
-          type:String,
-        require:true,
-        trim:true
-    },
-    identificacion:{
-        type:String,
-        require:true,
-        trim:true
-    
-    },
-    contrasena:{
-        type:String,
-        require:true,
-        trim:true
-    },
-    jornada :{
-        type: String,
-        require: true,
-        trim:true,
-        enum: ['Mañana', 'Tarde', 'Noche']
-    },
-    numeroFicha:{
-        type:Number,
-        require: true,
-        trim:true
-    },
-    estado:{
-        type: Boolean,
-        require: true,
-        trim:true,
-        default: true
-    },
-    nombrePrograma:{
-        type:String,
-        require:true,
-        trim:true
-    }
-})
-const modelJugador = model("jugadorSchema", jugadorSchema);
-export default modelJugador;
+  },
+  {
+    timestamps: true,
+  }
+);
+const JugadorModel = UsuarioModel.discriminator<Jugador>(
+  "Jugador",
+  jugadorSchema
+);
+export default JugadorModel;

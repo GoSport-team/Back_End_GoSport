@@ -1,4 +1,4 @@
 export interface Modalidad {
-    nombreModalidad: string;
+    nombreModalidad: "Interfichas"|"Intercentros" | "Recreativos",
  
 }

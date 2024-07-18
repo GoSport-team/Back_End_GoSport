@@ -1,24 +1,21 @@
-//check auth
+
 import { NextFunction, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import { verificarToken } from "../utils/jwt.handle";
 import { requestExtend } from "../interfaces/request.interface";
 
-
 const checkJwt = (req: requestExtend, res: Response, next: NextFunction) => {
   try {
     const jwtUsuario = req.headers.authorization || req.cookies.token || "";
     const jwt = jwtUsuario.split(" ").pop();
-    const isUser = verificarToken(`${jwt}`);
-    console.log(isUser);
-    if (!isUser) {
-      res.status(401).send("  No tienes un jwtt valido");
+    const decoded = verificarToken(`${jwt}`);
+    console.log(decoded);
+    if (!decoded) {
+      res.status(401).send("  No tienes un jwt valido");
     } else {
-      if (typeof isUser === "string") {
-      } else {
-        req.user = isUser;
-        req.rol = isUser.rol;
-      }
+      req.user = decoded;
+      req.rol = decoded.rol;
+
       next();
     }
   } catch (e) {
