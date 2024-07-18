@@ -20,30 +20,35 @@ const getItem = async ({ params }: Request, res: Response) => {
   }
 };
 
-const getItems = async (req: requestExtend, res: Response) => {
+const getItems = async (_req:Request,res: Response) => {
+  //TODO: devolver solamente el campeonato ✅
+  //estado campeonato  creado,  inscripcion, registro fecha, ejecucion, finalizacion ✅
+  //agregar trim ✅ 
+  //agregar intercentros o interfichas ✅
+  //agregar tipo recreacional verificar que solamente se pueda crear un interfichas o intercentors✅
+  
+
   try {
-    const response = await getCampeonatos();
-    res.send({
-      campeonatos: response,
-      user: req.user,
-    });
+    const campeonato = await getCampeonatos();
+    res.send(campeonato);
   } catch (e) {
-    console.log(e);
-    handleHttp(res, "ERROR AL OBTENER LOS CAMPEONATOS");
+    handleHttp(res, "ERROR AL OBTENER LOS CAMPEONATOS",e);
   }
 };
 
 const updateItem = async ({ params, body }: Request, res: Response) => {
+  //funciona ✅
+  const { id } = params;
   try {
-    const { id } = params;
     const response = await updateCampeonato(id, body);
     res.send(response);
   } catch (e) {
-    handleHttp(res, "ERROR AL ACTUALIZAR EL CAMPEONATO");
+    handleHttp(res, "ERROR AL ACTUALIZAR EL CAMPEONATO",e);
   }
 };
 
-const postItem = async ({ body }: Request, res: Response) => {
+const postItem = async (req: requestExtend, res: Response) => {
+  const {body} = req
   try {
     const responseItem = await insertCampeonato(body);
     res.send(responseItem);

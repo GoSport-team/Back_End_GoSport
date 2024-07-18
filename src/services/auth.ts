@@ -26,6 +26,7 @@ const registroNuevoUsuario = async ({
 
   if (checkIs) return "Este usuario ya existe";
   const contraHash = await encrypt(contrasena);
+  console.log(contraHash)
   const registroNuevoUsuario = await UsuarioModel.create({
     correo,
     contrasena: contraHash,

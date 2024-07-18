@@ -7,6 +7,8 @@ import {
   updateItem,
 } from "../controllers/campeonato";
 
+import { validacionCampeonato } from "../middleware/validacionCampeonato";
+
 
 
 
@@ -16,7 +18,7 @@ router.get("/", getItems);
 
 router.get("/:id",  getItem);
 
-router.post("/", postItem);
+router.post("/",validacionCampeonato, postItem);
 
 router.put("/:id", updateItem);
 
