@@ -13,8 +13,14 @@ const checkJwt = (req: requestExtend, res: Response, next: NextFunction) => {
     if (!decoded) {
       res.status(401).send("  No tienes un jwt valido");
     } else {
-      req.user = decoded;
-      req.rol = decoded.rol;
+      if(typeof decoded === "string"){
+
+      }else {
+        req.user = decoded;
+        req.rol = decoded.rol;
+        console.log("Rol en el jwt:", req.rol);
+      }
+     
 
       next();
     }

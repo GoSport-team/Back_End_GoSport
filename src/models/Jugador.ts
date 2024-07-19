@@ -6,19 +6,19 @@ const jugadorSchema = new Schema<Jugador>(
   {
     ficha: {
       type: String,
-      required: true,
+      // required: true,
     },
     programa: {
       type: String,
-      required: true,
+      // required: true,
     },
     finFicha: {
       type: Date,
-      required: true,
+      // required: true,
     },
     jornada: {
       type: String,
-      required: true,
+      // required: true,
       enum: ["Mañana", "Tarde", "Noche"],
     },
   },

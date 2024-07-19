@@ -18,6 +18,7 @@ const registroNuevoUsuario = async ({
   finFicha,
   jornada,
   rol,
+  
 }: {
   correo: string;
   contrasena: string;
@@ -29,7 +30,7 @@ const registroNuevoUsuario = async ({
   programa?: string;
   finFicha?: Date;
   jornada?: "Mañana" | "Tarde" | "Noche";
-  rol: string;
+  rol: string
 }) => {
   const checkIs = await UsuarioModel.findOne({
     correo,
@@ -42,6 +43,7 @@ const registroNuevoUsuario = async ({
   const contraHash = await encrypt(contrasena);
   
   let nuevoUsuario;
+  rol = rol || roles.JUGADOR;
 
   switch (rol) {
     case roles.JUGADOR:
