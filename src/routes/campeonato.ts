@@ -12,9 +12,11 @@ import { validacionCampeonato } from "../middleware/validacionCampeonato";
 
 
 
+
+
 const router = Router();
 
-router.get("/", getItems);
+router.get("/",  getItems);
 
 router.get("/:id",  getItem);
 
