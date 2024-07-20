@@ -1,11 +1,11 @@
 import IncripcionEquiposModel from "../models/InscripcionEquipos";
 import { InscripcionEquipos } from "../interfaces/incripcionEquipos.interface";
 
-const ganadores = async(Idcampeonato:String )=>{
-   const responseItem= await IncripcionEquiposModel.find({Idcampeonato}) 
-   const ganadores = responseItem.filter((equipo)=> equipo.ganador== true)
-   return ganadores
-}
+// const ganadores = async(Idcampeonato:String )=>{
+//    const responseItem= await IncripcionEquiposModel.find({Idcampeonato}) 
+//    const ganadores = responseItem.filter((equipo)=> equipo == true)
+//    return ganadores
+// }
 const insertInscripcion = async (data: InscripcionEquipos) => {
     const responseInsert = await IncripcionEquiposModel.create(data);
     return responseInsert;
@@ -47,7 +47,7 @@ const insertInscripcion = async (data: InscripcionEquipos) => {
 
 export{
   updateTeam,
-    ganadores,
+    // ganadores,
     insertInscripcion,
     getInscripcionEquipos,
     getEquipo,

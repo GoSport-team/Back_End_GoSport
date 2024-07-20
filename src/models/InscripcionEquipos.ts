@@ -32,15 +32,10 @@ const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
             trim: true,
             unique:true
         },
-        IdCampeonato:{
-            type: String,
+        cedula:{
+            type:String,
             require: true,
-            trim: true
-        },
-        ganador: {
-            type:Boolean,
-            required:true,
-            default: true 
+            trim:true
         },
         imgLogo:{
             type: String,

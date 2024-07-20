@@ -3,8 +3,7 @@ export interface InscripcionEquipos{
     nombreCapitan: string,
     contactoUno: string,
     contactoDos: string,
-    IdCampeonato: string,
-    ganador: boolean,
+    cedula:string,
     imgLogo:String,
     participantes:[]
 }
