@@ -5,10 +5,6 @@ export interface Usuarios extends Auth {
   telefono: String;
   url_foto: String;
   identificacion: String;
-  ficha: String,
-  programa: String,
-  finFicha: String,
-  jornada: "Mañana"|"Tarde" | "Noche",
   estado: Boolean,
-  rol: "jugador" | "organizador";
+  rol: string,
 }

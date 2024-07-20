@@ -4,6 +4,9 @@ import { router } from "./routes";
 import db from "./config/db";
 import cookieParser from "cookie-parser";
 import path from "path";
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 
 const PORT = 3001;

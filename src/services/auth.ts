@@ -1,5 +1,6 @@
+import roles from "../config/rolesConfig";
 import { Auth } from "../interfaces/auth.interface";
-import { Usuarios } from "../interfaces/usuarios.interface";
+import JugadorModel from "../models/Jugador";
 import UsuarioModel from "../models/usuario";
 import { encrypt, verified } from "../utils/bcrypt.handle";
 import { configuracionCookie, generarToken } from "../utils/jwt.handle";
@@ -10,14 +11,27 @@ const registroNuevoUsuario = async ({
   contrasena,
   nombres,
   telefono,
-  url_foto,
   identificacion,
+  url_foto,
   ficha,
   programa,
   finFicha,
   jornada,
+  rol,
   
-}: Usuarios) => {
+}: {
+  correo: string;
+  contrasena: string;
+  nombres: string;
+  telefono: string;
+  identificacion: string;
+  url_foto?: string;
+  ficha?: string;
+  programa?: string;
+  finFicha?: Date;
+  jornada?: "Mañana" | "Tarde" | "Noche";
+  rol: string
+}) => {
   const checkIs = await UsuarioModel.findOne({
     correo,
     telefono,
@@ -25,22 +39,55 @@ const registroNuevoUsuario = async ({
   });
 
   if (checkIs) return "Este usuario ya existe";
+
   const contraHash = await encrypt(contrasena);
-  console.log(contraHash)
-  const registroNuevoUsuario = await UsuarioModel.create({
-    correo,
-    contrasena: contraHash,
-    nombres,
-    telefono,
-    url_foto,
-    identificacion,
-    ficha,
-    programa,
-    finFicha,
-    jornada,
-    rol: "jugador",
-  });
-  return registroNuevoUsuario;
+  
+  let nuevoUsuario;
+  rol = rol || roles.JUGADOR;
+
+  switch (rol) {
+    case roles.JUGADOR:
+      nuevoUsuario = await JugadorModel.create({
+        correo,
+        contrasena: contraHash,
+        nombres,
+        telefono,
+        identificacion,
+        url_foto,
+        ficha,
+        programa,
+        finFicha,
+        jornada,
+        rol: roles.JUGADOR,
+      });
+      break;
+    case roles.ORGANIZADOR:
+      nuevoUsuario = await UsuarioModel.create({
+        correo,
+        contrasena: contraHash,
+        nombres,
+        telefono,
+        identificacion,
+        url_foto,
+        rol: roles.ORGANIZADOR,
+      });
+      break;
+    case roles.PLANILLERO:
+      nuevoUsuario = await UsuarioModel.create({
+        correo,
+        contrasena: contraHash,
+        nombres,
+        telefono,
+        identificacion,
+        url_foto,
+        rol: roles.PLANILLERO,
+      });
+      break;
+    default:
+      throw new Error("Rol no válido");
+  }
+
+  return nuevoUsuario;
 };
 
 const loginUsuario = async ({ correo, contrasena }: Auth, res: Response) => {

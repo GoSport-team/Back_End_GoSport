@@ -1,5 +1,6 @@
 import {
   JsonWebTokenError,
+  JwtPayload,
   TokenExpiredError,
   sign,
   verify,
@@ -21,21 +22,21 @@ const configuracionCookie = (res: Response, jwt: string) => {
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
     maxAge: 2 * 60 * 60 * 1000,
-    sameSite: 'strict'
+    sameSite: "strict",
   });
 };
 
 const verificarToken = (jwt: string) => {
   try {
-    const isOk = verify(jwt, JWT_SECRET);
-    return isOk;
+    const decoded = verify(jwt, JWT_SECRET) as JwtPayload;
+    return decoded;
   } catch (error) {
     if (error instanceof TokenExpiredError) {
       console.error("El token ha expirado", error.message);
     } else if (error instanceof JsonWebTokenError) {
       console.error("Error de jwt", error.message);
     } else {
-      console.error("Error al verificar token");
+      console.error("Error al verificar token", error);
     }
 
     return null;
