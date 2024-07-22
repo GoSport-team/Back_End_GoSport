@@ -18,7 +18,7 @@ const insertInscripcion = async (data: InscripcionEquipos) => {
   };
   
   const getEquipo = async (id: string) => {
-    const responseItem = await  IncripcionEquiposModel.findOne({ _id: id });
+    const responseItem = await  IncripcionEquiposModel.findOne({ cedula: id });
     return responseItem;
   };
   

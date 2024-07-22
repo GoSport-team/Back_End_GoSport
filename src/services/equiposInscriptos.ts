@@ -16,6 +16,8 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     return responseItem;
   };
   
+  
+
   const updateEquipoInscripto = async (id: string, data: EquiposInscriptos) => {
     const responseItem = await EquiposInscriptosModel.findOneAndUpdate({ _id: id }, data, {
       new: true,

@@ -31,12 +31,17 @@ const EquiposShema = new Schema<Equipo>(
             require: true,
             trim: true
         },
+
         jornada: {
             type: String,
             require: true,
             trim: true
         },
-     
+        cedula:{
+            type:String,
+            required:false,
+            trim:true
+        },
         estado: {
             type:Boolean,
             required:true,

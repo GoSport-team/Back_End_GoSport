@@ -4,6 +4,7 @@ export interface Equipo{
     contactoUno: number,
     contactoDos: number,
     jornada:string,
+    cedula: string,
     puntos: number,
     estado: boolean,
     participantes:[]

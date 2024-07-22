@@ -8,8 +8,8 @@ export const validacionCampeonato = async (req: requestExtend, res: Response, ne
         const añoCliente = req.body.añoCreacion
         const tipoCampeonato = req.body.tipoCampeonato
         const existeCampeonato = await CampeonatoModel.findOne({tipoCampeonato: tipoCampeonato, añoCreacion:añoCliente})
-    
-        if(existeCampeonato || tipoCampeonato != 'Recreacional' ){
+        console.log(existeCampeonato)
+        if(existeCampeonato){
             res.status(401).json({
                 msg:`No puedes crear mas de un campeonado de ${tipoCampeonato} en el año ${añoCliente} `
             })
