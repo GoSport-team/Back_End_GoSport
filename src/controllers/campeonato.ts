@@ -7,6 +7,7 @@ import {
   updateCampeonato,
   deleteCampeonato,
 } from "../services/campeonato";
+import { requestExtend } from "../interfaces/request.interface";
 
 
 const getItem = async ({ params }: Request, res: Response) => {
