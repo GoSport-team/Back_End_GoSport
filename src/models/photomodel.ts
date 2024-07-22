@@ -11,13 +11,17 @@ const FotoSchema = new Schema<Photos>(
             type: String,
             required: true
         },
-        Imagepath: {
+        ImageUrl: {
+            type: String,
+            required: true
+        },
+        public_id: {
             type: String,
             required: true
         }
     },
     {
-        timestamps: true // Si quieres añadir timestamps (createdAt y updatedAt)
+        timestamps: true
     }
 );
 

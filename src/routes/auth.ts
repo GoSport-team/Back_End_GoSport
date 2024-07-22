@@ -34,7 +34,7 @@ router.post(
 router.get(
   "/ruta-jugador",
   checkJwt,
-  roleMiddleWare("jugador"),
+  roleMiddleWare('JUGADOR'),
   (_req, res) => {
     res.json({ message: "Acceso permitido exclusivo para jugadores" });
   }
@@ -43,7 +43,7 @@ router.get(
 router.get(
   "/ruta-organizador",
   checkJwt,
-  roleMiddleWare("organizador"),
+  roleMiddleWare('ORGANIZADOR'),
   (_req, res) => {
     res.json({ message: "Acceso permitido exclusivo para organizadores" });
   }
