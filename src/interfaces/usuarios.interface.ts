@@ -7,4 +7,5 @@ export interface Usuarios extends Auth {
   identificacion: String;
   estado: Boolean,
   rol: string,
+  public_id: string
 }

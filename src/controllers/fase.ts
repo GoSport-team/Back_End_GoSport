@@ -5,8 +5,9 @@ import {
     insertFase,
     getFase,
     getFases,
-    updateFase,
-    deleteFase
+    //updateFase,
+    deleteFase,
+    patchFase
 } from '../services/fase'
 
 
@@ -21,7 +22,7 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
     }
   };
   
-  const obtenerFases = async (res: Response) => {
+  const obtenerFases = async (_req: Request, res: Response) => {
     try {
       const response = await getFases();
       res.send(response);
@@ -32,8 +33,8 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
   
   const actualizarFase = async ({ params, body }: Request, res: Response) => {
     try {
-      const { id } = params;
-      const response = await updateFase(id, body);
+      const { id } = params; 
+      const response = await patchFase(id, body);
       res.send(response);
     } catch (e) {
       handleHttp(res, "ERROR AL ACTUALIZAR LA FASE");

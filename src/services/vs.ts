@@ -2,12 +2,23 @@ import VSModel from "../models/vs";
 import { VS } from "../interfaces/vs.interface";
 import randomEquipo from "../helpers/randomEquipos";
 import equipoVs from "../helpers/equipoVs";
+import FaseModel from "../models/fase";
 
 
 const insertVS = async (equipos?:any, IdFase?: String) => {
-    const equiposSorteados = randomEquipo(equipos)
-    const equiposvs = equipoVs(equiposSorteados)
+   
     try {
+      const fase = await FaseModel.findById(IdFase);
+      if (!fase) {
+        throw new Error('Fase no encontrada');
+      }
+
+      const PrimeraFase = fase.estado;
+      let equiposSorteados = equipos;
+      if (PrimeraFase) {
+        equiposSorteados = randomEquipo(equipos)
+      }
+      const equiposvs = equipoVs(equiposSorteados)
         //utilizamos el promise all para asegurarnos de que todos los vs que nos devuelve la funcion equipoVs se guarden correctamente
           await Promise.all(equiposvs.map(async (equipoFormado) => {
     
@@ -15,11 +26,8 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
             try {
              // inicialmente se guarda el nombre del equipo y el ID, despues se agrega la hora de juego y la fecha
               const resultado = new VSModel({
-                equipo1:{name: equipoFormado.team1.name,
-                  idEquipo: equipoFormado.team1.idEquipo
-                },
-                equipo2:{name: equipoFormado.team2.name,
-                  idEquipo: equipoFormado.team2.idEquipo},
+                equipo1:{ informacion: equipoFormado.team1},
+                equipo2:{informacion: equipoFormado.team2},
                 IdFase: IdFase,
               });
               await resultado.save();

@@ -38,6 +38,10 @@ const UsuarioSchema = new Schema<Usuarios>(
       type: Boolean,
       default: true,
     },
+    public_id:{
+      type:String,
+      
+    }
   },
   {
     timestamps: true,
