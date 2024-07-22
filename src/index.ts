@@ -4,6 +4,9 @@ import { router } from "./routes";
 import db from "./config/db";
 import cookieParser from "cookie-parser";
 import path from "path";
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 
 const PORT = 3001;
@@ -11,7 +14,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

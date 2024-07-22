@@ -12,18 +12,23 @@ const getUsuarios = async () => {
   return responseGet;
 };
 
-const getUsuario = async (id: string) => {
-  const responseGet = await UsuarioModel.findOne({ _id: id });
-  return responseGet;
+const getUsuario = async (correo: string) => {
+  try {
+    const usuario = await UsuarioModel.findOne({ correo }).exec();
+    return usuario;
+  } catch (error) {
+    console.error("Error al obtener el usuario:", error);
+    throw new Error("Error al obtener el usuario");
+  }
 };
 
-const gettingByIdentificacion= async(identificacion:any)=>{
-  const unJugador = await UsuarioModel.find({identificacion})
-  return unJugador; 
-}
+const gettingByIdentificacion = async (identificacion: any) => {
+  const unJugador = await UsuarioModel.find({ identificacion });
+  return unJugador;
+};
 
 const updateUsuario = async (id: string, data: Usuarios) => {
-  if(data.contrasena){
+  if (data.contrasena) {
     data.contrasena = hashSync(data.contrasena, 6);
   }
   const responseUsuario = await UsuarioModel.findOneAndUpdate(
@@ -36,22 +41,23 @@ const updateUsuario = async (id: string, data: Usuarios) => {
   return responseUsuario;
 };
 
-const patchUsuario = async(id: string, data:Usuarios)=>{
-  if(data.contrasena){
+const patchUsuario = async (id: string, data: Usuarios) => {
+  if (data.contrasena) {
     data.contrasena = hashSync(data.contrasena, 6);
   }
-  try{
-  const responseItemNecesseary = await UsuarioModel.findOneAndUpdate({_id:id},
-     {$set:data},
-     {new:true});
+  try {
+    const responseItemNecesseary = await UsuarioModel.findOneAndUpdate(
+      { _id: id },
+      { $set: data },
+      { new: true }
+    );
 
-     return responseItemNecesseary;
-  }catch(error){
+    return responseItemNecesseary;
+  } catch (error) {
     console.log("Error al hacer path", error);
     throw error;
   }
-
-}
+};
 
 const deleteUsuario = async (id: string) => {
   const responseDelete = await UsuarioModel.deleteOne({ _id: id });
@@ -65,6 +71,5 @@ export {
   gettingByIdentificacion,
   updateUsuario,
   deleteUsuario,
-  patchUsuario
+  patchUsuario,
 };
-  

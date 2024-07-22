@@ -7,7 +7,7 @@ import {
   updateCampeonato,
   deleteCampeonato,
 } from "../services/campeonato";
-import { requestExtend } from "../interfaces/request.interface";
+
 
 const getItem = async ({ params }: Request, res: Response) => {
   try {
@@ -20,18 +20,20 @@ const getItem = async ({ params }: Request, res: Response) => {
   }
 };
 
-const getItems = async (_req:Request,res: Response) => {
+const getItems = async (_req: Request,  res: Response) => {
   //TODO: devolver solamente el campeonato ✅
   //estado campeonato  creado,  inscripcion, registro fecha, ejecucion, finalizacion ✅
   //agregar trim ✅ 
   //agregar intercentros o interfichas ✅
   //agregar tipo recreacional verificar que solamente se pueda crear un interfichas o intercentors✅
   
-
   try {
     const campeonato = await getCampeonatos();
-    res.send(campeonato);
+    res.send(
+      campeonato
+    );
   } catch (e) {
+    console.log(e);
     handleHttp(res, "ERROR AL OBTENER LOS CAMPEONATOS",e);
   }
 };
@@ -49,6 +51,7 @@ const updateItem = async ({ params, body }: Request, res: Response) => {
 
 const postItem = async (req: requestExtend, res: Response) => {
   const {body} = req
+  console.log(req)
   try {
     const responseItem = await insertCampeonato(body);
     res.send(responseItem);
