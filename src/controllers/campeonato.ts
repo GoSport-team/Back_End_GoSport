@@ -30,7 +30,7 @@ const getItems = async (_req:Request,res: Response) => {
 
   try {
     const campeonato = await getCampeonatos();
-    res.json(campeonato: campeonato});
+    res.send(campeonato);
   } catch (e) {
     handleHttp(res, "ERROR AL OBTENER LOS CAMPEONATOS",e);
   }

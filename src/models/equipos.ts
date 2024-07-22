@@ -4,7 +4,7 @@ import { Equipo } from "../interfaces/equipos.interface";
 
 const ParticipantesShema = new Schema<Participantes>(
     {
-        id:{type: String, required: true, unique: true },
+        id:{type: String, unique: true },
         nombreJugador: { type: String, required: true },
         ficha: { type: Number, required: true },
         dorsal: { type: Number, required: true },
@@ -36,7 +36,11 @@ const EquiposShema = new Schema<Equipo>(
             require: true,
             trim: true
         },
-     
+     puntos:{
+        type: Number,
+            trim: true
+
+     },
         estado: {
             type:Boolean,
             required:true,
