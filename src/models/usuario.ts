@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { Usuarios } from "../interfaces/usuarios.interface";
+import roles from "../config/rolesConfig";
 
 const UsuarioSchema = new Schema<Usuarios>(
   {
@@ -28,27 +29,10 @@ const UsuarioSchema = new Schema<Usuarios>(
       type: String,
       required: true,
     },
-    ficha: {
-      type: String,
-      required: true,
-    },
-    programa: {
-      type: String,
-    },
-    finFicha: {
-      type: String,
-      required: true,
-    },
     rol: {
       type: String,
-      required: true,
-      enum: ["jugador", "organizador"],
-      default: "jugador",
-    },
-    jornada: {
-      type: String,
-      required: true,
-      enum: ["mañana", "tarde", "noche"],
+      enum: Object.values(roles),
+      default: roles.JUGADOR,
     },
     estado: {
       type: Boolean,
@@ -57,6 +41,7 @@ const UsuarioSchema = new Schema<Usuarios>(
   },
   {
     timestamps: true,
+    discriminatorKey: "role",
   }
 );
 
