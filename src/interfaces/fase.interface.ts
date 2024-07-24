@@ -1,5 +1,7 @@
 
 export interface Fase{
     estado: string,
-    nombre: string
+    nombre: string,
+    equiposGanadores: [],
+    equiposPerdedores:[]
 }

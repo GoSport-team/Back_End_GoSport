@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import Photos from "../models/photomodel";
 import fs from "fs-extra";
-import { v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary } from 'cloudinary';  
 
 // Configuración de Cloudinary
 cloudinary.config({

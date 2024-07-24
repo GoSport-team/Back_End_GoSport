@@ -2,6 +2,7 @@ import UsuarioModel from "../models/usuario";
 import { Usuarios } from "../interfaces/usuarios.interface";
 import { hashSync } from "bcryptjs";
 
+
 const insertarUsuario = async (usuario: Usuarios) => {
   const responseInsertU = await UsuarioModel.create(usuario);
   return responseInsertU;
@@ -71,5 +72,5 @@ export {
   gettingByIdentificacion,
   updateUsuario,
   deleteUsuario,
-  patchUsuario,
-};
+  patchUsuario, 
+}

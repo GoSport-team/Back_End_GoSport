@@ -1,4 +1,4 @@
-import { Resultado } from "../interfaces/resultados";
+  import { Resultado } from "../interfaces/resultados";
 import ResultadoModel from "../models/resultado";
 import VSModel from "../models/vs";
 
@@ -23,7 +23,7 @@ const insertResultado = async (item: Resultado) => {
     return responseItem;
   };
   
-  // falta length Resultados Vs 
+  
 
   const updateResultado = async (id: string, data: Resultado) => {
     const responseItem = await ResultadoModel.findOneAndUpdate({ _id: id }, data, {

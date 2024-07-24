@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import {
   updateTeam,
-  ganadores,
+  // ganadores,
     insertInscripcion,
     getEquipo,
     getInscripcionEquipos,
@@ -12,16 +12,16 @@ import {
 } from '../services/inscripcionEquipos'
 
  
-const equiposGanadores = async ({headers}: Request, res: Response) => {
-  //guardar los equipos ganadores en una fase 
-  try {
-    const {idcampeonato} = headers
-    const response = await ganadores(`${idcampeonato}`);
-    res.send(response);
-  } catch (e) {
-    handleHttp(res, "ERROR AL OBTENER LOS EQUIPOS INSCRITOS");
-  }
-};
+// const equiposGanadores = async ({headers}: Request, res: Response) => {
+//   //guardar los equipos ganadores en una fase 
+//   try {
+//     const {idcampeonato} = headers
+//     const response = await ganadores(`${idcampeonato}`);
+//     res.send(response);
+//   } catch (e) {
+//     handleHttp(res, "ERROR AL OBTENER LOS EQUIPOS INSCRITOS");
+//   }
+// };
 
 //no funcionaaaa
 const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) => {
@@ -92,7 +92,7 @@ const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) =>
 
 
 export{
-  equiposGanadores,
+  // equiposGanadores,
     obtenerInscripcionesEquipos,
     obtenerInscripcionEquipo,
     guardarInscripcionDeEquipo,

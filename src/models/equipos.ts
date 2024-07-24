@@ -31,16 +31,25 @@ const EquiposShema = new Schema<Equipo>(
             require: true,
             trim: true
         },
+
         jornada: {
             type: String,
             require: true,
             trim: true
         },
+<<<<<<< HEAD
      puntos:{
         type: Number,
             trim: true
 
      },
+=======
+        cedula:{
+            type:String,
+            required:false,
+            trim:true
+        },
+>>>>>>> 9a8b60f793a086a18cc9fe68511dce1e52cce294
         estado: {
             type:Boolean,
             required:true,
