@@ -6,8 +6,8 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     return responseInsert;
   };
   
-  const getEquiposInscriptos  = async (id:string ) => {
-    const responseItem = await EquiposInscriptosModel.find({ idCampeonato: id });
+  const getEquiposInscriptos  = async (id: String ) => {
+    const responseItem = await EquiposInscriptosModel.find({idCampeonato : id});
     return responseItem;
   };
   

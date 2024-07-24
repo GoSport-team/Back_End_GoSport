@@ -21,9 +21,7 @@ const getItem = async ({ params }: Request, res: Response) => {
 const getItems = async (_req: Request, res: Response) => {
     try {
         const response = await getSedes();
-        res.send({
-            sedes: response
-        });
+        res.send( response);
     } catch (e) {
         console.log(e);
         handleHttp(res, "ERROR AL OBTENER LAS SEDES");

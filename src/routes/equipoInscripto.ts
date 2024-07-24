@@ -1,19 +1,19 @@
 import { Router } from "express";
 import {
-    //obtenerEquipoInscripto,
-    //obtenerEquiposInscriptos,
+    obtenerEquipoInscripto,
+    obtenerEquiposInscriptos,
     actualizarEquipoInscripto,
     eliminarEquipoInscripto,
     GuardarEquiposInscriptos
 } from '../controllers/equiposInscriptos'
-import { getEquiposInscriptos, getEquitoInscripto } from "../services/equiposInscriptos";
+
 
 
 const router = Router();
 
-router.get("/", getEquiposInscriptos);
+router.get("/", obtenerEquiposInscriptos);
 
-router.get("/:id",  getEquitoInscripto);
+router.get("/:id",  obtenerEquipoInscripto);
 
 router.post("/",    GuardarEquiposInscriptos);
 

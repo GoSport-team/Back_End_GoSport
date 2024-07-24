@@ -22,7 +22,7 @@ router.get("/:id",  getItem);
 
 router.post("/",validacionCampeonato, postItem);
 
-router.put("/:id", updateItem);
+router.patch("/:id", updateItem);
 
 router.delete("/:id", deleteItem);
 

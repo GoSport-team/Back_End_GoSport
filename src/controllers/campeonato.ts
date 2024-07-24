@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
+
 import {
   getCampeonato,
   getCampeonatos,
@@ -7,6 +8,7 @@ import {
   updateCampeonato,
   deleteCampeonato,
 } from "../services/campeonato";
+import { requestExtend } from "../interfaces/request.interface";
 
 
 const getItem = async ({ params }: Request, res: Response) => {

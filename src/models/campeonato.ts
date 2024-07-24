@@ -3,7 +3,12 @@ import { Campeonato } from "../interfaces/campeonato.infertace";
 
 const CampeonatoShema = new Schema<Campeonato>(
    {
-      nombreDiciplinas: {
+      nombreCampeonato: {
+         type: String,
+         required: true,
+         trim:true
+      },
+      nombreDisciplinas: {
          type: String,
          required: true,
          trim:true
@@ -12,7 +17,8 @@ const CampeonatoShema = new Schema<Campeonato>(
          type:String,
          required:true,
          trim:true,
-         enum:["Creado", "Inscripcion", "RegistroFecha", "Ejecucion", "Finalizacion"]
+         enum:["Creado", "Inscripcion", "RegistroFecha", "Ejecucion", "Finalizacion"],
+         default: "Creado"
       },
       tamanoEquipos: {
          type: Number,
@@ -33,13 +39,12 @@ const CampeonatoShema = new Schema<Campeonato>(
          type: String,
          required:true,
          trim:true,
-         enum:["InterCentros", "InterFichas", "Recreacional"]
       },
-      nombreCampeonato: {
+      sede:{
          type: String,
-         required: true,
-         trim:true
-      },
+         required:true,
+         trim:true,
+      }, 
       descripcion: {
          type: String,
          required: true,

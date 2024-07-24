@@ -1,10 +1,11 @@
 export interface Campeonato{
-    nombreDiciplinas: string,
+    nombreDisciplinas: string,
     estadoCampeonato: "Creado" | "Inscripcion" | "RegistroFecha" | "Ejecucion" | "Finalizacion",
     tamanoEquipos: number,
     fechaInicio: string,
     fechaFin: string,
-    tipoCampeonato: 'InterCentros' | 'InterFichas' | 'Recreacional'
+    tipoCampeonato: string,
+    sede:string,
     nombreCampeonato: string,
     descripcion: string,
     inicioInscripcion: string,

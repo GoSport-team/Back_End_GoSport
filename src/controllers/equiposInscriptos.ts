@@ -7,7 +7,6 @@ import {
     updateEquipoInscripto,
     deleteEquipoInscripto
 } from '../services/equiposInscriptos'
-import { requestExtend } from "../interfaces/request.interface";
 
 
 const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
@@ -21,13 +20,13 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
     }
   };
   
-  const obtenerEquiposInscriptos = async ({headers}: requestExtend, res: Response) => {
-    const {idCampeonato}= headers
+  const obtenerEquiposInscriptos = async ( {headers}: Request, res: Response) => {
     try {
+      const {idCampeonato}= headers
       const response = await getEquiposInscriptos(`${idCampeonato}`);
-      res.send(response);
+        res.send(response)
     } catch (e) {
-      handleHttp(res, 'ERROR AL OBTENER LOS EQUIPOS');
+      handleHttp(res, "ERROR AL OBTENER EL EQUIPO");
     }
   };
 
