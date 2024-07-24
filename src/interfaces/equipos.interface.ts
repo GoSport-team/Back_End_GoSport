@@ -6,6 +6,7 @@ export interface Equipo{
     jornada:string,
     cedula: string,
     puntos: number,
+    imgLogo: string,
     estado: boolean,
     participantes:[]
 }

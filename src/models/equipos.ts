@@ -1,13 +1,12 @@
 import { Schema, model } from "mongoose";
-import { Participantes } from "../interfaces/participantes.interface";
+
 import { Equipo } from "../interfaces/equipos.interface";
 
-const ParticipantesShema = new Schema<Participantes>(
+const ParticipantesShema = new Schema(
     {
-        id:{type: String, unique: true },
         nombreJugador: { type: String, required: true },
-        ficha: { type: Number, required: true },
-        dorsal: { type: Number, required: true },
+        ficha: { type: String, required: true },
+        dorsal: { type: String, required: true },
     })
 const EquiposShema = new Schema<Equipo>(
     {
@@ -37,19 +36,20 @@ const EquiposShema = new Schema<Equipo>(
             require: true,
             trim: true
         },
-<<<<<<< HEAD
-     puntos:{
-        type: Number,
-            trim: true
-
-     },
-=======
         cedula:{
             type:String,
             required:false,
             trim:true
         },
->>>>>>> 9a8b60f793a086a18cc9fe68511dce1e52cce294
+     puntos:{
+        type: Number,
+        trim: true,
+        required:false
+     },
+        imgLogo:{
+            type: String,
+            required:true,
+        },
         estado: {
             type:Boolean,
             required:true,
