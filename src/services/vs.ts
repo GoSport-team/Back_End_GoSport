@@ -5,6 +5,36 @@ import equipoVs from "../helpers/equipoVs";
 import FaseModel from "../models/fase";
 
 
+//Nueva Funcion 
+const MejorPerdedor = async(IdFase?: String)=>{
+    try{
+        
+        const Resultado = await VSModel.find({IdFase});//Que debo llmar aqui vs o resultados pq mostrar code model
+        let gandores:any[] = [];
+        let perdedores: any[] = [];
+
+        Resultado.forEach(resultado=>{
+          if (resultado.equipo1 > resultado.equipo2) {
+            gandores.push(resultado.equipo1)
+            perdedores.push(resultado.equipo2);
+          }else{
+            gandores.push(resultado.equipo2);
+            perdedores.push(resultado.equipo1)
+          }
+        })
+        await FaseModel.findByIdAndUpdate(IdFase, {
+          equiposGanadores: gandores,
+          equiposPerdedores: perdedores
+        })
+        const mejorPerdedor = randomEquipo(perdedores)[0];
+        return mejorPerdedor;
+      
+    }catch(err){
+      console.error('Error al procesar mejor perdedor:', err);
+        throw err;
+    }
+}
+
 const insertVS = async (equipos?:any, IdFase?: String) => {
    
     try {
