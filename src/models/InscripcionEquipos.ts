@@ -12,34 +12,49 @@ const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
     {
         nombreEquipo: {
             type: String,
-            require: true,
+            required: true,
             trim: true
         },
         nombreCapitan: {
             type: String,
-            require: true,
+            required: true,
             trim: true
         },
         contactoUno: {
             type: String,
-            require: true,
+            required: true,
             trim: true,
             unique:true
         },
         contactoDos: {
             type: String,
-            require: true,
+            required: true,
             trim: true,
             unique:true
         },
+        jornada:{
+            type:String,
+            required:true,
+            trim:true
+        },
+        puntos:{
+            type:Number,
+            trim:true,
+            required:false
+        },
         cedula:{
             type:String,
-            require: true,
+            required: true,
             trim:true
         },
         imgLogo:{
             type: String,
             required:true,
+        },
+        estado:{
+            type:Boolean,
+            required:true,
+            default:true
         },
         participantes:[ParticipantesShema]
     },

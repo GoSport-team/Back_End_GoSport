@@ -1,4 +1,4 @@
 export interface EquiposInscriptos{
-    Equipo: object,
+    equipo: object,
     idCampeonato: string
 }
