@@ -11,7 +11,7 @@ export const validacionCampeonato = async (req: requestExtend, res: Response, ne
 
         if(existeCampeonato && tipoCampeonato != 'Recreativos' ){
         console.log(existeCampeonato)
-        if(existeCampeonato){
+        if(existeCampeonato && tipoCampeonato != "Recreativos"){
             res.status(401).json({
                 msg:`No puedes crear mas de un campeonado de ${tipoCampeonato} en el año ${añoCliente} `
             })
