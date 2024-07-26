@@ -37,6 +37,7 @@ export const ObtenerEquipos = async (_req: Request, res: Response) => {
   };
   export const guardarEquipo = async ({ body }: Request, res: Response) => {
     try {
+      console.log(body)
       const responseItem = await insertEquipo(body);
       res.send(responseItem);
     } catch (e) {

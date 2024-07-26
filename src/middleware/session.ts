@@ -8,7 +8,6 @@ const checkJwt = (req: requestExtend, res: Response, next: NextFunction) => {
     const jwtUsuario = req.headers.authorization || req.cookies.token || "";
     const jwt = jwtUsuario.split(" ").pop();
     const decoded = verificarToken(`${jwt}`);
-    console.log(decoded);
 
     if (!decoded) {
       return res.status(401).send("  No tienes un jwt valido");
@@ -16,6 +15,7 @@ const checkJwt = (req: requestExtend, res: Response, next: NextFunction) => {
     if (typeof decoded === "string") {
       return res.status(401).send("token no valido");
     }
+    console.log(decoded)
     req.user = decoded;
     req.rol = decoded.rol;
     console.log("Datos decodificados:", req.user);
