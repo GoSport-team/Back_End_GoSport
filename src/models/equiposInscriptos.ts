@@ -1,10 +1,9 @@
 import { Schema, model } from "mongoose";
 import {EquiposInscriptos} from '../interfaces/equipoInscriptos.interface'
-
 const EquipoInscriptoShema = new Schema<EquiposInscriptos>(
     {
-       idEquipo: {
-          type: String,
+       equipo: {
+          type: Schema.Types.Mixed,
           required: true
        },
        idCampeonato: {

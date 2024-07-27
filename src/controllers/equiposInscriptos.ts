@@ -20,15 +20,16 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
     }
   };
   
-  const obtenerEquiposInscriptos = async (res: Response) => {
+  const obtenerEquiposInscriptos = async ( {headers}: Request, res: Response) => {
     try {
-      const response = await getEquiposInscriptos();
-      res.send(response);
+      const {idCampeonato}= headers
+      const response = await getEquiposInscriptos(`${idCampeonato}`);
+        res.send(response)
     } catch (e) {
-      handleHttp(res, "ERROR AL OBTENER LOS EQUIPOS");
+      handleHttp(res, "ERROR AL OBTENER EL EQUIPO");
     }
   };
-  
+
   const actualizarEquipoInscripto = async ({ params, body }: Request, res: Response) => {
     try {
       const { id } = params;
@@ -43,8 +44,8 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
     try {
       const responseItem = await insertEquipoInscripto(body);
       res.send({
-        msg:'equipo actualizado correctamente',
-        _id: responseItem._id
+        msg:'equipo guardado correctamente',
+        inscripto: responseItem
        });
     } catch (e) {
       handleHttp(res, "ERROR AL GUARDAR EL EQUIPO", e);
