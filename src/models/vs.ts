@@ -31,7 +31,8 @@ const VSShema = new Schema<VS>(
         estado:{
             type: Boolean,
             require: false
-        }  
+        }
+          
     },
     {timestamps:true}
 )

@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+    import { Schema, model } from "mongoose";
 import { InscripcionEquipos } from "../interfaces/incripcionEquipos.interface";
 import { Participantes } from "../interfaces/participantes.interface";
 
