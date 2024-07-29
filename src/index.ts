@@ -9,7 +9,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 
-const PORT = 3001;
+const PORT = 3001 || process.env.PORT;
 const app = express();
 
 app.use(

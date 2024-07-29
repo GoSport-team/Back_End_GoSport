@@ -5,7 +5,7 @@ export interface Usuarios extends Auth {
   telefono: String;
   url_foto: String;
   identificacion: String;
-  estado: Boolean,
-  rol: string,
-  public_id: string
+  estado: Boolean;
+  rol: string;
+  public_id: string;
 }
