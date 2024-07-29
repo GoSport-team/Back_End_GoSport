@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { idHeadersEquiposInscritos } from "../middleware/Id_EquiposInscritos";
 import {
     validarInscripcionIntegrantee,
     obtenerEquipoInscripto,
