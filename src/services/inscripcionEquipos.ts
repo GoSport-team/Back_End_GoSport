@@ -12,7 +12,7 @@ const insertInscripcion = async (data: InscripcionEquipos) => {
   };
   
   const getInscripcionEquipos = async (IdCampeonato:String) => {
-
+    
     const responseItem = await IncripcionEquiposModel.find({IdCampeonato});
     return responseItem;
   };

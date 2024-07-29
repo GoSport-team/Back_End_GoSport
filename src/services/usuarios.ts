@@ -4,6 +4,9 @@ import { hashSync } from "bcryptjs";
 
 
 const insertarUsuario = async (usuario: Usuarios) => {
+  if (usuario.contrasena) {
+    usuario.contrasena = hashSync(usuario.contrasena, 6);
+  }
   const responseInsertU = await UsuarioModel.create(usuario);
   return responseInsertU;
 };
