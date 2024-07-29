@@ -12,9 +12,9 @@ import {
 
 const router = Router();
 
-router.get('/validarJugador/:id', validarInscripcionIntegrantee)
+router.get('/validarJugador/:id',  validarInscripcionIntegrantee)
 
-router.get("/", obtenerEquiposInscriptos);
+router.get("/", idHeadersEquiposInscritos,obtenerEquiposInscriptos);
 
 router.get("/:id",  obtenerEquipoInscripto);
 
