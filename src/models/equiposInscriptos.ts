@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 import {EquiposInscriptos} from '../interfaces/equipoInscriptos.interface'
 const EquipoInscriptoShema = new Schema<EquiposInscriptos>(
     {
-       equipo: {
+       Equipo: {
           type: Schema.Types.Mixed,
           required: true
        },

@@ -6,7 +6,7 @@ import {
     obtenerInscripcionesEquipos,
     actualizarEquipo,
     actualizarEquipoCompleto,
-    eliminarEquipo
+    eliminarEquipo,
 
 } from '../controllers/IncripconEquipos'
 

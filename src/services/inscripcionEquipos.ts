@@ -6,6 +6,8 @@ import { InscripcionEquipos } from "../interfaces/incripcionEquipos.interface";
 //    const ganadores = responseItem.filter((equipo)=> equipo == true)
 //    return ganadores
 // }
+
+
 const insertInscripcion = async (data: InscripcionEquipos) => {
     const responseInsert = await IncripcionEquiposModel.create(data);
     return responseInsert;
@@ -46,6 +48,7 @@ const insertInscripcion = async (data: InscripcionEquipos) => {
 
 
 export{
+ 
   updateTeam,
     // ganadores,
     insertInscripcion,

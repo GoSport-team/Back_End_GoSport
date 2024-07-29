@@ -1,5 +1,5 @@
 //separar la tabla equipos con inscripcion equipos
-import { Request, Response } from "express";
+import { Request, Response} from "express";
 import { handleHttp } from "../utils/error.handle";
 import {
   updateTeam,
@@ -24,6 +24,8 @@ import {
 // };
 
 //no funcionaaaa
+
+
 const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) => {
     try {
       const {IdCampeonato} = headers

@@ -1,11 +1,26 @@
 import { EquiposInscriptos } from "../interfaces/equipoInscriptos.interface";
 import EquiposInscriptosModel from "../models/equiposInscriptos";
-
+import { InscripcionEquipos } from "../interfaces/incripcionEquipos.interface";
 const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     const responseInsert = await EquiposInscriptosModel.create(item);
     return responseInsert;
   };
   
+
+  const validarInscripcionIntegrante = async (id:String, idJugador:String)=>{
+    const equipos = await EquiposInscriptosModel.find({idCampeonato:id})
+   
+    
+    const jugadorYaInscrito = equipos.some((Equipo) =>
+      (Equipo.Equipo as InscripcionEquipos).participantes.some((participante: any) => participante._id === idJugador)
+  );
+  
+  console.log(jugadorYaInscrito)
+
+    //const existeJugador = equipos.filter((item)=> item.Equipo.participantes._id == idJugador)
+    return jugadorYaInscrito
+  }
+
   const getEquiposInscriptos  = async (id: String ) => {
     const responseItem = await EquiposInscriptosModel.find({idCampeonato : id});
     return responseItem;
@@ -30,4 +45,4 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     return responseItem;
   };
   
-export {insertEquipoInscripto, getEquiposInscriptos,getEquitoInscripto,updateEquipoInscripto, deleteEquipoInscripto }
+export {validarInscripcionIntegrante,insertEquipoInscripto, getEquiposInscriptos,getEquitoInscripto,updateEquipoInscripto, deleteEquipoInscripto }

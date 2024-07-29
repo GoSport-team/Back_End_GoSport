@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+    validarInscripcionIntegrantee,
     obtenerEquipoInscripto,
     obtenerEquiposInscriptos,
     actualizarEquipoInscripto,
@@ -10,6 +11,8 @@ import {
 
 
 const router = Router();
+
+router.get('/validarJugador/:id', validarInscripcionIntegrantee)
 
 router.get("/", obtenerEquiposInscriptos);
 
