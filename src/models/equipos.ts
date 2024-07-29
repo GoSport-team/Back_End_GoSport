@@ -6,11 +6,7 @@ const ParticipantesShema = new Schema(
     {
         nombreJugador: { type: String, required: true },
         ficha: { type: String, required: true },
-<<<<<<< HEAD
-        dorsal: { type: Number, required: true },
-=======
         dorsal: { type: String, required: true },
->>>>>>> 005dd048952410a4ef667d4b80d5b5d9c80df77e
     })
 
 const EquiposShema = new Schema<Equipo>(
@@ -41,30 +37,20 @@ const EquiposShema = new Schema<Equipo>(
             require: true,
             trim: true
         },
-<<<<<<< HEAD
      puntos:{
         type: Number,
             trim: true
      },
-=======
->>>>>>> 005dd048952410a4ef667d4b80d5b5d9c80df77e
         cedula:{
             type:String,
             required:false,
             trim:true
         },
-<<<<<<< HEAD
-=======
-     puntos:{
-        type: Number,
-        trim: true,
-        required:false
-     },
+     
         imgLogo:{
             type: String,
             required:true,
         },
->>>>>>> 005dd048952410a4ef667d4b80d5b5d9c80df77e
         estado: {
             type:Boolean,
             required:true,
