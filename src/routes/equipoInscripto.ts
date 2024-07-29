@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { idHeadersEquiposInscritos } from "../middleware/Id_EquiposInscritos";
 import {
     obtenerEquipoInscripto,
     obtenerEquiposInscriptos,
@@ -11,7 +12,7 @@ import {
 
 const router = Router();
 
-router.get("/", obtenerEquiposInscriptos);
+router.get("/", idHeadersEquiposInscritos, obtenerEquiposInscriptos);
 
 router.get("/:id",  obtenerEquipoInscripto);
 
