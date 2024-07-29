@@ -7,6 +7,7 @@ import {
     eliminarEquipoInscripto,
     GuardarEquiposInscriptos
 } from '../controllers/equiposInscriptos'
+import { idHeadersEquiposInscritos } from "../middleware/Id_EquiposInscritos";
 
 
 
