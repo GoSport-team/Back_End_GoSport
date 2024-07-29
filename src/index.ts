@@ -4,12 +4,12 @@ import { router } from "./routes";
 import db from "./config/db";
 import cookieParser from "cookie-parser";
 import path from "path";
-import dotenv from 'dotenv'
-
-dotenv.config();
+import 'dotenv/config'
 
 
-const PORT = 3001 || process.env.PORT;
+
+
+const PORT = process.env.PORT ;
 const app = express();
 
 app.use(
