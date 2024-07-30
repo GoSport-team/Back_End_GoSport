@@ -39,7 +39,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 export const subirFoto = [
-  upload.single('file'),
+  upload.single('file'),  
   async function subirFotoUsuario(req: Request, res: Response): Promise<Response> {
     try {
       console.log("Inicio de la función subirFotoUsuario");
