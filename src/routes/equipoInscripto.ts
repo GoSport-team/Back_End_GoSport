@@ -1,18 +1,21 @@
 import { Router } from "express";
-import { idHeadersEquiposInscritos } from "../middleware/Id_EquiposInscritos";
 import {
+    validarInscripcionIntegrantee,
     obtenerEquipoInscripto,
     obtenerEquiposInscriptos,
     actualizarEquipoInscripto,
     eliminarEquipoInscripto,
     GuardarEquiposInscriptos
 } from '../controllers/equiposInscriptos'
+// import { idHeadersEquiposInscritos } from "../middleware/Id_EquiposInscritos";
 
 
 
 const router = Router();
 
-router.get("/", idHeadersEquiposInscritos, obtenerEquiposInscriptos);
+router.get('/validarJugador/:id',  validarInscripcionIntegrantee)
+
+router.get("/",obtenerEquiposInscriptos);
 
 router.get("/:id",  obtenerEquipoInscripto);
 

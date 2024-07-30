@@ -6,7 +6,8 @@ import {
     obtenerInscripcionesEquipos,
     actualizarEquipo,
     actualizarEquipoCompleto,
-    eliminarEquipo
+    eliminarEquipo,
+    subirFoto,
 
 } from '../controllers/IncripconEquipos'
 
@@ -14,6 +15,8 @@ import {
 const router = Router()
 //colocar id discriptivo
 // router.get('/ganadores', equiposGanadores)
+
+router.post('/:id/logoEquipo', subirFoto)
 router.get('/',  obtenerInscripcionesEquipos)
 
 router.get('/:id', obtenerInscripcionEquipo)

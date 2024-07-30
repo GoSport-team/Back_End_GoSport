@@ -1,4 +1,6 @@
+import { InscripcionEquipos } from "./incripcionEquipos.interface";
+
 export interface EquiposInscriptos{
-    equipo: object,
+    Equipo: InscripcionEquipos,
     idCampeonato: string
 }

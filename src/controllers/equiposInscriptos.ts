@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import {
+  validarInscripcionIntegrante,
     insertEquipoInscripto,
     getEquiposInscriptos, 
     getEquitoInscripto,
@@ -19,11 +20,32 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
       handleHttp(res, "ERROR AL OBTENER EL EQUIPO");
     }
   };
-  
-  const obtenerEquiposInscriptos = async ( req: Request, res: Response) => {
+
+
+  const validarInscripcionIntegrantee = async ({params, headers}: Request, res:Response)=>{
     try {
-      const idCampeonato = req.body.id
-      const response = await getEquiposInscriptos(idCampeonato);
+      const {id} = params
+      const {idjugador} = headers
+      const response = await validarInscripcionIntegrante(id, `${idjugador}`)
+     
+      if(response){
+        res.send({
+          msg:"Jugador ya existe en un equipo",
+        })
+      }else{
+        res.send({
+          msg:"Jugador no existe en ningun equipo",
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  const obtenerEquiposInscriptos = async ( {headers}: Request, res: Response) => {
+    try {
+      const {id} = headers;
+      const response = await getEquiposInscriptos(`${id}`);
         res.send(response)
     } catch (e) {
       handleHttp(res, "ERROR AL OBTENER EL EQUIPO");
@@ -64,6 +86,7 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
 
 
 export {
+    validarInscripcionIntegrantee,
     GuardarEquiposInscriptos,
     obtenerEquipoInscripto,
     obtenerEquiposInscriptos,

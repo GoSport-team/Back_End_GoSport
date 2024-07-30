@@ -3,7 +3,8 @@ import { Schema, model } from "mongoose";
 import { Equipo } from "../interfaces/equipos.interface";
 
 const ParticipantesShema = new Schema(
-    {
+    {   
+        _id:{type:String, require:true},
         nombreJugador: { type: String, required: true },
         ficha: { type: String, required: true },
         dorsal: { type: String, required: true },
@@ -43,7 +44,7 @@ const EquiposShema = new Schema<Equipo>(
      },
         cedula:{
             type:String,
-            required:false,
+             required:false,
             trim:true
         },
      
