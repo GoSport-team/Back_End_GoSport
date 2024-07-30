@@ -42,10 +42,10 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
     }
   }
   
-  const obtenerEquiposInscriptos = async ( req: Request, res: Response) => {
+  const obtenerEquiposInscriptos = async ( {headers}: Request, res: Response) => {
     try {
-      const idCampeonato = req.body.id
-      const response = await getEquiposInscriptos(idCampeonato);
+      const {id} = headers;
+      const response = await getEquiposInscriptos(`${id}`);
         res.send(response)
     } catch (e) {
       handleHttp(res, "ERROR AL OBTENER EL EQUIPO");

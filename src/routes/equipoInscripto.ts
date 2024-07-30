@@ -7,7 +7,7 @@ import {
     eliminarEquipoInscripto,
     GuardarEquiposInscriptos
 } from '../controllers/equiposInscriptos'
-import { idHeadersEquiposInscritos } from "../middleware/Id_EquiposInscritos";
+// import { idHeadersEquiposInscritos } from "../middleware/Id_EquiposInscritos";
 
 
 
@@ -15,7 +15,7 @@ const router = Router();
 
 router.get('/validarJugador/:id',  validarInscripcionIntegrantee)
 
-router.get("/", idHeadersEquiposInscritos,obtenerEquiposInscriptos);
+router.get("/",obtenerEquiposInscriptos);
 
 router.get("/:id",  obtenerEquipoInscripto);
 
