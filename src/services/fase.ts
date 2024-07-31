@@ -7,7 +7,8 @@ const insertFase = async (item: Fase) => {
     const fase = new FaseModel({
         _id: Id,
         estado: item.estado,
-        nombre: item.nombre
+        nombre: item.nombre,
+        idCampeonato:item.idCampeonato
     })
     await fase.save()
     return fase;

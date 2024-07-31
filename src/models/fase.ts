@@ -13,14 +13,20 @@ const FaseShema = new Schema<Fase>(
             type: String,
             require:true
         },
-        equiposGanadores:{
-            type:Schema.Types.Mixed,
-            required:true,
+        idCampeonato:{
+            type: String,
+            require:true 
         },
-        equiposPerdedores:{
-            type:Schema.Types.Mixed,
-            required:true
-        }
+        equiposGanadores:[{
+            type: Schema.Types.ObjectId,
+            ref:'resultado'
+        }],
+        equiposPerdedores:[{
+            type: Schema.Types.ObjectId,
+            ref:'resultado'
+        }]
+            
+      
     },
     {
         timestamps: true
