@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "tsc": "tsc",
+    "start": "node dist/index.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
