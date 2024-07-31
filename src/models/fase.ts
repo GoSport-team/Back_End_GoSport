@@ -1,3 +1,4 @@
+
 import { Schema, model,} from "mongoose";
 
 import { Fase } from "../interfaces/fase.interface";
@@ -12,16 +13,14 @@ const FaseShema = new Schema<Fase>(
             type: String,
             require:true
         },
-        equiposGanadores:[{
-            type: Schema.Types.ObjectId,
-            ref:'resultado'
-        }],
-        equiposPerdedores:[{
-            type: Schema.Types.ObjectId,
-            ref:'resultado'
-        }]
-            
-      
+        equiposGanadores:{
+            type:Schema.Types.Mixed,
+            required:true,
+        },
+        equiposPerdedores:{
+            type:Schema.Types.Mixed,
+            required:true
+        }
     },
     {
         timestamps: true
