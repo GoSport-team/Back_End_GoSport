@@ -35,9 +35,9 @@ const MejorPerdedor = async(IdFase?: String)=>{
 } 
 
 const insertVS = async (equipos?:any, IdFase?: String) => {
-   
+   const _id= IdFase
     try {
-      const fase = await FaseModel.findById(IdFase);
+      const fase = await FaseModel.findById(_id);
       if (!fase) {
         throw new Error('Fase no encontrada');
       }
@@ -57,7 +57,7 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
               const resultado = new VSModel({
                 equipo1:{ informacion: equipoFormado.team1},
                 equipo2:{informacion: equipoFormado.team2},
-                IdFase: IdFase,
+                IdFase: _id,
               });
               await resultado.save();
             } catch (error) {

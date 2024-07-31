@@ -12,6 +12,10 @@ const FaseShema = new Schema<Fase>(
             type: String,
             require:true
         },
+        idCampeonato:{
+            type: String,
+            require:true 
+        },
         equiposGanadores:[{
             type: Schema.Types.ObjectId,
             ref:'resultado'
