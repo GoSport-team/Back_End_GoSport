@@ -12,7 +12,7 @@ const ParticipantesShema = new Schema<Participantes>(
 const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
     {
         nombreEquipo: {
-            type: String,
+            type: String,   
             required: true,
             trim: true
         },

@@ -2,6 +2,8 @@ import { Campeonato } from "../interfaces/campeonato.infertace";
 import CampeonatoModel from "../models/campeonato";
 
 const insertCampeonato = async (item: Campeonato) => {
+  console.log("aaa");
+  
     const responseInsert = await CampeonatoModel.create(item);
     return responseInsert;
   };

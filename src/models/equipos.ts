@@ -9,6 +9,7 @@ const ParticipantesShema = new Schema(
         ficha: { type: String, required: true },
         dorsal: { type: String, required: true },
     })
+
 const EquiposShema = new Schema<Equipo>(
     {
         nombreEquipo: {
@@ -37,16 +38,16 @@ const EquiposShema = new Schema<Equipo>(
             require: true,
             trim: true
         },
+     puntos:{
+        type: Number,
+            trim: true
+     },
         cedula:{
             type:String,
              required:false,
             trim:true
         },
-     puntos:{
-        type: Number,
-        trim: true,
-        required:false
-     },
+     
         imgLogo:{
             type: String,
             required:true,
