@@ -16,7 +16,7 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
       const response = await getVS(`${IdFase}`);
       res.send(response);
     } catch (e) {
-      handleHttp(res, "ERROR AL OBTENER LOS RESULTADOS");
+      handleHttp(res, "ERROR AL OBTENER LOS VS");
     }
   };
 
@@ -43,8 +43,8 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
   
   const guardarVS = async ({ body }: Request, res: Response) => {
     try {
-     const {equipos} = body.data.equipos
-     const {IdFase} = body.data.IdFase
+     const equipos = body.dataVs.equipos
+     const IdFase = body.dataVs.IdFase
       const responseItem = await insertVS(equipos, IdFase);
       res.send(responseItem);
     } catch (e) {
