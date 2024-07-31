@@ -76,9 +76,10 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
   
   const eliminarEquipoInscripto = async ({ params }: Request, res: Response) => {
     try {
-      const { id } = params;
+      const {id} = params;
       const response = await deleteEquipoInscripto(id);
       res.send(response);
+      console.log('equipo borrado')
     } catch (e) {
       handleHttp(res, "ERROR AL ELIMINAR EL EQUIPO");
     }
