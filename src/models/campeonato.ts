@@ -17,7 +17,7 @@ const CampeonatoShema = new Schema<Campeonato>(
          type:String,
          required:true,
          trim:true,
-         enum:["Creado", "Inscripcion", "RegistroFecha", "Ejecucion", "Finalizacion"],
+         enum:["Creado", "Inscripcion", "Ejecucion", "Finalizacion"],
          default: "Creado"
       },
       tamanoEquipos: {
