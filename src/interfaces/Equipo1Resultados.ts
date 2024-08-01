@@ -5,6 +5,6 @@ export interface Equipo1{
     equipo1: InscripcionEquipos,
     tarjetasAmarillas:object,
     tarjetasRojas:object,
-    goles:string,
+    goles:object,
     jugadorDestacado: Jugador
 }
