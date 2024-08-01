@@ -19,8 +19,8 @@ const siguienteFaseGanadores = async ({ headers }: Request, res: Response) => {
 };
 const obtenerResultados = async ({ headers }: Request, res: Response) => {
   try {
-    const { IdFase } = headers;
-    const response = await getResultado(`${IdFase}`);
+    const { idfase } = headers;
+    const response = await getResultado(`${idfase}`);
     res.send(response);
   } catch (e) {
     handleHttp(res, "ERROR AL OBTENER LOS RESULTADOS");

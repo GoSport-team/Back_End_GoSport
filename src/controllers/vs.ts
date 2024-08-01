@@ -12,8 +12,8 @@ import {
 
 const obtenerVS = async ({headers}: Request, res: Response) => {
     try {
-      const {IdFase} = headers
-      const response = await getVS(`${IdFase}`);
+      const {idfase} = headers
+      const response = await getVS(`${idfase}`);
       res.send(response);
     } catch (e) {
       handleHttp(res, "ERROR AL OBTENER LOS VS");

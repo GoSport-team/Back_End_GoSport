@@ -5,23 +5,23 @@ const ResultadoShema = new Schema<Resultado> (
     {
         equipo1:{
             type: Schema.Types.Mixed,
-            require: true
+            required: true
         },
         equipo2:{
             type: Schema.Types.Mixed,
-            require: true
+            required: true
         },
         IdVs:{
             type: String,
-            require: true
+            required: true
         },
         IdFase:{
             type: String,
-            require: true
+            required: true
         },
         estadoPartido:{
             type: Boolean,
-            require: true
+            required: true
         }
     },
 {

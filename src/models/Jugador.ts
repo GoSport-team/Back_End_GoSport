@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 import UsuarioModel from "./usuario";
-import Jugador from "../interfaces/jugador.interface";
+import { Jugador } from "../interfaces/jugador.interface";
 
 const jugadorSchema = new Schema<Jugador>(
   {
