@@ -18,8 +18,8 @@ const insertResultado = async (item: Resultado) => {
     return responseInsert;
   };
   
-  const getResultado = async (IdFase:String) => {
-    const responseItem = await ResultadoModel.find({IdFase});
+  const getResultado = async (idfase:String) => {
+    const responseItem = await ResultadoModel.find({IdFase : idfase});
     return responseItem;
   };
   

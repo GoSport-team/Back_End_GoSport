@@ -72,9 +72,8 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
       
   };
   
-  const getVS = async (IdFase:String ) => {
-
-    const responseItem = await VSModel.find({IdFase});
+  const getVS = async (idfase:String ) => {
+    const responseItem = await VSModel.find({IdFase :idfase});
     return responseItem;
   };
   
