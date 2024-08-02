@@ -45,11 +45,9 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     const validarInscripcionEquipo = equipos.filter((equipo) =>
        (equipo.filter((equipoN) => equipoN.Equipo.cedula === cedula)));
 
-  // const equipoValidado = validarInscripcionEquipo[0].some((equipo)=> (equipo.Equipo as InscripcionEquipos).cedula === cedula)
-
-  // console.log(equipoValidado)
+  const equipoValidado = validarInscripcionEquipo[0].filter((equipo)=> (equipo.Equipo as InscripcionEquipos).cedula === cedula)
   
-    return validarInscripcionEquipo
+    return equipoValidado
 
   }
 
