@@ -69,13 +69,15 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
     try {
       const {cedulajugador} = headers
       const data = await validarSiEquipoYaEstaInscritoo(`${cedulajugador}`)
-      if(data.length >0){
+      if(data.length > 0){
         res.send({
-          msg:"Equipo ya esta Inscrito en un campeonato"
+          msg:"Equipo ya esta Inscrito en un campeonato",
+          data
         })
       }else{
         res.send({
           msg:"Equipo no inscrito a ningun campeonato",
+          data
         })
       }
     } catch (error) {
