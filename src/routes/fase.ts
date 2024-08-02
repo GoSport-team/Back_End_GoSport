@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+    obtenerFaseCampeonato,
     GuardarFase,
     obtenerFase,
     obtenerFases,
@@ -11,6 +12,8 @@ import {
 const router = Router()
 
 router.get('/', obtenerFases)
+
+router.get('/fase', obtenerFaseCampeonato)
 
 router.get('/:id', obtenerFase)
 

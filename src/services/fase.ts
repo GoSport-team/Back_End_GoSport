@@ -18,6 +18,12 @@ const insertFase = async (item: Fase) => {
     const responseItem = await FaseModel.find({});
     return responseItem;
   };
+  const getFasesCampeonato = async (id:string) => {
+    const responseItem = await FaseModel.findOne({idCampeonato: id});
+    console.log(responseItem)
+    return responseItem;
+    
+  };
   
   const getFase = async (id: string) => {
     const responseItem = await FaseModel.findOne({ _id: id });
@@ -53,6 +59,7 @@ const insertFase = async (item: Fase) => {
   
 
 export{
+  getFasesCampeonato,
     insertFase,
     getFase,
     getFases,

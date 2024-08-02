@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 
 import {
+  getFasesCampeonato,
     insertFase,
     getFase,
     getFases,
-    //updateFase,
     deleteFase,
     patchFase
 } from '../services/fase'
@@ -15,6 +15,16 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
     try {
       const { id } = params;
       const response = await getFase(id);
+      const data = response ? response : "FASE NO ENCONTRADO";
+      res.send(data)
+    } catch (e) {
+      handleHttp(res, "ERROR AL OBTENER LA FASE");
+    }
+  };
+  const obtenerFaseCampeonato = async ({ headers }: Request, res: Response) => {
+    const { id } = headers;
+    try {
+      const response = await getFasesCampeonato(`${id}`);
       const data = response ? response : "FASE NO ENCONTRADO";
       res.send(data)
     } catch (e) {
@@ -65,6 +75,7 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
 
 
 export {
+  obtenerFaseCampeonato,
     GuardarFase,
     obtenerFase,
     obtenerFases,
