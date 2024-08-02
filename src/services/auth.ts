@@ -34,7 +34,6 @@ const registroNuevoUsuario = async ({
 }) => {
   const checkIs = await UsuarioModel.findOne({
     correo,
-    telefono,
     identificacion,
   });
 

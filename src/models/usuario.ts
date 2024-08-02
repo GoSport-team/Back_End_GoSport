@@ -11,6 +11,7 @@ const UsuarioSchema = new Schema<Usuarios>(
     telefono: {
       type: String,
       required: true,
+
     },
     correo: {
       type: String,
@@ -28,6 +29,7 @@ const UsuarioSchema = new Schema<Usuarios>(
     identificacion: {
       type: String,
       required: true,
+      unique: true,
     },
     rol: {
       type: String,
