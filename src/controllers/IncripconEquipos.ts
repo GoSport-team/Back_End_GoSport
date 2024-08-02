@@ -90,9 +90,7 @@ const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) =>
     try {
     
       const {id} = req.params;
-      console.log(id)
       const response = await getEquipo(id);
-      
       const data = response ? response : "EQUIPO NO ENCONTRADO";
       res.send(data)
     } catch (e) {

@@ -1,6 +1,8 @@
 import { EquiposInscriptos } from "../interfaces/equipoInscriptos.interface";
 import EquiposInscriptosModel from "../models/equiposInscriptos";
 import { InscripcionEquipos } from "../interfaces/incripcionEquipos.interface";
+import CampeonatoModel from "../models/campeonato";
+import obtenerEquiposInscritos from "../helpers/equiposInscritos";
 const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     const responseInsert = await EquiposInscriptosModel.create(item);
     return responseInsert;
@@ -17,8 +19,38 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
   
   console.log(jugadorYaInscrito)
 
-    //const existeJugador = equipos.filter((item)=> item.Equipo.participantes._id == idJugador)
     return jugadorYaInscrito
+  }
+
+  const getEquipoInscritoCedula = async (idCampeonato:string, cedula:string)=>{
+    
+    const responseItem = await EquiposInscriptosModel.find({idCampeonato : idCampeonato});
+
+    const existeEquipo = responseItem.some((Equipo)=>
+      (Equipo.Equipo as InscripcionEquipos).cedula == cedula)
+
+    return existeEquipo;
+  }
+
+  const validarSiEquipoYaEstaInscritoo = async (cedula:string)=>{
+    
+    const campeonatos = await CampeonatoModel.find();
+    const campeonatosFiltrados = campeonatos.filter((campeonato) =>campeonato.estadoCampeonato === "Inscripcion");
+    
+    const equiposInscriptos = await EquiposInscriptosModel.find();
+   
+    const equipos = obtenerEquiposInscritos(campeonatosFiltrados, equiposInscriptos)
+
+   
+    const validarInscripcionEquipo = equipos.filter((equipo) =>
+       (equipo.filter((equipoN) => equipoN.Equipo.cedula === cedula)));
+
+  // const equipoValidado = validarInscripcionEquipo[0].some((equipo)=> (equipo.Equipo as InscripcionEquipos).cedula === cedula)
+
+  // console.log(equipoValidado)
+  
+    return validarInscripcionEquipo
+
   }
 
   const getEquiposInscriptos  = async (id: String ) => {
@@ -45,4 +77,13 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     return responseItem;
   };
   
-export {validarInscripcionIntegrante,insertEquipoInscripto, getEquiposInscriptos,getEquitoInscripto,updateEquipoInscripto, deleteEquipoInscripto }
+
+export {
+        validarSiEquipoYaEstaInscritoo,
+        validarInscripcionIntegrante,
+        getEquipoInscritoCedula,
+        insertEquipoInscripto,
+        getEquiposInscriptos,
+        getEquitoInscripto,
+        updateEquipoInscripto,
+        deleteEquipoInscripto }

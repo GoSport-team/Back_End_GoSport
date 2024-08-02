@@ -6,7 +6,9 @@ import {
     getEquiposInscriptos, 
     getEquitoInscripto,
     updateEquipoInscripto,
-    deleteEquipoInscripto
+    deleteEquipoInscripto,
+    getEquipoInscritoCedula,
+    validarSiEquipoYaEstaInscritoo
 } from '../services/equiposInscriptos'
 
 
@@ -42,6 +44,44 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
     }
   }
   
+
+
+  const obtenerEquipoCedula = async ({params, headers}: Request, res:Response)=>{
+    try {
+      const {id} = params
+      const {cedulajugador} = headers
+      const response = await getEquipoInscritoCedula(id, `${cedulajugador}`)
+      if(response){
+        res.send({
+          msg:"Equipo ya esta Inscrito al campeonato"
+        })
+      }else{
+        res.send({
+          msg:"Equipo no inscrito",
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const verificarSiEquipoYaEstaInscrito = async ({ headers}: Request, res:Response)=>{
+    try {
+      const {cedulajugador} = headers
+      const data = await validarSiEquipoYaEstaInscritoo(`${cedulajugador}`)
+      if(data.length >0){
+        res.send({
+          msg:"Equipo ya esta Inscrito en un campeonato"
+        })
+      }else{
+        res.send({
+          msg:"Equipo no inscrito a ningun campeonato",
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const obtenerEquiposInscriptos = async ( {headers}: Request, res: Response) => {
     try {
       const {id} = headers;
@@ -86,7 +126,9 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
 
 
 export {
+    verificarSiEquipoYaEstaInscrito,
     validarInscripcionIntegrantee,
+    obtenerEquipoCedula,
     GuardarEquiposInscriptos,
     obtenerEquipoInscripto,
     obtenerEquiposInscriptos,
