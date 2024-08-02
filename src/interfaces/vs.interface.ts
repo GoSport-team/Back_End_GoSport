@@ -1,6 +1,7 @@
+import { InscripcionEquipos } from "./incripcionEquipos.interface";
 export interface VS {
-    equipo1:object,
-    equipo2:object,
+    equipo1:InscripcionEquipos,
+    equipo2:InscripcionEquipos,
     IdFase: string,
     fecha:string,
     hora:string,

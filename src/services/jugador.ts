@@ -1,6 +1,6 @@
 
 
-import  Jugador  from "../interfaces/jugador.interface";
+import  {Jugador } from "../interfaces/jugador.interface";
 import  JugadorModel  from "../models/Jugador";
 
 const upadate =async(id:any, body: Jugador)=>{
@@ -29,8 +29,8 @@ const Optener = async() => {
 }
 
 const gettingById= async(id:any)=>{
-    const unJugador = await JugadorModel.findById({
-        _id:id
+    const unJugador = await JugadorModel.findOne({
+        identificacion:id
     })
     return unJugador; 
 }

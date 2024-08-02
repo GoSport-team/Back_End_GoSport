@@ -5,32 +5,29 @@ const VSShema = new Schema<VS>(
     {
         equipo1: {
             type: Schema.Types.Mixed,
-            require: true,
-            trim: true
+            required: true,
+
         },
         equipo2: {
             type: Schema.Types.Mixed,
-            require: true,
-            trim: true
-        },
+            required: true,        },
         IdFase: {
             type: String,
-            require: false,
-            trim: true
+            required: true,
         },
         fecha: {
             type: String,
-            require: false,
+            required: false,
             trim: true
         },
         hora: {
             type: String,
-            require: false,
+            required: false,
             trim: true
         },
         estado:{
             type: Boolean,
-            require: false
+            required: false
         }
           
     },

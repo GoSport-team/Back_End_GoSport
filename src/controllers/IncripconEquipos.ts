@@ -86,6 +86,7 @@ const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) =>
       handleHttp(res, "ERROR AL OBTENER LOS EQUIPOS INSCRITOS");
     }
   };
+
   const obtenerInscripcionEquipo = async (req: Request, res: Response) => {
     try {
     
@@ -135,8 +136,9 @@ const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) =>
   };
   
   const eliminarEquipo= async ({ params }: Request, res: Response) => {
+    const { id } = params;
+    if(!id) res.status(400).send({message:'equipo no encontrado'})
     try {
-      const { id } = params;
       const response = await deleteIncripcion(id);
       res.send(response);
     } catch (e) {

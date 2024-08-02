@@ -1,6 +1,6 @@
 import { Usuarios } from "./usuarios.interface";
 
-export default interface Jugador extends Usuarios{
+export interface Jugador extends Usuarios{
     ficha: String,
     programa: String,
     finFicha: Date,

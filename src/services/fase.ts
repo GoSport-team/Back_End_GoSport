@@ -7,7 +7,8 @@ const insertFase = async (item: Fase) => {
     const fase = new FaseModel({
         _id: Id,
         estado: item.estado,
-        nombre: item.nombre
+        nombre: item.nombre,
+        idCampeonato:item.idCampeonato
     })
     await fase.save()
     return fase;
@@ -16,6 +17,12 @@ const insertFase = async (item: Fase) => {
   const getFases = async () => {
     const responseItem = await FaseModel.find({});
     return responseItem;
+  };
+  const getFasesCampeonato = async (id:string) => {
+    const responseItem = await FaseModel.findOne({idCampeonato: id});
+    console.log(responseItem)
+    return responseItem;
+    
   };
   
   const getFase = async (id: string) => {
@@ -52,6 +59,7 @@ const insertFase = async (item: Fase) => {
   
 
 export{
+  getFasesCampeonato,
     insertFase,
     getFase,
     getFases,

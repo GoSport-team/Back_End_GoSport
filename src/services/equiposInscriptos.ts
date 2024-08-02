@@ -72,8 +72,8 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     return responseItem;
   };
   
-  const deleteEquipoInscripto = async (id: string) => {
-    const responseItem = await EquiposInscriptosModel.deleteOne({ _id: id });
+  const deleteEquipoInscripto = async (_id: string) => {
+    const responseItem = await EquiposInscriptosModel.deleteOne({_id});
     return responseItem;
   };
   

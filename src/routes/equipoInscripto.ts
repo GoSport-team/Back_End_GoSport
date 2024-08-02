@@ -9,7 +9,6 @@ import {
     obtenerEquipoCedula,
     verificarSiEquipoYaEstaInscrito
 } from '../controllers/equiposInscriptos'
-// import { idHeadersEquiposInscritos } from "../middleware/Id_EquiposInscritos";
 
 const router = Router();
 
