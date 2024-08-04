@@ -104,20 +104,22 @@ const loginUsuario = async ({ correo, contrasena }: Auth, res: Response) => {
   try {
     const checkIs = await UsuarioModel.findOne({ correo });
     if (!checkIs) {
-      return "Datos inválidos";
+      return { success: false, message: "Datos inválidos" };
     }
 
     const contrasenaHash = checkIs.contrasena;
     const esCorrecto = await verified(contrasena, contrasenaHash);
 
     if (!esCorrecto) {
-      return "Contraseña incorrecta";
+      return { success: false, message: "Contraseña incorrecta"};
     }
 
     const token = generarToken(checkIs.correo, checkIs.rol);
     console.log(token);
     configuracionCookie(res, token);
     const data = {
+      success: true,
+      message: "Inicio de sesión exitoso",
       token,
       user: checkIs,
     };
