@@ -18,7 +18,6 @@ const registroNuevoUsuario = async ({
   finFicha,
   jornada,
   rol,
-  
 }: {
   correo: string;
   contrasena: string;
@@ -30,27 +29,29 @@ const registroNuevoUsuario = async ({
   programa?: string;
   finFicha?: Date;
   jornada?: "Mañana" | "Tarde" | "Noche";
-  rol: string
+  rol: string;
 }) => {
-
-  const contraIdentificacion = await UsuarioModel.findOne({identificacion, correo});
-  if(contraIdentificacion){
-    return "Este correo e identificion ya tiene cuenta"
-  }
-
-  const checkIdentificaion = await UsuarioModel.findOne({identificacion})
-  if (checkIdentificaion) {
-    return "Esta identifiacion ya tiene cuenta"
-  }
-
-  const checkCorreo = await UsuarioModel.findOne({
-    correo,
+  const existeUsuario = await UsuarioModel.findOne({
+    $or: [{ correo }, { identificacion }],
   });
-  if (checkCorreo) return "Este correo ya tiene cuenta";
 
-  
+  if (existeUsuario) {
+    if (
+      existeUsuario.correo === correo &&
+      existeUsuario.identificacion === identificacion
+    )
+      return "Este correo e identificación ya existen";
+  }
+
+  if (existeUsuario?.correo === correo) {
+    return "Este correo ya existe";
+  }
+  if (existeUsuario?.identificacion === identificacion) {
+    return "Esta identificación ya existe";
+  }
+
   const contraHash = await encrypt(contrasena);
-  
+
   let nuevoUsuario;
   rol = rol || roles.JUGADOR;
 

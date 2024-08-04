@@ -2,16 +2,21 @@ import { Request, Response } from "express";
 import { loginUsuario, registroNuevoUsuario } from "../services/auth";
 
 const registerController = async ({ body }: Request, res: Response) => {
-  const responUsuario = await registroNuevoUsuario(body);
-  if (responUsuario === "Este correo ya tiene cuenta") {
-    res.status(409).send(responUsuario);
-  } else if(responUsuario === "Esta identifiacion ya tiene cuenta"){
-    res.status(409).send(responUsuario)
-  }else if(responUsuario === "Este correo e identificion ya tiene cuenta"){
-    res.status(409).send(responUsuario);
-  }
-  else {
-    res.status(200).send(responUsuario);
+  try {
+    const responUsuario = await registroNuevoUsuario(body);
+
+    if (responUsuario === "Este correo e identificación ya existen") {
+      res.status(409).send(responUsuario);
+    } else if (responUsuario === "Este correo ya existe") {
+      res.status(409).send(responUsuario);
+    } else if (responUsuario === "Esta identificación ya existe") {
+      res.status(409).send(responUsuario);
+    } else {
+      res.status(200).send(responUsuario);
+    }
+  } catch (error) {
+    console.error("Error registrando usuario:", error);
+    res.status(500).send("Error interno del servidor");
   }
 };
 
