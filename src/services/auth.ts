@@ -104,7 +104,7 @@ const loginUsuario = async ({ correo, contrasena }: Auth, res: Response) => {
   try {
     const checkIs = await UsuarioModel.findOne({ correo });
     if (!checkIs) {
-      return { success: false, message: "Datos inválidos" };
+      return { success: false, message: "Correo electrónico no registrado" };
     }
 
     const contrasenaHash = checkIs.contrasena;
