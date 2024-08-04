@@ -33,12 +33,12 @@ const registroNuevoUsuario = async ({
   rol: string
 }) => {
 
-  const contraIdentificacion = await UsuarioModel.find({identificacion, correo});
+  const contraIdentificacion = await UsuarioModel.findOne({identificacion, correo});
   if(contraIdentificacion){
     return "Este correo e identificion ya tiene cuenta"
   }
 
-  const checkIdentificaion = await UsuarioModel.find({identificacion})
+  const checkIdentificaion = await UsuarioModel.findOne({identificacion})
   if (checkIdentificaion) {
     return "Esta identifiacion ya tiene cuenta"
   }
@@ -46,7 +46,6 @@ const registroNuevoUsuario = async ({
   const checkCorreo = await UsuarioModel.findOne({
     correo,
   });
-
   if (checkCorreo) return "Este correo ya tiene cuenta";
 
   
