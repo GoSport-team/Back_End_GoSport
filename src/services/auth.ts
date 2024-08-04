@@ -32,13 +32,24 @@ const registroNuevoUsuario = async ({
   jornada?: "Mañana" | "Tarde" | "Noche";
   rol: string
 }) => {
-  const checkIs = await UsuarioModel.findOne({
+
+  const contraIdentificacion = await UsuarioModel.find({identificacion, correo});
+  if(contraIdentificacion){
+    return "Este correo e identificion ya tiene cuenta"
+  }
+
+  const checkIdentificaion = await UsuarioModel.find({identificacion})
+  if (checkIdentificaion) {
+    return "Esta identifiacion ya tiene cuenta"
+  }
+
+  const checkCorreo = await UsuarioModel.findOne({
     correo,
-    identificacion,
   });
 
-  if (checkIs) return "Este usuario ya existe";
+  if (checkCorreo) return "Este correo ya tiene cuenta";
 
+  
   const contraHash = await encrypt(contrasena);
   
   let nuevoUsuario;

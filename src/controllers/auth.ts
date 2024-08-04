@@ -3,10 +3,15 @@ import { loginUsuario, registroNuevoUsuario } from "../services/auth";
 
 const registerController = async ({ body }: Request, res: Response) => {
   const responUsuario = await registroNuevoUsuario(body);
-  if (responUsuario === "Este usuario ya existe") {
+  if (responUsuario === "Este correo e identificion ya tiene cuenta") {
     res.status(409).send(responUsuario);
-  } else {
-    res.status(201).send(responUsuario);
+  } else if(responUsuario === "Esta identifiacion ya tiene cuenta"){
+    res.status(409).send(responUsuario)
+  }else if(responUsuario === "Este correo ya tiene cuenta"){
+    res.status(409).send(responUsuario);
+  }
+  else {
+    res.status(200).send(responUsuario);
   }
 };
 
