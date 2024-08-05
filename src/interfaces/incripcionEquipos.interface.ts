@@ -7,6 +7,7 @@ export interface InscripcionEquipos{
     puntos:number
     cedula:string,
     imgLogo:String,
+    idLogo:String,
     estado: boolean,
     participantes:[]
 }
