@@ -24,14 +24,12 @@ const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
         contactoUno: {
             type: String,
             required: true,
-            trim: true,
-            unique:true
+            trim: true
         },
         contactoDos: {
             type: String,
             required: true,
-            trim: true,
-            unique:true
+            trim: true
         },
         jornada:{
             type:String,
@@ -51,6 +49,10 @@ const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
         imgLogo:{
             type: String,
             required:true,
+        },
+        idLogo:{
+            type:String,
+            required:true
         },
         estado:{
             type:Boolean,

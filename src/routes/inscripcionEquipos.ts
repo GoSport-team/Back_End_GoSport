@@ -8,6 +8,7 @@ import {
     actualizarEquipoCompleto,
     eliminarEquipo,
     subirFoto,
+    actualizarLogo,
 
 } from '../controllers/IncripconEquipos'
 
@@ -18,7 +19,7 @@ const router = Router()
 
 router.post('/:id/logoEquipo', subirFoto)
 router.get('/',  obtenerInscripcionesEquipos)
-
+router.patch('/:id/:idLogo', actualizarLogo)
 router.get('/:id', obtenerInscripcionEquipo)
 
 router.post('/', guardarInscripcionDeEquipo)

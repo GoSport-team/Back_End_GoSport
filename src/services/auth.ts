@@ -18,7 +18,6 @@ const registroNuevoUsuario = async ({
   finFicha,
   jornada,
   rol,
-  
 }: {
   correo: string;
   contrasena: string;
@@ -30,18 +29,29 @@ const registroNuevoUsuario = async ({
   programa?: string;
   finFicha?: Date;
   jornada?: "Mañana" | "Tarde" | "Noche";
-  rol: string
+  rol: string;
 }) => {
-  const checkIs = await UsuarioModel.findOne({
-    correo,
-    telefono,
-    identificacion,
+  const existeUsuario = await UsuarioModel.findOne({
+    $or: [{ correo }, { identificacion }],
   });
 
-  if (checkIs) return "Este usuario ya existe";
+  if (existeUsuario) {
+    if (
+      existeUsuario.correo === correo &&
+      existeUsuario.identificacion === identificacion
+    )
+      return "Este correo e identificación ya existen";
+  }
+
+  if (existeUsuario?.correo === correo) {
+    return "Este correo ya existe";
+  }
+  if (existeUsuario?.identificacion === identificacion) {
+    return "Esta identificación ya existe";
+  }
 
   const contraHash = await encrypt(contrasena);
-  
+
   let nuevoUsuario;
   rol = rol || roles.JUGADOR;
 
@@ -94,20 +104,22 @@ const loginUsuario = async ({ correo, contrasena }: Auth, res: Response) => {
   try {
     const checkIs = await UsuarioModel.findOne({ correo });
     if (!checkIs) {
-      return "Datos inválidos";
+      return { success: false, message: "Correo electrónico no registrado" };
     }
 
     const contrasenaHash = checkIs.contrasena;
     const esCorrecto = await verified(contrasena, contrasenaHash);
 
     if (!esCorrecto) {
-      return "Contraseña incorrecta";
+      return { success: false, message: "Contraseña incorrecta"};
     }
 
     const token = generarToken(checkIs.correo, checkIs.rol);
     console.log(token);
     configuracionCookie(res, token);
     const data = {
+      success: true,
+      message: "Inicio de sesión exitoso",
       token,
       user: checkIs,
     };
