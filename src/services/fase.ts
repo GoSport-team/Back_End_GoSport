@@ -20,7 +20,6 @@ const insertFase = async (item: Fase) => {
   };
   const getFasesCampeonato = async (id:string) => {
     const responseItem = await FaseModel.findOne({idCampeonato: id});
-    console.log(responseItem)
     return responseItem;
     
   };

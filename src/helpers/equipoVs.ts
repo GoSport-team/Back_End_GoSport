@@ -22,9 +22,14 @@ const equipoVs = (teams: Array<any>) => {
                      team1
                     },
                 team2:{
-                     name:'no tiene nombre',
-                    idEquipo: 'no tiene id'
-                }
+                    team2:{
+                     Equipo:{
+                     nombreEquipo:'no tiene asignado equipo',
+                     idEquipo: 'no tiene id',
+                     imgLogo:'No tiene asignado equipo '
+                        }
+                    }
+                    }
             });
         }
     }
