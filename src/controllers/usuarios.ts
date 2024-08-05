@@ -82,22 +82,25 @@ export const actualizarFoto = [
       if (!req.file) {
         console.log(req.file);
         return res.status(400).json({ message: 'No se proporcionó ningún archivo' });
+        
       }
 
+      const usuario = await UsuarioModel.findById(id)
+      if(!usuario){
+        return res.status(400).json({message:'No existe usuario'})
+      }
       // Subir la foto a Cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
+      const result = await cloudinary.uploader.upload(req.file.path,{
+          public_id: usuario?.public_id,
+          overwrite:true
+      });
 
       // Actualizar solo los campos url_foto y public_id
-      const usuario = await UsuarioModel.findByIdAndUpdate(
+      await UsuarioModel.findByIdAndUpdate(
         id,
         { url_foto: result.secure_url, public_id: result.public_id },
-        { new: true } // Esto devuelve el documento actualizado
+        { new: true }
       );
-
-      if (!usuario) {
-        return res.status(404).json({ message: 'Usuario no encontrado' });
-      }
-
       // Eliminar el archivo local
       await fs.unlink(req.file.path);
 
