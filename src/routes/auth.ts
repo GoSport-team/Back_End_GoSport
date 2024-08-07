@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerController, loginController } from "../controllers/auth";
+import { registerController, loginController, CerrarSesion } from "../controllers/auth";
 import { check } from "express-validator";
 import { validateFields } from "../middleware/validateFields";
 import { checkJwt } from "../middleware/session";
@@ -48,5 +48,8 @@ router.get(
     res.json({ message: "Acceso permitido exclusivo para organizadores" });
   }
 );
+router.post(
+  '/cerarSesion', CerrarSesion
+)
 
 export { router };
