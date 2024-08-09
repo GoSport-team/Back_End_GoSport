@@ -6,6 +6,7 @@ import {
   getResultado,
   updateResultado,
   deleteResultado,
+  getResult
 } from "../services/resultado";
 
 const siguienteFaseGanadores = async ({ headers }: Request, res: Response) => {
@@ -21,6 +22,15 @@ const obtenerResultados = async ({ headers }: Request, res: Response) => {
   try {
     const { idfase } = headers;
     const response = await getResultado(`${idfase}`);
+    res.send(response);
+  } catch (e) {
+    handleHttp(res, "ERROR AL OBTENER LOS RESULTADOS");
+  }
+};
+const obtenerResultado = async ({ params }: Request, res: Response) => {
+  const { id } = params;
+  try {
+    const response = await getResult(`${id}`);
     res.send(response);
   } catch (e) {
     handleHttp(res, "ERROR AL OBTENER LOS RESULTADOS");
@@ -43,7 +53,9 @@ const actualizarResultado = async (
 const guardarResultado = async ({ body }: Request, res: Response) => {
   try {
     const responseItem = await insertResultado(body);
+    console.log("resultado guardado correctamente")
     res.send(responseItem);
+    
   } catch (e) {
     handleHttp(res, "ERROR AL GUARDAR LOS RESULTADOS", e);
   }
@@ -65,4 +77,5 @@ export {
   actualizarResultado,
   guardarResultado,
   eliminarResultado,
+  obtenerResultado
 };

@@ -18,12 +18,12 @@ const FaseShema = new Schema<Fase>(
             require:true 
         },
         equiposGanadores:[{
-            type: Schema.Types.ObjectId,
-            ref:'resultado'
+            type: Schema.Types.Mixed,
+    
         }],
         equiposPerdedores:[{
-            type: Schema.Types.ObjectId,
-            ref:'resultado'
+            type: Schema.Types.Mixed,
+        
         }]
             
       

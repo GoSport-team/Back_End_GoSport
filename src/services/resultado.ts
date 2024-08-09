@@ -17,7 +17,10 @@ const insertResultado = async (item: Resultado) => {
     const responseInsert = await ResultadoModel.create(item);
     return responseInsert;
   };
-  
+  const getResult = async (id: string) => {
+    const responseItem = await ResultadoModel.findOne({ IdVs: id });
+    return responseItem;
+  };
   const getResultado = async (idfase:String) => {
     const responseItem = await ResultadoModel.find({IdFase : idfase});
     return responseItem;
@@ -42,5 +45,6 @@ export{
     insertResultado,
     getResultado,
     updateResultado,
-    deleteResultado
+    deleteResultado,
+    getResult
 }
