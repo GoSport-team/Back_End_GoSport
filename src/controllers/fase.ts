@@ -32,9 +32,10 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
     }
   };
   
-  const obtenerFases = async (_req: Request, res: Response) => {
+  const obtenerFases = async ({headers}: Request, res: Response) => {
+    const { id } = headers;
     try {
-      const response = await getFases();
+      const response = await getFases(`${id}`);
       res.send(response);
     } catch (e) {
       handleHttp(res, "ERROR AL OBTENER LA FASES");

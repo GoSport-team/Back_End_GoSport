@@ -17,17 +17,13 @@ const router = Router()
 //colocar id discriptivo
 // router.get('/ganadores', equiposGanadores)
 
-router.post('/:id/logoEquipo', subirFoto)
-router.get('/',  obtenerInscripcionesEquipos)
-router.patch('/:id/:idLogo', actualizarLogo)
-router.get('/:id', obtenerInscripcionEquipo)
-
-router.post('/', guardarInscripcionDeEquipo)
-
 router.patch('/completo/:id', actualizarEquipoCompleto)
-
+router.get('/',  obtenerInscripcionesEquipos)
+router.get('/:id', obtenerInscripcionEquipo)
+router.post('/', guardarInscripcionDeEquipo)
 router.patch('/:id', actualizarEquipo),
-
 router.delete('/:id', eliminarEquipo)
+router.post('/:id/logoEquipo', subirFoto)
+router.patch('/:id/:idLogo', actualizarLogo)
 
 export {router}

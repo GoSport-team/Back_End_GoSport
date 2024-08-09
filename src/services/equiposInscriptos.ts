@@ -35,8 +35,10 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
   const validarSiEquipoYaEstaInscritoo = async (cedula:string)=>{
     
     const campeonatos = await CampeonatoModel.find();
-    const campeonatosFiltrados = campeonatos.filter((campeonato) =>campeonato.estadoCampeonato === "Inscripcion");
-    
+    const campeonatosFiltrados = campeonatos.filter((campeonato) => 
+      campeonato.estadoCampeonato === "Inscripcion" || campeonato.estadoCampeonato === "Ejecucion");
+
+     
     const equiposInscriptos = await EquiposInscriptosModel.find();
    
     const equipos = obtenerEquiposInscritos(campeonatosFiltrados, equiposInscriptos)
@@ -45,7 +47,8 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     const validarInscripcionEquipo = equipos.filter((equipo) =>
        (equipo.filter((equipoN) => equipoN.Equipo.cedula === cedula)));
 
-  const equipoValidado = validarInscripcionEquipo[0].filter((equipo)=> (equipo.Equipo as InscripcionEquipos).cedula === cedula)
+    const validacionFiltrada = validarInscripcionEquipo.filter((equipo)=>equipo.length>0)
+    const equipoValidado = validacionFiltrada.filter((equipo)=> equipo.some((equipoF)=> equipoF.Equipo.cedula == cedula))
   
     return equipoValidado
 

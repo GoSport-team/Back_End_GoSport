@@ -41,4 +41,11 @@ const loginController = async ({ body }: Request, res: Response) => {
   }
 };
 
-export { registerController, loginController };
+
+const CerrarSesion = (_req: Request, res: Response) => {
+  res.clearCookie('jwt', { path: '/' });
+  res.status(200).send({ success: true, message: 'Sesión cerrada exitosamente' });
+};
+
+
+export { registerController, loginController,CerrarSesion };

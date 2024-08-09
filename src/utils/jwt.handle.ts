@@ -13,7 +13,6 @@ const generarToken = (id: string, rol: string) => {
   const jwt = sign({ id, rol }, JWT_SECRET, {
     expiresIn: "2h",
   });
-  console.log(jwt);
   return jwt;
 };
 
