@@ -2,7 +2,6 @@ import UsuarioModel from "../models/usuario";
 import { Usuarios } from "../interfaces/usuarios.interface";
 import { hashSync } from "bcryptjs";
 
-
 const insertarUsuario = async (usuario: Usuarios) => {
   if (usuario.contrasena) {
     usuario.contrasena = hashSync(usuario.contrasena, 6);
@@ -29,6 +28,19 @@ const getUsuario = async (correo: string) => {
 const gettingByIdentificacion = async (identificacion: any) => {
   const unJugador = await UsuarioModel.find({ identificacion });
   return unJugador;
+};
+
+const getIdentificacionParcial = async (identificacion: string) => {
+  try {
+    const resultados = await UsuarioModel.find({
+      identificacion: { $regex: identificacion, $options: "i" },
+    });
+    console.log("Resultados de la búsqueda:", resultados);
+    return resultados;
+  } catch (error) {
+    console.error("Error en getIdentificacionParcial:", error);
+    throw new Error("Error al buscar por identificación parcial.");
+  }
 };
 
 const updateUsuario = async (id: string, data: Usuarios) => {
@@ -73,7 +85,8 @@ export {
   getUsuarios,
   getUsuario,
   gettingByIdentificacion,
+  getIdentificacionParcial,
   updateUsuario,
   deleteUsuario,
-  patchUsuario, 
-}
+  patchUsuario,
+};

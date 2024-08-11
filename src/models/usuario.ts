@@ -30,6 +30,7 @@ const UsuarioSchema = new Schema<Usuarios>(
       type: String,
       required: true,
       unique: true,
+      index: true
     },
     rol: {
       type: String,
