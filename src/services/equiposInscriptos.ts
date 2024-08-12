@@ -17,8 +17,7 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
       (Equipo.Equipo as InscripcionEquipos).participantes.some((participante: any) => participante._id === idJugador)
   );
   
-  console.log(jugadorYaInscrito)
-
+  
     return jugadorYaInscrito
   }
 
