@@ -6,7 +6,7 @@ import { Fase } from "../interfaces/fase.interface";
 const FaseShema = new Schema<Fase>(
     {
         estado:{
-            type: String,
+            type:Boolean,
             required: true
         },
         nombre:{

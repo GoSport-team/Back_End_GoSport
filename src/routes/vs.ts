@@ -4,11 +4,12 @@ import {
     obtenerVS1,
     guardarVS,
     eliminarVS,
-    patchesVs
+    patchesVs,
+    obtenerVSPlanillero
 } from '../controllers/vs'
 
 const router = Router()
-
+router.get('/planillero', obtenerVSPlanillero)
 router.get('/', obtenerVS);
 router.get('/:id', obtenerVS1)
 router.post('/', guardarVS)

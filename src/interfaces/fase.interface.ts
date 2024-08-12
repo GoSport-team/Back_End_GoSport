@@ -1,6 +1,6 @@
 
 export interface Fase{
-    estado: string,
+    estado: boolean,
     nombre: string,
     idCampeonato: string,
     equiposGanadores: object,

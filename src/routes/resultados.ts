@@ -14,6 +14,7 @@ const router = Router()
 router.get('/siguienteFase', siguienteFaseGanadores)
 
 router.get('/', obtenerResultados)
+
 router.get('/:id', obtenerResultado)
 
 router.post('/', guardarResultado)
