@@ -21,12 +21,15 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
     }
   };
   const obtenerVSPlanillero = async ({headers}: Request, res: Response) => {
+    const {idplanillero} = headers
     try {
-      const {idplanillero} = headers
       const response = await getVSPlanillero(`${idplanillero}`);
-      res.send(response);
+      if(!response) {
+        return res.send(false)
+      }
+     return res.send(response);
     } catch (e) {
-      handleHttp(res, "ERROR AL OBTENER LOS VS");
+     return handleHttp(res, "ERROR AL OBTENER LOS VS");
     }
   };
 
