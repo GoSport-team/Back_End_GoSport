@@ -5,5 +5,6 @@ export interface VS {
     IdFase: string,
     fecha:string,
     hora:string,
-    estado: boolean
+    estado: boolean,
+    idPlanillero: string
 }

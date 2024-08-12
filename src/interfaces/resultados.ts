@@ -5,5 +5,6 @@ export interface Resultado{
     equipo2:Equipo2,
     IdVs:string,
     IdFase: string,
-    estadoPartido: boolean
+    estadoPartido: boolean,
+    idPlanillero:string
 }

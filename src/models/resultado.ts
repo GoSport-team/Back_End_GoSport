@@ -22,6 +22,9 @@ const ResultadoShema = new Schema<Resultado> (
         estadoPartido:{
             type: Boolean,
             required: true
+        },idPlanillero:{
+            type: String,
+            required: false
         }
     },
 {

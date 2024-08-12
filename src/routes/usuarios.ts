@@ -13,7 +13,8 @@ import {
   obtenerPerfilUsuario,
   subirFoto,
   eliminarFoto,
-  actualizarFoto
+  actualizarFoto,
+  buscarPorIdentificacionParcial
 } from "../controllers/usuarios";
 import { checkJwt } from "../middleware/session";
 
@@ -28,6 +29,7 @@ router.put("/:id", actualizarUsuario);
 router.patch('/:id', PatchesUsuario)
 router.post("/", crearUsuario);
 router.delete("/:id", eliminarUsuario);
+router.get("/identificacion/buscar", buscarPorIdentificacionParcial);
 router.get("/identificacion/:identificacion", obtenerIdIdenfiticacion);
 
 

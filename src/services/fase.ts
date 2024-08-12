@@ -29,28 +29,29 @@ const insertFase = async (item: Fase) => {
     return responseItem;
   };
   
-  const updateFase = async (id: string, data: Fase) => {
-    const responseItem = await FaseModel.findOneAndUpdate({ _id: id }, data, {
-      new: true,
-    });
-    return responseItem;
-  };
-  
   const patchFase = async(id:string, data: Fase)=>{
     try{
-      const responseItem = await FaseModel.findOneAndUpdate({_id:id},
-        {$set:data},
+      const responseItem = await FaseModel.findOneAndUpdate(
+        {_id:id},
+        {$push:data},
         {new:true}
       )
       return responseItem;
-    }
-    catch(error){
+    }catch(error){
       console.log("Error al hacer path", error);
       throw error;
     }
-
   }
-
+  const patchFaseEstado = async(id:string, data: Fase)=>{
+    try{
+      const responseItem = await FaseModel.findOneAndUpdate(
+        {_id:id},data,{new:true}
+      )
+      return responseItem;
+    }catch(error){
+      console.log("Error al hacer path", error);
+      throw error;
+    }}
   const deleteFase = async (id: string) => {
     const responseItem = await FaseModel.deleteOne({ _id: id });
     return responseItem;
@@ -62,7 +63,7 @@ export{
     insertFase,
     getFase,
     getFases,
-    updateFase,
     deleteFase, 
-    patchFase
+    patchFase,
+    patchFaseEstado
 }

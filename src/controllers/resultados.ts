@@ -31,9 +31,13 @@ const obtenerResultado = async ({ params }: Request, res: Response) => {
   const { id } = params;
   try {
     const response = await getResult(`${id}`);
-    res.send(response);
+    if(!response) {
+      return res.send(false)
+    }
+    
+  return res.status(200).send( response );
   } catch (e) {
-    handleHttp(res, "ERROR AL OBTENER LOS RESULTADOS");
+    return handleHttp(res, "ERROR AL OBTENER LOS RESULTADOS");
   }
 };
 

@@ -5,6 +5,7 @@ import {
     obtenerFase,
     obtenerFases,
     actualizarFase,
+    actualizarFaseEstado,
     eliminarFase
 } from '../controllers/fase'
 
@@ -20,6 +21,8 @@ router.get('/:id', obtenerFase)
 router.post('/', GuardarFase)
 
 router.patch('/:id', actualizarFase)
+
+router.patch('/estado/:id', actualizarFaseEstado)
 
 router.delete('/:id', eliminarFase)
 

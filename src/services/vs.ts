@@ -76,6 +76,10 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
     const responseItem = await VSModel.find({IdFase :idfase});
     return responseItem;
   };
+  const getVSPlanillero = async (idplanillero:String ) => {
+    const responseItem = await VSModel.find({idPlanillero :idplanillero});
+    return responseItem;
+  };
   
   const getVS1 = async (id: string) => {
     const responseItem = await VSModel.findOne({ _id: id });
@@ -110,5 +114,6 @@ export{
     getVS1,
     deleteVS,
     patchVs,
-    MejorPerdedor
+    MejorPerdedor,
+    getVSPlanillero
 }

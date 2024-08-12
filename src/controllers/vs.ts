@@ -6,7 +6,8 @@ import {
     getVS,
     getVS1,
     deleteVS,
-    patchVs
+    patchVs,
+    getVSPlanillero
 } from '../services/vs'
 
 
@@ -14,6 +15,15 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
     try {
       const {idfase} = headers
       const response = await getVS(`${idfase}`);
+      res.send(response);
+    } catch (e) {
+      handleHttp(res, "ERROR AL OBTENER LOS VS");
+    }
+  };
+  const obtenerVSPlanillero = async ({headers}: Request, res: Response) => {
+    try {
+      const {idplanillero} = headers
+      const response = await getVSPlanillero(`${idplanillero}`);
       res.send(response);
     } catch (e) {
       handleHttp(res, "ERROR AL OBTENER LOS VS");
@@ -67,5 +77,6 @@ export{
     obtenerVS1,
     guardarVS,
     eliminarVS,
-    patchesVs
+    patchesVs,
+    obtenerVSPlanillero
 }
