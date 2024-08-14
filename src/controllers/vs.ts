@@ -20,16 +20,19 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
       handleHttp(res, "ERROR AL OBTENER LOS VS");
     }
   };
-  const obtenerVSPlanillero = async ({headers}: Request, res: Response) => {
-    const {idplanillero} = headers
+  const obtenerVSPlanillero = async ({headers, params}: Request, res: Response) => {
     try {
+      const{id}=params 
+      const {idplanillero} = headers
+      console.log(headers)
+      console.log(idplanillero)
       const response = await getVSPlanillero(`${idplanillero}`);
-      if(!response) {
-        return res.send(false)
+      if(response){
+    const vsFiltro= response.filter((item)=>item.id===id)
+  return  res.send(vsFiltro)
       }
-     return res.send(response);
     } catch (e) {
-     return handleHttp(res, "ERROR AL OBTENER LOS VS");
+      return handleHttp(res, "ERROR AL OBTENER LOS VS");
     }
   };
 
@@ -57,6 +60,7 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
   const guardarVS = async ({ body }: Request, res: Response) => {
     try {
      const equipos = body.dataVs.equipos
+     console.log(equipos)
      const IdFase = body.dataVs.IdFase
       const responseItem = await insertVS(equipos, IdFase);
       res.send(responseItem);

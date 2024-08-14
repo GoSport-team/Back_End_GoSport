@@ -9,7 +9,7 @@ import {
 } from '../controllers/vs'
 
 const router = Router()
-router.get('/planillero', obtenerVSPlanillero)
+router.get('/planillero/:id', obtenerVSPlanillero)
 router.get('/', obtenerVS);
 router.get('/:id', obtenerVS1)
 router.post('/', guardarVS)

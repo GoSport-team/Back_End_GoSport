@@ -22,14 +22,18 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
       handleHttp(res, "ERROR AL OBTENER LA FASE");
     }
   };
-  const obtenerFaseCampeonato = async ({ headers }: Request, res: Response) => {
-    const { id } = headers;
+  const obtenerFaseCampeonato = async ({headers}: Request, res: Response) => {
     try {
+      const { id } = headers
       const response = await getFasesCampeonato(`${id}`);
-      const data = response ? response : "FASE NO ENCONTRADO";
-      res.send(data)
+if(response){
+  const datosfiltrados= response.filter((item)=>item.estado===true)
+  return res.send(datosfiltrados)
+}else{
+  return res.send('fase no encontrada ')
+}
     } catch (e) {
-      handleHttp(res, "ERROR AL OBTENER LA FASE");
+     return handleHttp(res, "ERROR AL OBTENER LA FASE");
     }
   };
   

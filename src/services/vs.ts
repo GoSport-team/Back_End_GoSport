@@ -36,6 +36,7 @@ const MejorPerdedor = async(IdFase?: String)=>{
 
 const insertVS = async (equipos?:any, IdFase?: String) => {
    const _id= IdFase
+   console.log(equipos)
     try {
       const fase = await FaseModel.findById(_id);
       if (!fase) {
@@ -43,7 +44,7 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
       }
 
       const PrimeraFase = fase.estado;
-      let equiposSorteados = equipos;
+      let equiposSorteados=equipos ;
       if (PrimeraFase) {
         equiposSorteados = randomEquipo(equipos)
       }
@@ -55,7 +56,7 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
             try {
              // inicialmente se guarda el nombre del equipo y el ID, despues se agrega la hora de juego y la fecha
               const resultado = new VSModel({
-                equipo1:{ informacion: equipoFormado.team1},
+                equipo1:{informacion: equipoFormado.team1},
                 equipo2:{informacion: equipoFormado.team2},
                 IdFase: _id,
               });
@@ -76,9 +77,11 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
     const responseItem = await VSModel.find({IdFase :idfase});
     return responseItem;
   };
-  const getVSPlanillero = async (idplanillero:String ) => {
-    const responseItem = await VSModel.find({idPlanillero :idplanillero});
-    return responseItem;
+
+  const getVSPlanillero = async (idPlanillero:String) => {
+    const responseItem = await VSModel.find({idPlanillero: idPlanillero});
+      return responseItem;
+   
   };
   
   const getVS1 = async (id: string) => {

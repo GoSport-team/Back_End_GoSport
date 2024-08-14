@@ -28,7 +28,8 @@ const VSShema = new Schema<VS>(
         estado:{
             type: Boolean,
             required: false
-        }, idPlanillero:{
+        }, 
+        idPlanillero:{
             type:String,
             required: false
         }
