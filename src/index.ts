@@ -20,8 +20,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
-console.log(`Current directory: ${__dirname}`);
-console.log(`Configured port: ${PORT}`);
 app.use(router);
 
 db();

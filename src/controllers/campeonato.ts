@@ -53,7 +53,6 @@ const updateItem = async ({ params, body }: Request, res: Response) => {
 
 const postItem = async (req: requestExtend, res: Response) => {
   const {body} = req
-  console.log(req)
   try {
     const responseItem = await insertCampeonato(body);
     res.send(responseItem);
