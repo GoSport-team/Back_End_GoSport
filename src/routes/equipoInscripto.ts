@@ -12,7 +12,7 @@ import {
 
 const router = Router();
 
-router.get('/validarJugador/:id',  validarInscripcionIntegrantee)
+router.get('/validarJugador',  validarInscripcionIntegrantee)
 
 router.get('/validarInscripcion', verificarSiEquipoYaEstaInscrito)
 

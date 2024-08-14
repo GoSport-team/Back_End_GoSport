@@ -12,7 +12,6 @@ import {
   getIdentificacionParcial,
 } from "../services/usuarios";
 import { requestExtend } from "../interfaces/request.interface";
-import { isValidObjectId } from "mongoose";
 import fs from "fs-extra";
 import { v2 as cloudinary } from "cloudinary";
 import multer from "multer";
@@ -191,9 +190,6 @@ const obtenerUsuarios = async (_req: Request, res: Response) => {
 const obtenerUsuarioId = async ({ params }: Request, res: Response) => {
   try {
     const { id } = params;
-    if (!isValidObjectId(id)) {
-      return res.status(400).json({ message: "ID de usuario invalido" });
-    }
     const response = await getUsuario(id);
     const data = response ? response : "Usuario no encontrado";
     res.send(data);

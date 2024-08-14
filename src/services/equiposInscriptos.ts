@@ -3,18 +3,18 @@ import EquiposInscriptosModel from "../models/equiposInscriptos";
 import { InscripcionEquipos } from "../interfaces/incripcionEquipos.interface";
 import CampeonatoModel from "../models/campeonato";
 import obtenerEquiposInscritos from "../helpers/equiposInscritos";
+import IncripcionEquiposModel from "../models/InscripcionEquipos";
 const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     const responseInsert = await EquiposInscriptosModel.create(item);
     return responseInsert;
   };
   
 
-  const validarInscripcionIntegrante = async (id:String, idJugador:String)=>{
-    const equipos = await EquiposInscriptosModel.find({idCampeonato:id})
-   
+  const validarInscripcionIntegrante = async (idJugador:String)=>{
+    const equipos = await IncripcionEquiposModel.find()
     
-    const jugadorYaInscrito = equipos.some((Equipo) =>
-      (Equipo.Equipo as InscripcionEquipos).participantes.some((participante: any) => participante._id === idJugador)
+    const jugadorYaInscrito = equipos.filter((Equipo) =>
+      Equipo.participantes.some((participante: any) => participante._id === idJugador)
   );
   
   

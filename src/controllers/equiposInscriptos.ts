@@ -24,19 +24,20 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
   };
 
 
-  const validarInscripcionIntegrantee = async ({params, headers}: Request, res:Response)=>{
+  const validarInscripcionIntegrantee = async ({headers}: Request, res:Response)=>{
     try {
-      const {id} = params
       const {idjugador} = headers
-      const response = await validarInscripcionIntegrante(id, `${idjugador}`)
+      const response = await validarInscripcionIntegrante(`${idjugador}`)
      
-      if(response){
+      if(response.length >0){
         res.send({
           msg:"Jugador ya existe en un equipo",
+          equipo: response
         })
       }else{
         res.send({
           msg:"Jugador no existe en ningun equipo",
+          equipo:[]
         })
       }
     } catch (error) {
