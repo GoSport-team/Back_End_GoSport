@@ -6,5 +6,5 @@ export interface VS {
     fecha:string,
     hora:string,
     estado: boolean,
-    idPlanillero: string
+    idPlanillero:string
 }

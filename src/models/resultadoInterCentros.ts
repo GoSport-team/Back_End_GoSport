@@ -11,6 +11,16 @@ const ResultadoInterShema = new Schema<ResultadoInterCentros> (
             type: Schema.Types.Mixed,
             require: true
         },
+        idVs:{
+            type: String,
+            required: true,
+            trim:true
+        },
+        idPlanillero:{
+            type: String,
+            required: true,
+            trim:true
+        },
         estadoPartido:{
             type: Boolean,
             require: true
