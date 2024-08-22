@@ -28,7 +28,8 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
       const response = await getFasesCampeonato(`${id}`);
 if(response){
   const datosfiltrados= response.filter((item)=>item.estado===true)
-  return res.send(datosfiltrados)
+  const fasesfiltrados= response.filter((item)=>item.estado===false)
+  return res.json({faseActiva:datosfiltrados,faseInactiva:fasesfiltrados})
 }else{
   return res.send('fase no encontrada ')
 }

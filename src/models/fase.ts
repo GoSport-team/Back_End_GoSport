@@ -10,7 +10,7 @@ const FaseShema = new Schema<Fase>(
             required: true
         },
         nombre:{
-            type: String,
+            type: Number,
             require:true
         },
         idCampeonato:{
