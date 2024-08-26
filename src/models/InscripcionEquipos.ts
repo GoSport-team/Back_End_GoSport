@@ -5,7 +5,7 @@ import { Participantes } from "../interfaces/participantes.interface";
 const ParticipantesShema = new Schema<Participantes>(
     {
         _id:{type:String, require:false},
-        nombreJugador: { type: String, required: false },
+        nombres: { type: String, required: false },
         ficha: { type: Number, required: false },
         dorsal: { type: Number, required: false },
     })
