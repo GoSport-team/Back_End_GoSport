@@ -18,7 +18,9 @@ const insertResultado = async (item: Resultado) => {
     return responseInsert;
   };
   const getResult = async (id: string) => {
+    console.log(id)
     const responseItem = await ResultadoModel.findOne({ IdVs: id });
+    console.log(responseItem)
     return responseItem;
   };
   const getResultado = async (idfase:String) => {
