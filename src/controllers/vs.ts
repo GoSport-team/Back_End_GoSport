@@ -15,9 +15,12 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
     try {
       const {idfase} = headers
       const response = await getVS(`${idfase}`);
-      res.send(response);
+      if(!response){
+        return res.send(false)
+      }
+       return res.send(response);
     } catch (e) {
-      handleHttp(res, "ERROR AL OBTENER LOS VS");
+      return handleHttp(res, "ERROR AL OBTENER LOS VS");
     }
   };
   const obtenerVSPlanillero = async ({headers, params}: Request, res: Response) => {
@@ -25,11 +28,11 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
       const{id}=params 
       const {idplanillero} = headers
       console.log(headers)
-      console.log(idplanillero)
+   
       const response = await getVSPlanillero(`${idplanillero}`);
       if(response){
-    const vsFiltro= response.filter((item)=>item.id===id)
-  return  res.send(vsFiltro)
+        const vsFiltro= response.filter((item)=>item.id===id)
+        return  res.send(vsFiltro)
       }
     } catch (e) {
       return handleHttp(res, "ERROR AL OBTENER LOS VS");
