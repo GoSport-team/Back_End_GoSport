@@ -4,18 +4,12 @@ const vsInterEquipo = (teams: Array<any>) => {
 
     for (let i = 0; i < equipos.length; i++) {
         for (let j = i + 1; j < equipos.length; j++) {
-            const equipo1 = equipos[i];
-            const equipo2 = equipos[j];
+            const equipo1 = equipos[i].Equipo;
+            const equipo2 = equipos[j].Equipo;
 
             vs.push({
-                equipo1: {
-                    name: equipo1.nombreEquipo,
-                    idEquipo: equipo1._id
-                },
-                equipo2: {
-                    name: equipo2.nombreEquipo,
-                    idEquipo: equipo2._id
-                }
+                equipo1,
+               equipo2
             });
         }
     }

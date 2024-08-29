@@ -11,6 +11,11 @@ const ResultadoInterShema = new Schema<ResultadoInterCentros> (
             type: Schema.Types.Mixed,
             require: true
         },
+        idCampeonato:{
+            type:String,
+            required:true,
+            trim:true
+        },
         idVs:{
             type: String,
             required: true,

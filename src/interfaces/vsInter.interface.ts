@@ -3,6 +3,7 @@ export interface vsInter{
     equipo2: object,
     fecha: string,
     idPlanillero:string,
+    idCampeonato: string,
     hora:string,
     estado: boolean
 }

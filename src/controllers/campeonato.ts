@@ -42,7 +42,7 @@ const getItems = async (_req: Request,  res: Response) => {
 
 const updateItem = async ({ params, body }: Request, res: Response) => {
   //funciona ✅
-  const { id } = params;
+  const { id } = params;  
   try {
     const response = await updateCampeonato(id, body);
     res.send(response);
