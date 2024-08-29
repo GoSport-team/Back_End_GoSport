@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@types/express-validator": "^3.0.0",
+    "backend_gosport": "file:",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.3",
