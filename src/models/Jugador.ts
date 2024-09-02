@@ -21,6 +21,9 @@ const jugadorSchema = new Schema<Jugador>(
       // required: true,
       enum: ["Mañana", "Tarde", "Noche"],
     },
+    esCapitan: {
+      type: Boolean,
+    }
   },
   {
     timestamps: true,
