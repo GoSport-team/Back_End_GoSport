@@ -25,5 +25,6 @@ router.patch('/:id', actualizarEquipo),
 router.delete('/:id', eliminarEquipo)
 router.post('/:id/logoEquipo', subirFoto)
 router.patch('/:id/:idLogo', actualizarLogo)
+router
 
 export {router}

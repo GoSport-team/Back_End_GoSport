@@ -23,6 +23,7 @@ const jugadorSchema = new Schema<Jugador>(
     },
     esCapitan: {
       type: Boolean,
+      default: false,
     }
   },
   {

@@ -5,6 +5,6 @@ export interface Jugador extends Usuarios{
     programa: String,
     finFicha: Date,
     jornada: "Mañana"|"Tarde" | "Noche",
-    esCapitan: Boolean
+    esCapitan: Boolean 
   
 };
