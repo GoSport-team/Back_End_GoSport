@@ -8,6 +8,7 @@ import {
   getInscripcionEquipos,
   updateEstado,
   deleteIncripcion,
+  // deleteIncripcion,
 } from "../services/inscripcionEquipos";
 import multer from "multer";
 import path from "path";
@@ -181,31 +182,59 @@ const actualizarEquipoCompleto = async (
 };
 
 const guardarInscripcionDeEquipo = async ({ body }: Request, res: Response) => {
-  //validar numeros de telefono
   try {
-    const { usuarioId } = body;
+    const { cedula } = body;
 
-    await JugadorModel.findByIdAndUpdate(usuarioId, { esCapitan: true });
+    if (!cedula) {
+      return res.status(400).send({ message: "El campo cedula es requerido." });
+    }
+
+    const usuarioActualizado = await JugadorModel.findOneAndUpdate(
+      { identificacion: cedula },
+      { esCapitan: true },
+      { new: true }
+    );
+
+    if (!usuarioActualizado) {
+      return res.status(404).send({ message: "Usuario no encontrado." });
+    }
 
     const responseItem = await insertInscripcion(body);
+
     res.send({
-      msg: "Equipo guardado Correctamente",
+      msg: "Equipo guardado correctamente",
       equipo: responseItem,
     });
   } catch (e) {
     handleHttp(res, "ERROR AL GUARDAR EL EQUIPO", e);
   }
+  return;
 };
 
 const eliminarEquipo = async ({ params }: Request, res: Response) => {
   const { id } = params;
-  if (!id) res.status(400).send({ message: "equipo no encontrado" });
+
+  if (!id) {
+    return res.status(400).send({ message: "Equipo no encontrado" });
+  }
+
   try {
     const response = await deleteIncripcion(id);
-    res.send(response);
+    if (response.deletedCount > 0) {
+      res.send({
+        message:
+          "Equipo eliminado y estado del capitán actualizado correctamente.",
+        response,
+      });
+    } else {
+      res
+        .status(404)
+        .send({ message: "No se encontró el equipo para eliminar." });
+    }
   } catch (e) {
-    handleHttp(res, "ERROR AL ELIMINAR EL RESULTADO");
+    handleHttp(res, "ERROR AL ELIMINAR EL RESULTADO", e);
   }
+  return;
 };
 
 export {
