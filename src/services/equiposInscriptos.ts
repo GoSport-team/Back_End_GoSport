@@ -26,7 +26,7 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     const responseItem = await EquiposInscriptosModel.find({idCampeonato : idCampeonato});
 
     const existeEquipo = responseItem.some((Equipo)=>
-      (Equipo.Equipo as InscripcionEquipos).cedula == cedula)
+      (Equipo.Equipo.equipo as InscripcionEquipos).cedula == cedula)
 
     return existeEquipo;
   }
@@ -44,10 +44,10 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
 
    
     const validarInscripcionEquipo = equipos.filter((equipo) =>
-       (equipo.filter((equipoN) => equipoN.Equipo.cedula === cedula)));
+       (equipo.filter((equipoN) => equipoN.Equipo.equipo.cedula === cedula)));
 
     const validacionFiltrada = validarInscripcionEquipo.filter((equipo)=>equipo.length>0)
-    const equipoValidado = validacionFiltrada.filter((equipo)=> equipo.some((equipoF)=> equipoF.Equipo.cedula == cedula))
+    const equipoValidado = validacionFiltrada.filter((equipo)=> equipo.some((equipoF)=> equipoF.Equipo.equipo.cedula == cedula))
   
     return equipoValidado
 
