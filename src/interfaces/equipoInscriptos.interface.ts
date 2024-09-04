@@ -1,6 +1,9 @@
 import { InscripcionEquipos } from "./incripcionEquipos.interface";
 
 export interface EquiposInscriptos{
-    Equipo: InscripcionEquipos,
+    Equipo: {
+        equipo:InscripcionEquipos,
+        esCapitan: boolean
+    },
     idCampeonato: string
 }
