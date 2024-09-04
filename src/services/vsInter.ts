@@ -6,7 +6,7 @@ const insertVSInter = async (equipos?:any, IdCampeonato?: String) => {
     try {
           await Promise.all(equiposvs.map(async (equipoFormado) => {
     
-            console.log(equipoFormado)
+            // console.log(equipoFormado)
             try {
               const resultado = new vsInterModel({
                 equipo1:{name: equipoFormado.equipo1.name,

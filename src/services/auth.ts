@@ -115,7 +115,7 @@ const loginUsuario = async ({ correo, contrasena }: Auth, res: Response) => {
     }
 
     const token = generarToken(checkIs.correo, checkIs.rol);
-    console.log(token);
+    // console.log(token);
     configuracionCookie(res, token);
     const data = {
       success: true,

@@ -41,7 +41,7 @@ export const obtenerIdJugador = async(req:Request, res:Response)=>{
     const { id } = req.params;
     try{
         const obteniendoById = await gettingById(id);
-        console.log(obteniendoById);
+        // console.log(obteniendoById);
         if(!obteniendoById){
             handleHttp(res, "Error al traerJugador")
         }else{

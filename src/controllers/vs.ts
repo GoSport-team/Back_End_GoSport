@@ -26,10 +26,9 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
   const obtenerVSPlanillero = async ({headers, params}: Request, res: Response) => {
     try {
       const{id}=params 
-      const {idplanillero} = headers
-      console.log(headers)
-   
-      const response = await getVSPlanillero(`${idplanillero}`);
+      const {identificacion} = headers
+      const response = await getVSPlanillero(`${identificacion}`);
+       //console.log(response)
       if(response){
         const vsFiltro= response.filter((item)=>item.id===id)
         return  res.send(vsFiltro)
@@ -63,7 +62,7 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
   const guardarVS = async ({ body }: Request, res: Response) => {
     try {
      const equipos = body.dataVs.equipos
-     console.log(equipos)
+    //  console.log(equipos)
      const IdFase = body.dataVs.IdFase
       const responseItem = await insertVS(equipos, IdFase);
       res.send(responseItem);

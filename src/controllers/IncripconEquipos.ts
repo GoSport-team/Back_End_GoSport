@@ -65,11 +65,11 @@ export const actualizarLogo = [
       
       // Verificar si se ha enviado un archivo para la foto
       if (!req.file) {
-        console.log(req.file);
+        // console.log(req.file);
         return res.status(400).json({ message: 'No se proporcionó ningún archivo' });
       }
-      console.log(idLogo)
-      console.log(id)
+      // console.log(idLogo)
+      // console.log(id)
 
       const resultEliminar = await cloudinary.uploader.destroy(idLogo);
       if (resultEliminar.result !== 'ok') {
@@ -138,7 +138,7 @@ const obtenerInscripcionesEquipos = async ({headers}: Request, res: Response) =>
   const actualizarEquipo = async ({ params, body }: Request, res: Response) => {
     try {
       const { id } = params;
-      console.log(id)
+      // console.log(id)
       const response = await updateEstado(id, body);
       res.send(response);
     } catch (e) {
