@@ -27,11 +27,12 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
       const { id } = headers
       const response = await getFasesCampeonato(`${id}`);
 if(response){
+  const sorteo= true
   const datosfiltrados= response.filter((item)=>item.estado===true)
   const fasesfiltrados= response.filter((item)=>item.estado===false)
-  return res.json({faseActiva:datosfiltrados,faseInactiva:fasesfiltrados})
+  return res.json({faseActiva:datosfiltrados,faseInactiva:fasesfiltrados, sorteo:sorteo})
 }else{
-  return res.send('fase no encontrada ')
+  return res.send(false)
 }
     } catch (e) {
      return handleHttp(res, "ERROR AL OBTENER LA FASE");

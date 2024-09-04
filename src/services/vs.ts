@@ -36,7 +36,7 @@ const MejorPerdedor = async(IdFase?: String)=>{
 
 const insertVS = async (equipos?:any, IdFase?: String) => {
    const _id= IdFase
-   console.log(equipos)
+ //  console.log(equipos)
     try {
       const fase = await FaseModel.findById(_id);
       if (!fase) {
@@ -52,7 +52,7 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
         //utilizamos el promise all para asegurarnos de que todos los vs que nos devuelve la funcion equipoVs se guarden correctamente
           await Promise.all(equiposvs.map(async (equipoFormado) => {
     
-            console.log(equipoFormado)
+            // console.log(equipoFormado)
             try {
              // inicialmente se guarda el nombre del equipo y el ID, despues se agrega la hora de juego y la fecha
               const resultado = new VSModel({
@@ -78,10 +78,9 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
     return responseItem;
   };
 
-  const getVSPlanillero = async (idPlanillero:String) => {
-    const responseItem = await VSModel.find({idPlanillero: idPlanillero});
+  const getVSPlanillero = async (identificacion:String) => {
+    const responseItem = await VSModel.find({idPlanillero: identificacion});
       return responseItem;
-   
   };
   
   const getVS1 = async (id: string) => {

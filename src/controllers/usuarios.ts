@@ -79,7 +79,7 @@ export const actualizarFoto = [
 
       // Verificar si se ha enviado un archivo para la foto
       if (!req.file) {
-        console.log(req.file);
+        // console.log(req.file);
         return res
           .status(400)
           .json({ message: "No se proporcionó ningún archivo" });
@@ -264,6 +264,20 @@ const obtenerIdIdenfiticacion = async (req: Request, res: Response) => {
     res.send(error).status(400);
   }
 };
+const obtenerIdIdenfiticacionPlanillero = async (req: Request, res: Response) => {
+  const { identificacion } = req.params;
+  try {
+    const obteniendoByInden = await gettingByIdentificacion(identificacion);
+    const planillero= obteniendoByInden.filter((item)=>item.rol==='planillero')
+    if (planillero.length === 0) {
+     return handleHttp(res, "Error al traer el planillero");
+    } else {
+    return  res.send(planillero);
+    }
+  } catch (error) {
+   return res.send(error).status(400);
+  }
+};
 
 const buscarPorIdentificacionParcial = async (req: Request, res: Response) => {
   const identificacion  = req.query.identificacion as String;
@@ -302,4 +316,5 @@ export {
   eliminarUsuario,
   PatchesUsuario,
   obtenerPerfilUsuario,
+  obtenerIdIdenfiticacionPlanillero
 };
