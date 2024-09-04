@@ -31,7 +31,7 @@ export const numeroInscritos =async()=>{
     
         try {
             const equipos = await Promise.all(equiposPromises);
-            const conteoInscripciones = equipos.map((equipo)=>equipo.map((equipo)=> equipo.Equipo.equipo.participantes.length))  
+            const conteoInscripciones = equipos.map((equipo)=>equipo.map((equipo)=> equipo.Equipo.participantes.length))  
             const sumaIntegrantes = conteoInscripciones.map((integrantes) =>  
                 integrantes.reduce<number>((suma, valor) => suma + valor, 0)
             );
