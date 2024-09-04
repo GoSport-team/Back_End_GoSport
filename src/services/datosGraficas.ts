@@ -24,15 +24,14 @@ export const numeroEquipos = async () => {
 export const numeroInscritos =async()=>{
     try {    
         const campeonatos = await CampeonatoModel.find({});
-       
         const equiposPromises = campeonatos.map(async (campeonato) => {
             const responseItem = await EquiposInscriptosModel.find({idCampeonato : campeonato._id});
             return responseItem;
         });
-        
+    
         try {
             const equipos = await Promise.all(equiposPromises);
-            const conteoInscripciones = equipos.map((equipo)=>equipo.map((equipo)=> equipo.Equipo.participantes.length))
+            const conteoInscripciones = equipos.map((equipo)=>equipo.map((equipo)=> equipo.Equipo.participantes.length))  
             const sumaIntegrantes = conteoInscripciones.map((integrantes) =>
                 integrantes.reduce<number>((suma, valor) => suma + valor, 0)
             );

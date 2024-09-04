@@ -34,7 +34,9 @@ const obtenerResultadosInter= async ({headers}: Request, res: Response) => {
     try {
      const data = body
       const responseItem = await insertResultadoInterCentro(data);
-      res.send(responseItem);
+      if(responseItem){
+        res.json({msg:"Resultado guardado correctamente"});
+      }
     } catch (e) {
       handleHttp(res, "ERROR AL GUARDAR LOS RESULTADOS", e);
     }

@@ -13,7 +13,7 @@ const insertResultadoInterCentro = async (item: ResultadoInterCentros) => {
   
  
   const getResultadoInterId = async(id:String)=>{
-    const response = await ResultadoInterModel.findById(id)
+    const response = await ResultadoInterModel.findOne({idVs:id})
     return response
   }
 
