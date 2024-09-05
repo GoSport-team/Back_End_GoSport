@@ -40,9 +40,12 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
   const obtenerlosVsAsignadosAPlanillero = async ({headers}: Request, res: Response) => {
     try {
       const {identificacion} = headers
-      const response = await getVSPlanillero(`${identificacion}`);
-       console.log(response)
-       res.send(response)
+      if (!identificacion) {
+        return res.status(400).send("Identificación no proporcionada");
+    }
+    const response = await getVSPlanillero(`${identificacion}`);
+    console.log(response);
+    res.send(response);
     } catch (e) {
       return handleHttp(res, "ERROR AL OBTENER LOS VS");
     }
