@@ -10,8 +10,8 @@ import {
 
 const obtenerVSInter= async ({headers}: Request, res: Response) => {
     try {
-      const {IdCampeonato} = headers
-      const response = await getVSInter(`${IdCampeonato}`);
+      const {idcampeonato} = headers
+      const response = await getVSInter(`${idcampeonato}`);
       res.send(response);
     } catch (e) {
       handleHttp(res, "ERROR AL OBTENER LOS RESULTADOS");
@@ -19,7 +19,7 @@ const obtenerVSInter= async ({headers}: Request, res: Response) => {
   }
   const obtenerVS1Inter = async ({params}: Request, res: Response) => {
     try {
-      const {id} = params
+      const {id} = params 
       const response = await getVSInter1(`${id}`);
       res.send(response);
     } catch (e) {
@@ -37,9 +37,9 @@ const obtenerVSInter= async ({headers}: Request, res: Response) => {
   };
   const guardarVSInter = async ({ body }: Request, res: Response) => {
     try {
-     const {equipos} = body.data.equipos
-     const {IdCampeonato} = body.data.IdCampeonato
-      const responseItem = await insertVSInter(equipos, IdCampeonato);
+     const equipos = body.data.equipos
+     const idCampeonato = body.data.idCampeonato
+      const responseItem = await insertVSInter(equipos, idCampeonato);
       res.send(responseItem);
     } catch (e) {
       handleHttp(res, "ERROR AL GUARDAR LOS RESULTADOS", e);

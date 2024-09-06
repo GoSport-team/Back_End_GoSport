@@ -1,6 +1,6 @@
 import { InscripcionEquipos } from "./incripcionEquipos.interface";
 
 export interface EquiposInscriptos{
-    Equipo: InscripcionEquipos,
+    Equipo: InscripcionEquipos
     idCampeonato: string
 }

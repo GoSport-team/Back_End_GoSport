@@ -5,16 +5,12 @@ const insertVSInter = async (equipos?:any, IdCampeonato?: String) => {
     const equiposvs = vsInterEquipo(equipos)
     try {
           await Promise.all(equiposvs.map(async (equipoFormado) => {
-    
-            // console.log(equipoFormado)
+
             try {
               const resultado = new vsInterModel({
-                equipo1:{name: equipoFormado.equipo1.name,
-                  idEquipo: equipoFormado.equipo2.idEquipo
-                },
-                equipo2:{name: equipoFormado.equipo1.name,
-                  idEquipo: equipoFormado.equipo2.idEquipo},
-                IdCampeonaro: IdCampeonato,
+                equipo1 :equipoFormado.equipo1,
+                equipo2:equipoFormado.equipo2,
+                idCampeonato: IdCampeonato,
               });
               await resultado.save();
             } catch (error) {
@@ -28,9 +24,9 @@ const insertVSInter = async (equipos?:any, IdCampeonato?: String) => {
         return 'Equipos guardados correctamente'
       
   };
-  const getVSInter = async (IdCampeonato:String ) => {
+  const getVSInter = async (idCampeonato:String ) => {
 
-    const responseItem = await vsInterModel.find({IdCampeonato});
+    const responseItem = await vsInterModel.find({idCampeonato});
     return responseItem;
   };
   

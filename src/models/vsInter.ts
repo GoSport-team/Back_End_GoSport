@@ -23,6 +23,11 @@ const vsInterShema= new Schema<vsInter>(
         require: false,
         trim:true
     },
+    idCampeonato:{
+        type : String,
+        require: false,
+        trim: true
+    },
     hora: {
         type: String,
         require: false,

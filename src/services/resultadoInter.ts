@@ -6,12 +6,16 @@ const insertResultadoInterCentro = async (item: ResultadoInterCentros) => {
     return responseInsert;
   };
   
-  const getResultadoInter = async (IdFase:String) => {
-    const responseItem = await ResultadoInterModel.find({IdFase});
+  const getResultadoInter = async (idCampeonato:String) => {
+    const responseItem = await ResultadoInterModel.find({idCampeonato});
     return responseItem;
   };
   
-  // falta length Resultados Vs 
+ 
+  const getResultadoInterId = async(id:String)=>{
+    const response = await ResultadoInterModel.findOne({idVs:id})
+    return response
+  }
 
   const updateResultadoInter = async (id: string, data: ResultadoInterCentros) => {
     const responseItem = await ResultadoInterModel.findOneAndUpdate({ _id: id }, data, {
@@ -28,6 +32,7 @@ const insertResultadoInterCentro = async (item: ResultadoInterCentros) => {
 export{
     insertResultadoInterCentro,
     getResultadoInter,
+    getResultadoInterId,
     updateResultadoInter,
     deleteResultadoInter
 }
