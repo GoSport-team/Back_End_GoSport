@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import { v2 as cloudinary } from "cloudinary";
 import {
-  updateTeam,
+  // updateTeam,
   insertInscripcion,
   getEquipo,
   getInscripcionEquipos,
@@ -165,21 +165,35 @@ const actualizarEquipoCompleto = async (
 ) => {
   try {
     const { id } = params;
-    const { usuarioId } = body;
-    console.log(id);
-    const jugador = await JugadorModel.findById(usuarioId);
+    const { cedula, ...equipoData } = body; 
+    const jugador = await JugadorModel.findOne({ identificacion: cedula });
+
+   
     if (!jugador || !jugador.esCapitan) {
       return res
         .status(403)
         .send({ message: "No tienes permiso para editar el equipo" });
     }
-    const response = await updateTeam(id, body);
+
+    
+    const response = await IncripcionEquiposModel.findByIdAndUpdate(
+      id,
+      equipoData,
+      { new: true } 
+    );
+
+    if (!response) {
+      return res.status(404).send({ message: "Equipo no encontrado" });
+    }
+
     res.send(response);
   } catch (e) {
-    handleHttp(res, "ERROR AL ACTUALIZAR EL EQUIPO");
+    handleHttp(res, "ERROR AL ACTUALIZAR EL EQUIPO", e);
   }
   return;
 };
+
+
 
 const guardarInscripcionDeEquipo = async ({ body }: Request, res: Response) => {
   try {
