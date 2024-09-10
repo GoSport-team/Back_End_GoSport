@@ -47,6 +47,19 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
       return handleHttp(res, "ERROR AL OBTENER LOS VS");
     }
   };
+  const obtenerlosVsAsignadosAPlanillero = async ({headers}: Request, res: Response) => {
+    try {
+      const {identificacion} = headers
+      if (!identificacion) {
+        return res.status(400).send("Identificación no proporcionada");
+    }
+    const response = await getVSPlanillero(`${identificacion}`);
+    console.log(response);
+    res.send(response);
+    } catch (e) {
+      return handleHttp(res, "ERROR AL OBTENER LOS VS");
+    }
+  };
 
   const obtenerVS1 = async ({params}: Request, res: Response) => {
     try {
@@ -101,5 +114,6 @@ export{
     eliminarVS,
     patchesVs,
     obtenerVSPlanillero,
-    mejorPerdedor
+    mejorPerdedor,
+    obtenerlosVsAsignadosAPlanillero
 }

@@ -10,6 +10,7 @@ import {
   patchUsuario,
   gettingByIdentificacion,
   getIdentificacionParcial,
+  getUserById
 } from "../services/usuarios";
 import { requestExtend } from "../interfaces/request.interface";
 import fs from "fs-extra";
@@ -194,10 +195,20 @@ const obtenerUsuarioId = async ({ params }: Request, res: Response) => {
     const data = response ? response : "Usuario no encontrado";
     res.send(data);
   } catch (e) {
-    handleHttp(res, "ERROR AL OBTENER USUARIO POR ID");
+    handleHttp(res, "ERROR AL OBTENER USUARIO POR CORREO");
   }
   return;
 };
+const obtenerUserById = async({ params }: Request, res:Response)=>{
+  try{
+    const { id } = params;
+    const response = await getUserById(id);
+    const data = response ? response : "Usuario por id no encontrado";
+    res.send(data);
+  }catch(e){
+    handleHttp(res, "ERROR AL OBTENER USUARIO POR ID");
+  }
+}
 
 const obtenerPerfilUsuario = async (req: requestExtend, res: Response) => {
   try {
@@ -317,5 +328,6 @@ export {
   eliminarUsuario,
   PatchesUsuario,
   obtenerPerfilUsuario,
-  obtenerIdIdenfiticacionPlanillero
+  obtenerIdIdenfiticacionPlanillero,
+  obtenerUserById
 };
