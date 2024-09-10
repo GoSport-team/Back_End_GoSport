@@ -36,6 +36,7 @@ router.get("/identificacion/buscar", buscarPorIdentificacionParcial);
 router.get("/identificacion/:identificacion", obtenerIdIdenfiticacion);
 router.get("/planillero/:identificacion", obtenerIdIdenfiticacionPlanillero)
 
+//Cloudinary
 router.post('/:id/foto', subirFoto);
 router.delete('/:id/eli',eliminarFoto);
 router.patch('/:id/pati', actualizarFoto)
