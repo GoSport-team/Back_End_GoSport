@@ -14,5 +14,7 @@ router.get('/:id', obtenerVS1Inter)
 router.post('/', guardarVSInter)
 router.patch('/:id', actualizarVSInter)
 router.delete('/:id', eliminarVSInter)
+  
+
 
 export {router}
