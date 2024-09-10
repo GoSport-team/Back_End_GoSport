@@ -15,13 +15,15 @@ import {
   eliminarFoto,
   actualizarFoto,
   buscarPorIdentificacionParcial,
-  obtenerIdIdenfiticacionPlanillero
+  obtenerIdIdenfiticacionPlanillero,
+  obtenerUserById
 } from "../controllers/usuarios";
 import { checkJwt } from "../middleware/session";
 
 
 const router = Router();
-
+//Nueva ruta para obtener el user por Id
+router.get("/id/:id", obtenerUserById)
 
 router.get("/perfil",checkJwt, obtenerPerfilUsuario);
 router.get("/", obtenerUsuarios);

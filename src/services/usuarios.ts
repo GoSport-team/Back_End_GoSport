@@ -25,6 +25,17 @@ const getUsuario = async (correo: string) => {
   }
 };
 
+const getUserById = async (id: string)=>{
+  try{
+    const userById = await UsuarioModel.findById(id).exec();
+    return userById;
+  }catch(error){
+    console.log("Error al tener el user por id")
+    throw new Error("Error en obtener por id al usuario")
+  }
+}
+
+
 const gettingByIdentificacion = async (identificacion: any) => {
   const unJugador = await UsuarioModel.find({ identificacion });
   return unJugador;
@@ -81,6 +92,7 @@ const deleteUsuario = async (id: string) => {
 };
 
 export {
+  getUserById,
   insertarUsuario,
   getUsuarios,
   getUsuario,
