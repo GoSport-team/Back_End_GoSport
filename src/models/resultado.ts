@@ -17,11 +17,12 @@ const ResultadoShema = new Schema<Resultado> (
         },
         IdFase:{
             type: String,
-            required: true
+            required: false
         },
         estadoPartido:{
             type: Boolean,
             required: true
+            
         },idPlanillero:{
             type: String,
             required: false
