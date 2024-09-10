@@ -151,7 +151,7 @@ const obtenerInscripcionEquipo = async (req: Request, res: Response) => {
 const actualizarEquipo = async ({ params, body }: Request, res: Response) => {
   try {
     const { id } = params;
-    console.log(id);
+    //console.log(id);
     const response = await updateEstado(id, body);
     res.send(response);
   } catch (e) {

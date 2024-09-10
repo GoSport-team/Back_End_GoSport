@@ -92,8 +92,10 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
 
   const patchVs = async(id: string, data:VS)=>{
     try{
+      
     const responseItemNecesseary = await VSModel.findOneAndUpdate({_id:id},
-       {$set:data},
+     data
+      ,
        {new:true});
 
        return responseItemNecesseary;

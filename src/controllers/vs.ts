@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
-
+import randomEquipo from "../helpers/mejorPerdedor";
 import {
     insertVS,
     getVS,
@@ -10,7 +10,17 @@ import {
     getVSPlanillero
 } from '../services/vs'
 
-
+const mejorPerdedor= async({body}: Request, res:Response)=>{
+const data = body
+console.log(data.equiposPerdedores)
+try{
+const datos = randomEquipo(data.equiposPerdedores)
+console.log(datos)
+res.send(datos)
+}catch(error){
+  return handleHttp(res, "ERROR AL OBTENER LOS VS");
+}
+}
 const obtenerVS = async ({headers}: Request, res: Response) => {
     try {
       const {idfase} = headers
@@ -52,7 +62,10 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
   const patchesVs = async({params, body}:Request, res:Response)=>{
     try {
       const { id } = params;
+      console.log(body)
       const response = await patchVs(id, body);
+      console.log('vs actualizado')
+      console.log(response)
       res.send(response);
     } catch (e) {
       handleHttp(res, "ERROR AL ACTUALIZAR EL RESULTADOS");
@@ -87,5 +100,6 @@ export{
     guardarVS,
     eliminarVS,
     patchesVs,
-    obtenerVSPlanillero
+    obtenerVSPlanillero,
+    mejorPerdedor
 }

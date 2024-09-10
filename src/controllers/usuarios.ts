@@ -202,7 +202,7 @@ const obtenerUsuarioId = async ({ params }: Request, res: Response) => {
 const obtenerPerfilUsuario = async (req: requestExtend, res: Response) => {
   try {
     const usuarioId = req.user?.id;
-    console.log("id del user:", usuarioId);
+   // console.log("id del user:", usuarioId);
 
     if (!usuarioId) {
       return res.status(400).send("ID de usuario no encontrado en el token");
@@ -242,7 +242,7 @@ const PatchesUsuario = async ({ params, body }: Request, res: Response) => {
 };
 
 const crearUsuario = async ({ body }: Request, res: Response) => {
-  console.log(body);
+ // console.log(body);
   try {
     const responseUsuario = await insertarUsuario(body);
     res.send(responseUsuario);
@@ -267,12 +267,13 @@ const obtenerIdIdenfiticacion = async (req: Request, res: Response) => {
 const obtenerIdIdenfiticacionPlanillero = async (req: Request, res: Response) => {
   const { identificacion } = req.params;
   try {
-    const obteniendoByInden = await gettingByIdentificacion(identificacion);
-    const planillero= obteniendoByInden.filter((item)=>item.rol==='planillero')
-    if (planillero.length === 0) {
+    const obteniendoByInden = await getIdentificacionParcial(identificacion);
+    // const planillero= obteniendoByInden.filter((item)=>item.rol==='planillero')
+    console.log(obteniendoByInden)
+    if (obteniendoByInden.length === 0) {
      return handleHttp(res, "Error al traer el planillero");
     } else {
-    return  res.send(planillero);
+    return  res.send(obteniendoByInden);
     }
   } catch (error) {
    return res.send(error).status(400);
