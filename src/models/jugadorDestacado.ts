@@ -6,8 +6,15 @@ const JugadorDestacadoSchema = new Schema<JugadorDestacado>(
         jugadorDestacado:[{
             type: Schema.Types.Mixed,
             required: true
-        }]
-    }
+        }],
+
+        Campeonato: {
+            type: String,
+            required: true
+        }
+    },
+    
+
 )
 const jugadorDestacdoModel = model('jugadorDestacado',JugadorDestacadoSchema);
 export default jugadorDestacdoModel;

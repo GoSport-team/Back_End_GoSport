@@ -1,5 +1,6 @@
 import { Usuarios } from "../interfaces/usuarios.interface";
 
 export interface JugadorDestacado {
-    jugadorDestacado: Usuarios
+    jugadorDestacado: Usuarios,
+    Campeonato: string
 }
