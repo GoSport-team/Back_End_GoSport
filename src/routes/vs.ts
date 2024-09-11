@@ -6,11 +6,8 @@ import {
     eliminarVS,
     patchesVs,
     obtenerVSPlanillero,
-<<<<<<< HEAD
-    mejorPerdedor
-=======
+    mejorPerdedor,
     obtenerlosVsAsignadosAPlanillero
->>>>>>> be1ce345b08d298657e53ef1af8d672ab4e8391d
 } from '../controllers/vs'
 
 const router = Router()
