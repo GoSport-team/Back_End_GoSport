@@ -49,4 +49,23 @@ const getPrograma = async (id: string) => {
     }
 };
 
-export { insertPrograma, getProgramas, getPrograma };
+
+const eliminarPrograma = async (id: string) => {
+    try {
+        const eliminarPrograma = await ProgramaModel.findOneAndDelete({ _id: id });
+        return eliminarPrograma;
+    } catch (e) {
+        throw new Error(e instanceof Error ? e.message : 'Error desconocido para eliminar');
+    }
+};
+
+// Actualizar un programa
+const actualizarprograma = async (id: string, data: any) => {
+    try {
+        const programaActualizar = await ProgramaModel.findByIdAndUpdate(id, data, { new: true });
+        return programaActualizar;
+    } catch (e) {
+        throw new Error(e instanceof Error ? e.message : 'Error desconocido para actualizar');
+    }
+};
+export { insertPrograma, getProgramas, getPrograma,actualizarprograma,eliminarPrograma };
