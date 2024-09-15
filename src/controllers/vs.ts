@@ -9,7 +9,7 @@ import {
     patchVs,
     getVSPlanillero,
     buscarPorEquipos,
-    // getVSPorJugador,
+  
   
 } from '../services/vs'
 
@@ -140,7 +140,5 @@ export{
     mejorPerdedor,
     obtenerlosVsAsignadosAPlanillero,
     buscarVS
-    // obtenerVSJugador
-    // getVSDeEquipo,
-    // obtenerVSDelJugador
+  
 }
