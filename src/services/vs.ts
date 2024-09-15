@@ -140,6 +140,5 @@ export{
     getVSPlanillero,
     buscarPorEquipos
 
-    // getVSPorJugador
-    // obtenerVSDeEquipo
+  
 }
