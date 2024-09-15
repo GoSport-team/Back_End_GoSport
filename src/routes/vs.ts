@@ -7,7 +7,10 @@ import {
     patchesVs,
     obtenerVSPlanillero,
     mejorPerdedor,
-    obtenerlosVsAsignadosAPlanillero
+    obtenerlosVsAsignadosAPlanillero,
+    buscarVS,
+
+   
 } from '../controllers/vs'
 
 const router = Router()
@@ -19,5 +22,7 @@ router.post('/', guardarVS)
 router.patch('/:id', patchesVs)
 router.delete('/:id', eliminarVS)
 router.post('/mejorPerdedor', mejorPerdedor)
+router.get("/buscar/:equipoId", buscarVS);
+
 
 export {router}

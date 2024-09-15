@@ -1,3 +1,4 @@
+
 import { Equipo1 } from "./Equipo1Resultados";
 import { Equipo2  } from "./Equipo2Resultados";
 export interface Resultado{
@@ -6,5 +7,6 @@ export interface Resultado{
     IdVs:string,
     IdFase: string,
     estadoPartido: boolean,
-    idPlanillero:string
+    idPlanillero:string,
+    idCampeonato: String
 }

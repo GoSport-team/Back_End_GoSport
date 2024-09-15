@@ -5,7 +5,8 @@ import {
     getVSInter,
     getVSInter1,
     updateVSInter,
-    deleteVSInter
+    deleteVSInter,
+    buscarPorEquiposInter
 } from '../services/vsInter'
 
 const obtenerVSInter= async ({headers}: Request, res: Response) => {
@@ -54,10 +55,30 @@ const obtenerVSInter= async ({headers}: Request, res: Response) => {
       handleHttp(res, "ERROR AL ELIMINAR EL RESULTADO");
     }
   };
+  const buscarVSInter = async (req: Request, res: Response) => {
+    try {
+     
+      const { equipoId } = req.params;
+  
+    
+      const resultados = await buscarPorEquiposInter(equipoId);
+  
+      console.log('Equipo 1 ID desde params:', equipoId);
+      console.log('Equipo 2 ID desde params:', equipoId);
+      console.log('Resultados de la consulta:', resultados);
+  
+      res.json(resultados);
+    } catch (error) {
+      console.error('Error al buscar los resultados:', error);
+      res.status(500).json({ error: 'ERROR AL OBTENER LOS RESULTADOS' });
+    }
+  };
+  
   export {
     obtenerVSInter,
     obtenerVS1Inter,
     actualizarVSInter,
     guardarVSInter,
-    eliminarVSInter
+    eliminarVSInter,
+    buscarVSInter
   }

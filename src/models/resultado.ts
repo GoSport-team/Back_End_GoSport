@@ -26,6 +26,10 @@ const ResultadoShema = new Schema<Resultado> (
         },idPlanillero:{
             type: String,
             required: false
+        },
+        idCampeonato:{
+            type: String,
+            required: true
         }
     },
 {

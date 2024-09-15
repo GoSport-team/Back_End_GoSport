@@ -4,8 +4,10 @@ import {
     obtenerVS1Inter,
     guardarVSInter,
     actualizarVSInter,
-    eliminarVSInter
+    eliminarVSInter,
+    buscarVSInter
 } from '../controllers/vsInter'
+
 
 const router = Router()
 
@@ -14,6 +16,7 @@ router.get('/:id', obtenerVS1Inter)
 router.post('/', guardarVSInter)
 router.patch('/:id', actualizarVSInter)
 router.delete('/:id', eliminarVSInter)
+router.get("/buscarInter/:equipoId", buscarVSInter)
   
 
 

@@ -48,10 +48,27 @@ const insertVSInter = async (equipos?:any, IdCampeonato?: String) => {
   };
   
 
+  const buscarPorEquiposInter = async (equipoId: string) => {
+    try {
+     
+      const resultados = await vsInterModel.find({
+        $or: [
+          { 'equipo1._id': equipoId },
+          { 'equipo2._id': equipoId }
+        ]
+      }).exec();
+  
+      return resultados;
+    } catch (error) {
+      console.error('Error en el servicio al buscar los resultados:', error);
+      throw new Error('Error en la búsqueda de resultados');
+    }
+  };
 export{
     insertVSInter,
     getVSInter,
     getVSInter1,
     updateVSInter,
-    deleteVSInter
+    deleteVSInter,
+    buscarPorEquiposInter
 }

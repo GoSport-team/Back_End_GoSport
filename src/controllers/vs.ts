@@ -7,8 +7,12 @@ import {
     getVS1,
     deleteVS,
     patchVs,
-    getVSPlanillero
+    getVSPlanillero,
+    buscarPorEquipos,
+    // getVSPorJugador,
+  
 } from '../services/vs'
+
 
 const mejorPerdedor= async({body}: Request, res:Response)=>{
 const data = body
@@ -106,6 +110,25 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
       handleHttp(res, "ERROR AL ELIMINAR EL RESULTADO");
     }
   };
+  const buscarVS = async (req: Request, res: Response) => {
+    try {
+      // Obtener los IDs de los equipos desde los parámetros
+      const { equipoId } = req.params;
+  
+      // Llamar al servicio para buscar los resultados
+      const resultados = await buscarPorEquipos(equipoId);
+  
+      console.log('Equipo 1 ID desde params:', equipoId);
+      console.log('Equipo 2 ID desde params:', equipoId);
+      console.log('Resultados de la consulta:', resultados);
+  
+      res.json(resultados);
+    } catch (error) {
+      console.error('Error al buscar los resultados:', error);
+      res.status(500).json({ error: 'ERROR AL OBTENER LOS RESULTADOS' });
+    }
+  };
+  
 
 export{
     obtenerVS,
@@ -115,5 +138,9 @@ export{
     patchesVs,
     obtenerVSPlanillero,
     mejorPerdedor,
-    obtenerlosVsAsignadosAPlanillero
+    obtenerlosVsAsignadosAPlanillero,
+    buscarVS
+    // obtenerVSJugador
+    // getVSDeEquipo,
+    // obtenerVSDelJugador
 }

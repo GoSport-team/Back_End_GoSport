@@ -5,7 +5,8 @@ import {
     obtenerResultados,
     actualizarResultado,
     eliminarResultado,
-    obtenerResultado
+    obtenerResultado,
+    obtenerEstadisticas
 
 } from '../controllers/resultados'
 
@@ -22,5 +23,7 @@ router.post('/', guardarResultado)
 router.patch('/:id', actualizarResultado)
 
 router.delete('/:id', eliminarResultado)
+
+router.get('/estadisticas/:idCampeonato', obtenerEstadisticas)
 
 export {router}
