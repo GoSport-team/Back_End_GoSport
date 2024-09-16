@@ -2,7 +2,7 @@ import vsInterModel from "../models/vsInter";
 import { vsInter } from "../interfaces/vsInter.interface";
 import vsInterEquipo from "../helpers/vsInter";
 const insertVSInter = async (equipos?:any, IdCampeonato?: String) => {
-    const equiposvs = vsInterEquipo(equipos)
+    const equiposvs = vsInterEquipo(equipos)    
     try {
           await Promise.all(equiposvs.map(async (equipoFormado) => {
 

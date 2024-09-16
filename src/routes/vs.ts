@@ -20,4 +20,5 @@ router.patch('/:id', patchesVs)
 router.delete('/:id', eliminarVS)
 router.post('/mejorPerdedor', mejorPerdedor)
 
+
 export {router}

@@ -2,9 +2,7 @@ import VSModel from "../models/vs";
 import { VS } from "../interfaces/vs.interface";
 import randomEquipo from "../helpers/randomEquipos";
 import equipoVs from "../helpers/equipoVs";
-import FaseModel from "../models/fase";
-
-//Nueva Funcion 
+import FaseModel from "../models/fase";  
 const MejorPerdedor = async(IdFase?: String)=>{
   try{
       
@@ -110,6 +108,7 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
     const responseItem = await VSModel.deleteOne({ _id: id });
     return responseItem;
   };
+ 
   
 
 export{

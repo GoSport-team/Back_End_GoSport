@@ -106,6 +106,7 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
       handleHttp(res, "ERROR AL ELIMINAR EL RESULTADO");
     }
   };
+  
 
 export{
     obtenerVS,

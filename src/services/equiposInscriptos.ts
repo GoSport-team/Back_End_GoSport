@@ -1,6 +1,7 @@
 import { EquiposInscriptos } from "../interfaces/equipoInscriptos.interface";
 import EquiposInscriptosModel from "../models/equiposInscriptos";
 import { InscripcionEquipos } from "../interfaces/incripcionEquipos.interface";
+// import mongoose from 'mongoose';
 import CampeonatoModel from "../models/campeonato";
 import obtenerEquiposInscritos from "../helpers/equiposInscritos";
 import IncripcionEquiposModel from "../models/InscripcionEquipos";
@@ -76,6 +77,20 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     const responseItem = await EquiposInscriptosModel.deleteOne({_id});
     return responseItem;
   };
+  const eliminarEquipoInscriptoByIdDeEquipo = async (idEquipo:string)=>{
+    try {
+      // Here we directly match the string value of 'Equipo._id'
+      const resultado = await EquiposInscriptosModel.deleteOne({
+        'Equipo._id': idEquipo
+      }).exec();
+  
+      console.log(`id equipo ${idEquipo}`); // Logging the string value
+      return resultado;
+    } catch (error) {
+      console.error('Error en el servicio al eliminar el equipo:', error);
+      throw new Error('Error al eliminar equipo');
+    }
+  }
   
 
 export {
@@ -86,4 +101,5 @@ export {
         getEquiposInscriptos,
         getEquitoInscripto,
         updateEquipoInscripto,
-        deleteEquipoInscripto }
+        deleteEquipoInscripto,
+      eliminarEquipoInscriptoByIdDeEquipo }

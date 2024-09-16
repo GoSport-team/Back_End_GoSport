@@ -8,7 +8,8 @@ import {
     updateEquipoInscripto,
     deleteEquipoInscripto,
     getEquipoInscritoCedula,
-    validarSiEquipoYaEstaInscritoo
+    validarSiEquipoYaEstaInscritoo,
+    eliminarEquipoInscriptoByIdDeEquipo
 } from '../services/equiposInscriptos'
 
 
@@ -128,6 +129,19 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
     }
   };
 
+  const eliminarPorIdEquipo = async (req: Request, res: Response) => {
+    try {
+      const { equipoId } = req.params; // equipoId comes from the request parameters
+      const resultados = await eliminarEquipoInscriptoByIdDeEquipo(equipoId);
+  
+      console.log('Equipo ID desde params:', equipoId);
+      res.json(resultados); 
+    } catch (error) {
+      console.error('Error al eliminar el equipo:', error);
+      res.status(500).json({ error: 'ERROR AL ELIMINAR EL EQUIPO' });
+    }
+    
+  };
 
 export {
     verificarSiEquipoYaEstaInscrito,
@@ -137,5 +151,6 @@ export {
     obtenerEquipoInscripto,
     obtenerEquiposInscriptos,
     actualizarEquipoInscripto,
-    eliminarEquipoInscripto
+    eliminarEquipoInscripto,
+    eliminarPorIdEquipo
 }

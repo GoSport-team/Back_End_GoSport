@@ -7,7 +7,8 @@ import {
     eliminarEquipoInscripto,
     GuardarEquiposInscriptos,
     obtenerEquipoCedula,
-    verificarSiEquipoYaEstaInscrito
+    verificarSiEquipoYaEstaInscrito,
+    eliminarPorIdEquipo
 } from '../controllers/equiposInscriptos'
 
 const router = Router();
@@ -27,5 +28,6 @@ router.post("/",    GuardarEquiposInscriptos);
 router.patch("/:id", actualizarEquipoInscripto);
 
 router.delete("/:id", eliminarEquipoInscripto);
+router.delete("/idEquipo/:equipoId", eliminarPorIdEquipo)
 
 export { router };
