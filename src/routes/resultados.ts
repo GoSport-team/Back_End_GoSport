@@ -6,7 +6,7 @@ import {
     actualizarResultado,
     eliminarResultado,
     obtenerResultado,
-    obtenerEstadisticas
+    // obtenerEstadisticas
 
 } from '../controllers/resultados'
 
@@ -24,6 +24,6 @@ router.patch('/:id', actualizarResultado)
 
 router.delete('/:id', eliminarResultado)
 
-router.get('/estadisticas/:idCampeonato', obtenerEstadisticas)
+// router.get('/estadisticas/:idCampeonato', obtenerEstadisticas)
 
 export {router}

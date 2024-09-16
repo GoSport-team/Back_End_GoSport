@@ -27,10 +27,10 @@ const ResultadoShema = new Schema<Resultado> (
             type: String,
             required: false
         },
-        idCampeonato:{
-            type: String,
-            required: true
-        }
+        // idCampeonato:{
+        //     type: String,
+        //     required: true
+        // }
     },
 {
     timestamps: true
