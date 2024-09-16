@@ -85,7 +85,8 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
     const responseItem = await VSModel.findOne({ _id: id });
     return responseItem;
   };
-  
+
+
 
 
   const patchVs = async(id: string, data:VS)=>{
@@ -108,9 +109,25 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
     const responseItem = await VSModel.deleteOne({ _id: id });
     return responseItem;
   };
- 
-  
 
+  const buscarPorEquipos = async (equipoId: string) => {
+    try {
+      
+      const resultados = await VSModel.find({
+        $or: [
+          { 'equipo1.informacion.team1.Equipo._id': equipoId },
+          { 'equipo2.informacion.team2.Equipo._id': equipoId }
+        ]
+      }).exec();
+  
+      return resultados;
+    } catch (error) {
+      console.error('Error en el servicio al buscar los resultados:', error);
+      throw new Error('Error en la búsqueda de resultados');
+    }
+  };
+  
+  
 export{
     insertVS,
     getVS,
@@ -118,5 +135,8 @@ export{
     deleteVS,
     patchVs,
     MejorPerdedor,
-    getVSPlanillero
+    getVSPlanillero,
+    buscarPorEquipos
+
+  
 }

@@ -2,7 +2,7 @@
 
 import { Request, Response } from 'express';
 import { handleHttp } from '../utils/error.handle';
-import { getPrograma, getProgramas, insertPrograma } from '../services/programa';
+import { getPrograma, getProgramas, insertPrograma,eliminarPrograma,actualizarprograma } from '../services/programa';
 
 
 const getItems = async (_req: Request, res: Response) => {
@@ -39,4 +39,34 @@ const postItem = async (req: Request, res: Response) => {
     }
 };
 
-export { getItems as getProgramas, getItem as getPrograma, postItem as insertPrograma };
+
+const deleteprograma = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const response = await eliminarPrograma(id);
+        if (response) {
+            res.json({ message: 'Programa eliminado exitosamente' });
+        } else {
+            res.status(404).json({ message: 'Programa no encontrado' });
+        }
+    } catch (e) {
+        handleHttp(res, 'ERROR AL ELIMINAR EL PROGRAMA', e);
+    }
+};
+
+const patchprograma = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const data = req.body;
+        const response = await actualizarprograma(id, data);
+        if (response) {
+            res.json(response);
+        } else {
+            res.status(404).json({ message: 'Programa no encontrado' });
+        }
+    } catch (e) {
+        handleHttp(res, 'ERROR AL ACTUALIZAR EL PROGRAMA', e);
+    }
+}
+
+export { getItems as getProgramas, getItem as getPrograma, postItem as insertPrograma, deleteprograma,patchprograma };
