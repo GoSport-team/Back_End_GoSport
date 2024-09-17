@@ -9,9 +9,10 @@ const upadate =async(id:any, body: Jugador)=>{
             new:true,
         }
 );
-return itemJugador;
-   
+return itemJugador;  
 }
+
+
 
 const deleteJugador = async (id:any)=>{
     const eliminandoJugador = await JugadorModel.findOneAndDelete({

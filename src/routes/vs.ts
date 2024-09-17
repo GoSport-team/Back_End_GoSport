@@ -25,4 +25,5 @@ router.post('/mejorPerdedor', mejorPerdedor)
 router.get("/buscar/:equipoId", buscarVS);
 
 
+
 export {router}

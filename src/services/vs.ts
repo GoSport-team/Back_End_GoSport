@@ -2,9 +2,7 @@ import VSModel from "../models/vs";
 import { VS } from "../interfaces/vs.interface";
 import randomEquipo from "../helpers/randomEquipos";
 import equipoVs from "../helpers/equipoVs";
-import FaseModel from "../models/fase";
-
-//Nueva Funcion 
+import FaseModel from "../models/fase";  
 const MejorPerdedor = async(IdFase?: String)=>{
   try{
       

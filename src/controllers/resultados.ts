@@ -7,7 +7,7 @@ import {
   updateResultado,
   deleteResultado,
   getResult,
-  getEstadisticasEquipos
+  // getEstadisticasEquipos
 } from "../services/resultado";
 
 const siguienteFaseGanadores = async ({ headers }: Request, res: Response) => {
@@ -76,34 +76,34 @@ const eliminarResultado = async ({ params }: Request, res: Response) => {
   }
 };
 
-const obtenerEstadisticas = async (req: Request, res: Response) => {
-  try {
-    const { idCampeonato } = req.params;
+// const obtenerEstadisticas = async (req: Request, res: Response) => {
+//   try {
+//     const { idCampeonato } = req.params;
     
  
-    if (!idCampeonato) {
-      return res.status(400).json({ error: "El ID del campeonato es requerido" });
-    }
+//     if (!idCampeonato) {
+//       return res.status(400).json({ error: "El ID del campeonato es requerido" });
+//     }
 
-    const estadisticas = await getEstadisticasEquipos(idCampeonato);
+//     const estadisticas = await getEstadisticasEquipos(idCampeonato);
     
-    console.log("Estadísticas obtenidas:", estadisticas); 
+//     console.log("Estadísticas obtenidas:", estadisticas); 
 
   
-    if (!estadisticas ||
-        !estadisticas.equiposJuegoLimpio.length && 
-        !estadisticas.equiposMasGolesFavor.length && 
-        !estadisticas.equiposMallaMenosVencida.length) {
-      return res.status(404).json({ error: "No se encontraron estadísticas para este campeonato" });
-    }
+//     if (!estadisticas ||
+//         !estadisticas.equiposJuegoLimpio.length && 
+//         !estadisticas.equiposMasGolesFavor.length && 
+//         !estadisticas.equiposMallaMenosVencida.length) {
+//       return res.status(404).json({ error: "No se encontraron estadísticas para este campeonato" });
+//     }
 
-    res.json(estadisticas);
-  } catch (error) {
-    console.error("Error en obtenerEstadisticas:", error);
-    res.status(500).json({ error: "Error obteniendo estadísticas" });
-  }
-  return
-};
+//     res.json(estadisticas);
+//   } catch (error) {
+//     console.error("Error en obtenerEstadisticas:", error);
+//     res.status(500).json({ error: "Error obteniendo estadísticas" });
+//   }
+//   return
+// };
 
 export {
   siguienteFaseGanadores,
@@ -112,5 +112,5 @@ export {
   guardarResultado,
   eliminarResultado,
   obtenerResultado,
-  obtenerEstadisticas
+  // obtenerEstadisticas
 };

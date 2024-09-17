@@ -42,7 +42,7 @@ const CampeonatoShema = new Schema<Campeonato>(
       },
       sede:{
          type: String,
-         required:true,
+         required:false,
          trim:true,
       }, 
       descripcion: {

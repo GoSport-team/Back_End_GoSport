@@ -10,4 +10,5 @@ export interface Resultado{
     idPlanillero:string,
     idCampeonato: String,
     penales:boolean
+    // idCampeonato: String
 }
