@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import { loginUsuario, registroNuevoUsuario } from "../services/auth";
+import bcrypt from 'bcrypt';
+import { sendVerificationCodeEmail } from '../utils/emailSender';
+import UsuarioModel from '../models/usuario';
 
 const registerController = async ({ body }: Request, res: Response) => {
   try {
@@ -45,6 +48,91 @@ const loginController = async ({ body }: Request, res: Response) => {
 const CerrarSesion = (_req: Request, res: Response) => {
   res.clearCookie('jwt', { path: '/' });
   res.status(200).send({ success: true, message: 'Sesión cerrada exitosamente' });
+};
+
+
+
+// Solicitar restablecimiento de contraseña con código de verificación
+export const requestPasswordReset = async (req: Request, res: Response) => {
+  const { correo } = req.body;
+
+  try {
+    const usuario = await UsuarioModel.findOne({ correo });
+    if (!usuario) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    // Generar un código de verificación de 6 dígitos
+    const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Guardar el código y su tiempo de expiración (10 minutos)
+    usuario.resetPasswordToken = verificationCode;
+    usuario.resetPasswordExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutos
+
+    await usuario.save();
+
+    // Enviar el correo con el código de verificación
+    await sendVerificationCodeEmail(usuario.correo, verificationCode);
+
+    return res.status(200).json({ message: 'Código de verificación enviado por correo.' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Error en el servidor', error });
+  }
+};
+
+
+// Verificar el código de verificación
+export const verifyCode = async (req: Request, res: Response) => {
+  const { correo, codigo } = req.body;
+
+  try {
+    const usuario = await UsuarioModel.findOne({ correo });
+
+    if (!usuario) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    // Verificar que el código coincida y que no haya expirado
+    if (
+      usuario.resetPasswordToken !== codigo ||
+      usuario.resetPasswordExpires! < new Date()
+    ) {
+      return res.status(400).json({ message: 'Código de verificación inválido o expirado' });
+    }
+
+    return res.status(200).json({ message: 'Código verificado correctamente' });
+  } catch (error) {
+    console.error('Error en el servidor:', error);
+    return res.status(500).json({ message: 'Error en el servidor', error });
+  }
+};
+
+// Establecer la nueva contraseña
+export const setNewPassword = async (req: Request, res: Response) => {
+  const { correo, nuevaContrasena } = req.body;
+
+  try {
+    const usuario = await UsuarioModel.findOne({ correo });
+
+    if (!usuario) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    // Hashear la nueva contraseña
+    const salt = await bcrypt.genSalt(10);
+    usuario.contrasena = await bcrypt.hash(nuevaContrasena, salt);
+
+    // Limpiar el token y la expiración
+    usuario.resetPasswordToken = undefined;
+    usuario.resetPasswordExpires = undefined;
+
+    await usuario.save();
+
+    return res.status(200).json({ message: 'Contraseña actualizada correctamente' });
+  } catch (error) {
+    console.error('Error en el servidor:', error);
+    return res.status(500).json({ message: 'Error en el servidor', error });
+  }
 };
 
 
