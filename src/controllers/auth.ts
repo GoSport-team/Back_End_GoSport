@@ -61,17 +61,11 @@ export const requestPasswordReset = async (req: Request, res: Response) => {
     if (!usuario) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
-
-    // Generar un código de verificación de 6 dígitos
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
-
-    // Guardar el código y su tiempo de expiración (10 minutos)
     usuario.resetPasswordToken = verificationCode;
     usuario.resetPasswordExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutos
 
     await usuario.save();
-
-    // Enviar el correo con el código de verificación
     await sendVerificationCodeEmail(usuario.correo, verificationCode);
 
     return res.status(200).json({ message: 'Código de verificación enviado por correo.' });
@@ -92,7 +86,6 @@ export const verifyCode = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
 
-    // Verificar que el código coincida y que no haya expirado
     if (
       usuario.resetPasswordToken !== codigo ||
       usuario.resetPasswordExpires! < new Date()
@@ -118,11 +111,9 @@ export const setNewPassword = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
 
-    // Hashear la nueva contraseña
     const salt = await bcrypt.genSalt(10);
     usuario.contrasena = await bcrypt.hash(nuevaContrasena, salt);
 
-    // Limpiar el token y la expiración
     usuario.resetPasswordToken = undefined;
     usuario.resetPasswordExpires = undefined;
 
