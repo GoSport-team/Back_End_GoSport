@@ -8,4 +8,6 @@ export interface Usuarios extends Auth {
   estado: Boolean;
   rol: string;
   public_id: string;
+  resetPasswordToken?: string; // Permitir undefined
+  resetPasswordExpires?: Date; // Permitir undefined
 }
