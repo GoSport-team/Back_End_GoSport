@@ -32,6 +32,10 @@ const VSShema = new Schema<VS>(
         idPlanillero:{
             type:String,
             required: false
+        },
+        idCampeonato:{
+            type:String,
+            required: false
         }
           
     },
