@@ -57,7 +57,7 @@ const IncripcionEquiposShema = new Schema<InscripcionEquipos>(
         estado:{
             type:Boolean,
             required:true,
-            default:true
+            default:false
         },
         participantes:[ParticipantesShema]
     },

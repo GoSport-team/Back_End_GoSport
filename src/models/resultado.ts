@@ -30,7 +30,12 @@ const ResultadoShema = new Schema<Resultado> (
         idCampeonato:{
             type: String,
             required: true
+        },
+        penales:{
+            type: Boolean,
+            required: true  
         }
+        
     },
 {
     timestamps: true
