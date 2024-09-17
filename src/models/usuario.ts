@@ -44,7 +44,15 @@ const UsuarioSchema = new Schema<Usuarios>(
     public_id:{
       type:String,
       
-    }
+    },
+    resetPasswordToken:{
+      type: String,
+      default: undefined,
+    },
+    resetPasswordExpires: { 
+      type: Date,
+      default: undefined,
+     }
   },
   {
     timestamps: true,
