@@ -27,6 +27,15 @@ const ResultadoShema = new Schema<Resultado> (
             type: String,
             required: false
         },
+        idCampeonato:{
+            type: String,
+            required: true
+        },
+        penales:{
+            type: Boolean,
+            required: true  
+        }
+        
         // idCampeonato:{
         //     type: String,
         //     required: true

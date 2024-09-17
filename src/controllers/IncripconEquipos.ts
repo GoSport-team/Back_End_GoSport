@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import { v2 as cloudinary } from "cloudinary";
 import {
-  // updateTeam,
+  updateTeam,
   insertInscripcion,
   getEquipo,
   getInscripcionEquipos,
@@ -158,6 +158,16 @@ const actualizarEquipo = async ({ params, body }: Request, res: Response) => {
     handleHttp(res, "ERROR AL ACTUALIZAR EL EQUIPO");
   }
 };
+const actualizarEquipoEstado = async ({ params, body }: Request, res: Response) => {
+  try {
+    const { id } = params;
+    //console.log(id);
+    const response = await updateTeam(id, body);
+    res.send(response);
+  } catch (e) {
+    handleHttp(res, "ERROR AL ACTUALIZAR EL EQUIPO");
+  }
+};
 
 const actualizarEquipoCompleto = async (
   { params, body }: Request,
@@ -259,4 +269,5 @@ export {
   actualizarEquipoCompleto,
   actualizarEquipo,
   eliminarEquipo,
+  actualizarEquipoEstado
 };

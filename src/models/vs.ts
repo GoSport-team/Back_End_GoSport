@@ -27,7 +27,8 @@ const VSShema = new Schema<VS>(
         },
         estado:{
             type: Boolean,
-            required: false
+            required: false,
+            default: true
         }, 
         idPlanillero:{
             type:String,

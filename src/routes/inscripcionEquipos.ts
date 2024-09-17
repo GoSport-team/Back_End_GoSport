@@ -9,6 +9,7 @@ import {
   eliminarEquipo,
   subirFoto,
   actualizarLogo,
+  actualizarEquipoEstado
 } from "../controllers/IncripconEquipos";
 
 const router = Router();
@@ -20,6 +21,7 @@ router.get("/", obtenerInscripcionesEquipos);
 router.get("/:id", obtenerInscripcionEquipo);
 router.post("/", guardarInscripcionDeEquipo);
 router.patch("/:id", actualizarEquipo);
+router.patch("/estado/:id", actualizarEquipoEstado);
 router.delete("/:id", eliminarEquipo);
 router.post("/:id/logoEquipo", subirFoto);
 router.patch("/:id/:idLogo", actualizarLogo);

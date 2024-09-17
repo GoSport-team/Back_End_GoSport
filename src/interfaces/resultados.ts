@@ -8,5 +8,7 @@ export interface Resultado{
     IdFase: string,
     estadoPartido: boolean,
     idPlanillero:string,
+    idCampeonato: String,
+    penales:boolean
     // idCampeonato: String
 }
