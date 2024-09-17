@@ -94,7 +94,8 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
      const equipos = body.dataVs.equipos
     //  console.log(equipos)
      const IdFase = body.dataVs.IdFase
-      const responseItem = await insertVS(equipos, IdFase);
+     const idCampeonato = body.dataVs.idCampeonato
+      const responseItem = await insertVS(equipos, IdFase, idCampeonato);
       res.send(responseItem);
     } catch (e) {
       handleHttp(res, "ERROR AL GUARDAR LOS RESULTADOS", e);

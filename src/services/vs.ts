@@ -1,4 +1,5 @@
 import VSModel from "../models/vs";
+//import CampeonatoModel from "../models/campeonato";
 import { VS } from "../interfaces/vs.interface";
 import randomEquipo from "../helpers/randomEquipos";
 import equipoVs from "../helpers/equipoVs";
@@ -32,8 +33,9 @@ const MejorPerdedor = async(IdFase?: String)=>{
   }
 } 
 
-const insertVS = async (equipos?:any, IdFase?: String) => {
+const insertVS = async (equipos?:any, IdFase?: String, idCampeonato?: String) => {
    const _id= IdFase
+   const idCam = idCampeonato
  //  console.log(equipos)
     try {
       const fase = await FaseModel.findById(_id);
@@ -57,7 +59,9 @@ const insertVS = async (equipos?:any, IdFase?: String) => {
                 equipo1:{informacion: equipoFormado.team1},
                 equipo2:{informacion: equipoFormado.team2},
                 IdFase: _id,
+                idCampeonato: idCam
               });
+              console.log(idCampeonato)
               await resultado.save();
             } catch (error) {
               console.error('Error al guardar el equipo:', error);

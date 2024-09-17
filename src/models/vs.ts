@@ -36,7 +36,7 @@ const VSShema = new Schema<VS>(
         },
         idCampeonato:{
             type:String,
-            required: false
+            required: true
         }
           
     },
