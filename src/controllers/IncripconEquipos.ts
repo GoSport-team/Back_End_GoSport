@@ -67,9 +67,12 @@ export const actualizarLogo = [
   async (req: Request, res: Response): Promise<Response> => {
     try {
       const { id, idLogo } = req.params;
+      console.log('ID del equipo:', id);
+      console.log('ID del logo:', idLogo);
 
       // Verificar si se ha enviado un archivo para la foto
       if (!req.file) {
+        console.error('No se proporcionó ningún archivo. req.file:', req.file);
         console.log(req.file);
         return res
           .status(400)
@@ -79,12 +82,14 @@ export const actualizarLogo = [
       console.log(id);
 
       const resultEliminar = await cloudinary.uploader.destroy(idLogo);
+      console.log('Resultado de la eliminación de la foto en Cloudinary:', resultEliminar);
       if (resultEliminar.result !== "ok") {
         throw new Error("Error al eliminar la foto de Cloudinary");
       }
 
       // Subir la foto a Cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
+      console.log('Resultado de la subida de la nueva foto a Cloudinary:', result);
 
       // Actualizar solo los campos url_foto
       const equipo = await IncripcionEquiposModel.findByIdAndUpdate(
@@ -92,13 +97,16 @@ export const actualizarLogo = [
         { imgLogo: result.secure_url, idLogo: result.public_id },
         { new: true } // Esto devuelve el documento actualizado
       );
+      console.log('Equipo actualizado en la base de datos:', equipo);
 
       if (!equipo) {
+        console.error('Equipo no encontrado con ID:', id);
         return res.status(404).json({ message: "Equipo no encontrado" });
       }
 
       // Eliminar el archivo local
       await fs.unlink(req.file.path);
+      console.log('Archivo temporal eliminado:', req.file.path);
 
       // Enviar la respuesta
       return res.json({
