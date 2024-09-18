@@ -34,6 +34,10 @@ const ResultadoShema = new Schema<Resultado> (
         penales:{
             type: Boolean,
             required: true  
+        },
+        numeroTiros:{
+            type: String,
+            required:false
         }
         
         // idCampeonato:{

@@ -8,7 +8,8 @@ import {
     GuardarEquiposInscriptos,
     obtenerEquipoCedula,
     verificarSiEquipoYaEstaInscrito,
-    eliminarPorIdEquipo
+    eliminarPorIdEquipo,
+    verificarSiEquipoYaEstaInscritoEstado
 } from '../controllers/equiposInscriptos'
 
 const router = Router();
@@ -16,6 +17,7 @@ const router = Router();
 router.get('/validarJugador',  validarInscripcionIntegrantee)
 
 router.get('/validarInscripcion', verificarSiEquipoYaEstaInscrito)
+router.get('/validarInscripcionestado', verificarSiEquipoYaEstaInscritoEstado)
 
 router.get("/",obtenerEquiposInscriptos);
 

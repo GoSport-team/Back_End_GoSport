@@ -86,6 +86,26 @@ const obtenerEquipoInscripto = async ({ params }: Request, res: Response) => {
       console.log(error)
     }
   }
+  const verificarSiEquipoYaEstaInscritoEstado = async ({ headers}: Request, res:Response)=>{
+    try {
+      const {cedulajugador} = headers
+      const data = await validarSiEquipoYaEstaInscritoo(`${cedulajugador}`)
+      if(data.length > 0){
+        const datos = data.filter((data)=> data[0].Equipo.estado == false)
+        res.send({
+          msg:"Equipo ya esta Inscrito en un campeonato",
+          datos
+        })
+      }else{
+        res.send({
+          msg:"Equipo no inscrito a ningun campeonato",
+          data
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const obtenerEquiposInscriptos = async ( {headers}: Request, res: Response) => {
     try {
       const {id} = headers;
@@ -152,5 +172,6 @@ export {
     obtenerEquiposInscriptos,
     actualizarEquipoInscripto,
     eliminarEquipoInscripto,
-    eliminarPorIdEquipo
+    eliminarPorIdEquipo,
+    verificarSiEquipoYaEstaInscritoEstado
 }
