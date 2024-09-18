@@ -74,15 +74,14 @@ const obtenerVSInter= async ({headers}: Request, res: Response) => {
       res.status(500).json({ error: 'ERROR AL OBTENER LOS RESULTADOS' });
     }
   };
-  const obtenerlosVsAsignadosAPlanilleroIntercenntros =async ({headers}: Request, res: Response) => {
+  const obtenerlosVsAsignadosAPlanilleroIntercenntros =async (req: Request, res: Response) => {
     try {
-      const {identificacion} = headers
-      if (!identificacion) {
-        return res.status(400).send("Identificación no proporcionada");
-    }
-    const response = await getVSPlanilleroIntercentros(`${identificacion}`);
+      const { id } = req.params
+      console.log(id)
+    const response = await getVSPlanilleroIntercentros(id);
+    console.log("Indentificacion" , id )
     console.log(response);
-    res.send(response);
+    res.json(response);
     } catch (e) {
       return handleHttp(res, "ERROR AL OBTENER LOS VS");
     }

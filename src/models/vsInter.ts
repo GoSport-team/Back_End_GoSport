@@ -21,7 +21,6 @@ const vsInterShema= new Schema<vsInter>(
     idPlanillero:{
         type: String,
         require: false,
-        trim:true
     },
     idCampeonato:{
         type : String,

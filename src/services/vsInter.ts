@@ -41,9 +41,20 @@ const insertVSInter = async (equipos?:any, IdCampeonato?: String) => {
     });
     return responseItem;
   };
-  const getVSPlanilleroIntercentros = async (identificacion:String) => {
-    const responseItem = await vsInterModel.find({idPlanillero: identificacion});
-      return responseItem;
+  const getVSPlanilleroIntercentros = async (id: string) => {
+    try {
+      
+      const resultados = await vsInterModel.find({
+        $or: [
+          { 'idPlanillero': id }
+        ] 
+      }).exec();
+  
+      return resultados;
+    } catch (error) {
+      console.error('Error en el servicio al buscar los resultados:', error);
+      throw new Error('Error en la búsqueda de resultados');
+    }
   };
   
   

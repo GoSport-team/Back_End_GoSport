@@ -18,7 +18,7 @@ router.post('/', guardarVSInter)
 router.patch('/:id', actualizarVSInter)
 router.delete('/:id', eliminarVSInter)
 router.get("/buscarInter/:equipoId", buscarVSInter)
-router.get('/vsAsignadosPlanilleroIntercentros',obtenerlosVsAsignadosAPlanilleroIntercenntros)
+router.get('/vsAsignadosPlanilleroIntercentros/:id',obtenerlosVsAsignadosAPlanilleroIntercenntros)
 
   
 
