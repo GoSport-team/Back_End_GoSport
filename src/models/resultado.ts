@@ -27,7 +27,6 @@ const ResultadoShema = new Schema<Resultado> (
             type: String,
             required: false
         },
-<<<<<<< HEAD
         idCampeonato:{
             type: String,
             required: true
@@ -35,14 +34,16 @@ const ResultadoShema = new Schema<Resultado> (
         penales:{
             type: Boolean,
             required: true  
+        },
+        numeroTiros:{
+            type: String,
+            required:false
         }
         
-=======
         // idCampeonato:{
         //     type: String,
         //     required: true
         // }
->>>>>>> 054c0d74076c621ad73d6c15d621aef121abbc9f
     },
 {
     timestamps: true
