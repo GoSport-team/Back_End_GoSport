@@ -28,5 +28,13 @@ const insertCampeonato = async (item: Campeonato) => {
     const responseItem = await CampeonatoModel.deleteOne({ _id: id });
     return responseItem;
   };
+
+  const obtenerDetalleCampeonato = async (id: string): Promise<Campeonato | null> => {
+    const campeonato = await getCampeonato(id);
+    if (!campeonato) {
+        throw new Error('Campeonato no encontrado');
+    }
+    return campeonato;
+};
   
-export {insertCampeonato, getCampeonatos,getCampeonato,updateCampeonato, deleteCampeonato }
+export {insertCampeonato, getCampeonatos,getCampeonato,updateCampeonato, deleteCampeonato, obtenerDetalleCampeonato }

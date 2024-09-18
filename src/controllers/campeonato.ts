@@ -7,6 +7,7 @@ import {
   insertCampeonato,
   updateCampeonato,
   deleteCampeonato,
+  obtenerDetalleCampeonato,
 } from "../services/campeonato";
 import { requestExtend } from "../interfaces/request.interface";
 
@@ -70,5 +71,16 @@ const deleteItem = async ({ params }: Request, res: Response) => {
     handleHttp(res, "ERROR AL ELIMINAR EL CAMPEONATO");
   }
 };
+const getDetallesCampeonato = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  
+  try {
+    const campeonato = await obtenerDetalleCampeonato(id);
+    res.send(campeonato);
+  } catch (e) {
+    handleHttp(res, "ERROR AL OBTENER DETALLES DEL CAMPEONATO", e);
+  }
+};
 
-export { getItems, getItem, updateItem, postItem, deleteItem };
+
+export { getItems, getItem, updateItem, postItem, deleteItem, getDetallesCampeonato};
