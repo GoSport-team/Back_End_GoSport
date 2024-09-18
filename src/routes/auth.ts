@@ -4,6 +4,7 @@ import { check } from "express-validator";
 import { validateFields } from "../middleware/validateFields";
 import { checkJwt } from "../middleware/session";
 import { roleMiddleWare } from "../middleware/role";
+import { requestPasswordReset, verifyCode, setNewPassword } from '../controllers/auth';
 
 const router = Router();
 
@@ -51,5 +52,11 @@ router.get(
 router.post(
   '/cerarSesion', CerrarSesion
 )
+
+// Ruta para solicitar un restablecimiento de contraseña
+router.post('/solicitar-codigo', requestPasswordReset);
+router.post('/verificar-codigo', verifyCode);
+router.post('/cambio', setNewPassword);
+
 
 export { router };
