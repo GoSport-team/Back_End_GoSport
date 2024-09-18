@@ -5,7 +5,8 @@ import {
     guardarVSInter,
     actualizarVSInter,
     eliminarVSInter,
-    buscarVSInter
+    buscarVSInter,
+    obtenerlosVsAsignadosAPlanilleroIntercenntros
 } from '../controllers/vsInter'
 
 
@@ -17,6 +18,8 @@ router.post('/', guardarVSInter)
 router.patch('/:id', actualizarVSInter)
 router.delete('/:id', eliminarVSInter)
 router.get("/buscarInter/:equipoId", buscarVSInter)
+router.get('/vsAsignadosPlanilleroIntercentros',obtenerlosVsAsignadosAPlanilleroIntercenntros)
+
   
 
 

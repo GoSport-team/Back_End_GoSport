@@ -6,7 +6,8 @@ import {
     getVSInter1,
     updateVSInter,
     deleteVSInter,
-    buscarPorEquiposInter
+    buscarPorEquiposInter,
+    getVSPlanilleroIntercentros
 } from '../services/vsInter'
 
 const obtenerVSInter= async ({headers}: Request, res: Response) => {
@@ -73,6 +74,19 @@ const obtenerVSInter= async ({headers}: Request, res: Response) => {
       res.status(500).json({ error: 'ERROR AL OBTENER LOS RESULTADOS' });
     }
   };
+  const obtenerlosVsAsignadosAPlanilleroIntercenntros =async ({headers}: Request, res: Response) => {
+    try {
+      const {identificacion} = headers
+      if (!identificacion) {
+        return res.status(400).send("Identificación no proporcionada");
+    }
+    const response = await getVSPlanilleroIntercentros(`${identificacion}`);
+    console.log(response);
+    res.send(response);
+    } catch (e) {
+      return handleHttp(res, "ERROR AL OBTENER LOS VS");
+    }
+  }
   
   export {
     obtenerVSInter,
@@ -80,5 +94,6 @@ const obtenerVSInter= async ({headers}: Request, res: Response) => {
     actualizarVSInter,
     guardarVSInter,
     eliminarVSInter,
-    buscarVSInter
+    buscarVSInter,
+    obtenerlosVsAsignadosAPlanilleroIntercenntros
   }

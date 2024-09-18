@@ -41,6 +41,11 @@ const insertVSInter = async (equipos?:any, IdCampeonato?: String) => {
     });
     return responseItem;
   };
+  const getVSPlanilleroIntercentros = async (identificacion:String) => {
+    const responseItem = await vsInterModel.find({idPlanillero: identificacion});
+      return responseItem;
+  };
+  
   
   const deleteVSInter = async (id: string) => {
     const responseItem = await vsInterModel.deleteOne({ _id: id });
@@ -70,5 +75,6 @@ export{
     getVSInter1,
     updateVSInter,
     deleteVSInter,
-    buscarPorEquiposInter
+    buscarPorEquiposInter,
+    getVSPlanilleroIntercentros
 }
