@@ -1,20 +1,27 @@
-// import mongoose from "mongoose";
-import JugadorDestacadoModelo from "../models/jugadorDestacado";
 import { JugadorDestacado } from "../interfaces/jugadorDestacado";
+import jugadorDestacdoModel from "../models/jugadorDestacado";
 
-const insertJugadorDestacado = async (data: JugadorDestacado)=>{
-    const nuevoJugadorDestacado = new JugadorDestacadoModelo(data)
-    await nuevoJugadorDestacado.save()
-    return nuevoJugadorDestacado
-}
-const getJugadorDestacado = async()=>{
-    return await JugadorDestacadoModelo.find();
-}
-const getIdJugadorDestacado = async(id:string)=>{
-    return await JugadorDestacadoModelo.findById(id);
-}
+const agregarJugadorDestacado = async (data: JugadorDestacado) => {
+  const nuevoJugadorDestacado = new jugadorDestacdoModel(data);
+  return await nuevoJugadorDestacado.save();
+};
+
+const obtenerJugadoresDestacados = async () => {
+  return await jugadorDestacdoModel.find().populate("jugadorDestacado");
+};
+
+const eliminarJugadorDestacado = async (id: string) => {
+  const jugadorEliminado = await jugadorDestacdoModel.findOneAndUpdate(
+    { "jugadorDestacado._id": id, isSelected: true },
+    { $set: { isSelected: false } },
+    { new: true }
+  );
+
+  return jugadorEliminado;
+};
+
 export {
-    insertJugadorDestacado,
-    getIdJugadorDestacado,
-    getJugadorDestacado
-}
+  agregarJugadorDestacado,
+  eliminarJugadorDestacado,
+  obtenerJugadoresDestacados,
+};
