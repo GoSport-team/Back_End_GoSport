@@ -9,6 +9,7 @@ import {
     patchVs,
     getVSPlanillero,
     buscarPorEquipos,
+    getVSCampeonatos,
   
   
 } from '../services/vs'
@@ -29,6 +30,19 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
     try {
       const {idfase} = headers
       const response = await getVS(`${idfase}`);
+      if(!response){
+        return res.send(false)
+      }
+       return res.send(response);
+    } catch (e) {
+      return handleHttp(res, "ERROR AL OBTENER LOS VS");
+    }
+  };
+
+  const obtenerVSCampeonato = async ({headers}: Request, res: Response) => {
+    try {
+      const {id} = headers
+      const response = await getVSCampeonatos(`${id}`);
       if(!response){
         return res.send(false)
       }
@@ -134,6 +148,7 @@ const obtenerVS = async ({headers}: Request, res: Response) => {
 export{
     obtenerVS,
     obtenerVS1,
+    obtenerVSCampeonato,
     guardarVS,
     eliminarVS,
     patchesVs,
