@@ -9,26 +9,20 @@ import 'dotenv/config';
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-// app.use(
-//   cors({
-//     origin: [
-//       "http://localhost:5173", 
-//       `http://localhost:${PORT}`,
-//       "https://front-end-go-sport.vercel.app"
-    
-//     ],
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
-
 app.use(
   cors({
-    origin: "*", 
+    origin: [
+      "http://localhost:5173", 
+      `http://localhost:${PORT}`,
+      "https://front-end-go-sport.vercel.app"
+    
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, 
+    credentials: true,
   })
 );
+
+
 
 app.use(express.json());
 app.use(cookieParser());
