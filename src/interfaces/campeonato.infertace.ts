@@ -10,5 +10,6 @@ export interface Campeonato{
     descripcion: string,
     inicioInscripcion: string,
     finInscripcion: string,
-    añoCreacion: number
+    añoCreacion: number,
+    equipoGanador:object
 }

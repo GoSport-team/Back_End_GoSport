@@ -64,7 +64,11 @@ const CampeonatoShema = new Schema<Campeonato>(
          type:Number,
          required:true,
          trim:true
-      }
+      },
+      equipoGanador:[{
+         type: Schema.Types.Mixed,
+ 
+     }]
    },
    {
       timestamps: true
