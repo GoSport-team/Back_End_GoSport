@@ -14,13 +14,15 @@ app.use(
     origin: [
       "http://localhost:5173", 
       `http://localhost:${PORT}`,
-      "https://front-end-go-sport.vercel.app/"
+      "https://front-end-go-sport.vercel.app"
     
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
+
 
 app.use(express.json());
 app.use(cookieParser());
