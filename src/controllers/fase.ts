@@ -27,7 +27,7 @@ const obtenerFase = async ({ params }: Request, res: Response) => {
       const { id } = headers
       const response = await getFasesCampeonato(`${id}`);
 if(response){
-  const sorteo= true
+  const sorteo=true
   const datosfiltrados= response.filter((item)=>item.estado===true)
   const fasesfiltrados= response.filter((item)=>item.estado===false)
   return res.json({faseActiva:datosfiltrados,faseInactiva:fasesfiltrados, sorteo:sorteo})
