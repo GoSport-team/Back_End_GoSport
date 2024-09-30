@@ -6,7 +6,8 @@ import {
     obtenerFases,
     actualizarFase,
     actualizarFaseEstado,
-    eliminarFase
+    eliminarFase,
+    obtenerEstadoEquipo
 } from '../controllers/fase'
 
 
@@ -25,5 +26,7 @@ router.patch('/:id', actualizarFase)
 router.patch('/estado/:id', actualizarFaseEstado)
 
 router.delete('/:id', eliminarFase)
+
+router.get('/estadoEquipo/:idCampeonato', obtenerEstadoEquipo)
 
 export {router};
