@@ -169,9 +169,11 @@ const actualizarEquipo = async ({ params, body }: Request, res: Response) => {
 const actualizarEquipoEstado = async ({ params, body }: Request, res: Response) => {
   try {
     const { id } = params;
-    //console.log(id);
+  console.log(id)
+  console.log(body)
     const response = await updateTeam(id, body);
-    res.send(response);
+    res.json({msg:'estado actualizado',response});
+    console.log(response)
   } catch (e) {
     handleHttp(res, "ERROR AL ACTUALIZAR EL EQUIPO");
   }
