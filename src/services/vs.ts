@@ -80,6 +80,11 @@ const insertVS = async (equipos?:any, IdFase?: String, idCampeonato?: String) =>
     return responseItem;
   };
 
+  const getVSCampeonatos = async (id:String ) => {
+    const responseItem = await VSModel.find({idCampeonato :id});
+    return responseItem;
+  };
+
   const getVSPlanillero = async (identificacion:String) => {
     const responseItem = await VSModel.find({idPlanillero: identificacion});
       return responseItem;
@@ -136,6 +141,7 @@ export{
     insertVS,
     getVS,
     getVS1,
+    getVSCampeonatos,
     deleteVS,
     patchVs,
     MejorPerdedor,

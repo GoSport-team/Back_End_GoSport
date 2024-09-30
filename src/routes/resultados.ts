@@ -6,6 +6,7 @@ import {
     actualizarResultado,
     eliminarResultado,
     obtenerResultado,
+    obtenerResultadosCampeonatos,
     // obtenerEstadisticas
 
 } from '../controllers/resultados'
@@ -15,6 +16,8 @@ const router = Router()
 router.get('/siguienteFase', siguienteFaseGanadores)
 
 router.get('/', obtenerResultados)
+
+router.get('/resultadoidcampeonato', obtenerResultadosCampeonatos)
 
 router.get('/:id', obtenerResultado)
 

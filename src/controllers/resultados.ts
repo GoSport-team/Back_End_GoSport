@@ -7,6 +7,7 @@ import {
   updateResultado,
   deleteResultado,
   getResult,
+  getResultadoCameonato,
   // getEstadisticasEquipos
 } from "../services/resultado";
 
@@ -28,6 +29,16 @@ const obtenerResultados = async ({ headers }: Request, res: Response) => {
     handleHttp(res, "ERROR AL OBTENER LOS RESULTADOS");
   }
 };
+const obtenerResultadosCampeonatos = async ({ headers }: Request, res: Response) => {
+  try {
+    const { id } = headers;
+    const response = await getResultadoCameonato(`${id}`);
+    res.send(response);
+  } catch (e) {
+    handleHttp(res, "ERROR AL OBTENER LOS RESULTADOS");
+  }
+};
+
 const obtenerResultado = async ({ params }: Request, res: Response) => {
   const { id } = params;
   try {
@@ -108,6 +119,7 @@ const eliminarResultado = async ({ params }: Request, res: Response) => {
 export {
   siguienteFaseGanadores,
   obtenerResultados,
+  obtenerResultadosCampeonatos,
   actualizarResultado,
   guardarResultado,
   eliminarResultado,

@@ -29,7 +29,10 @@ const insertResultado = async (item: Resultado) => {
     return responseItem;
   };
   
-  
+  const getResultadoCameonato = async (id:String) => {
+    const responseItem = await ResultadoModel.find({idCampeonato : id});
+    return responseItem;
+  };
 
   const updateResultado = async (id: string, data: Resultado) => {
     const responseItem = await ResultadoModel.findOneAndUpdate({ _id: id }, data, {
@@ -133,6 +136,7 @@ export{
   seguirDeFase,
     insertResultado,
     getResultado,
+    getResultadoCameonato,
     updateResultado,
     deleteResultado,
     getResult,
