@@ -8,7 +8,8 @@ import {
     getFases,
     deleteFase,
     patchFase,
-    patchFaseEstado
+    patchFaseEstado,
+    verificarEstadoEquipo
 } from '../services/fase'
 
 
@@ -90,6 +91,30 @@ if(response){
     }
   };
 
+  const obtenerEstadoEquipo = async (req: Request, res: Response) => {
+    try {
+      
+      const idEquipo = req.headers["idequipo"] || req.headers["idEquipo"];
+      const { idCampeonato } = req.params;
+  
+      console.log('idEquipo:', idEquipo);  
+      console.log('idCampeonato:', idCampeonato);
+  
+   
+      if (!idEquipo || !idCampeonato) {
+        return res.status(400).send("Se requieren los campos idEquipo y idCampeonato.");
+      }
+  
+     
+      const estadoEquipo = await verificarEstadoEquipo(idEquipo.toString(), idCampeonato.toString());
+  
+      res.send(estadoEquipo);
+    } catch (e) {
+      handleHttp(res, "ERROR AL OBTENER EL ESTADO DEL EQUIPO", e);
+    }
+    return;
+  };
+  
 
 export {
   obtenerFaseCampeonato,
@@ -98,5 +123,6 @@ export {
     obtenerFases,
     actualizarFase,
     eliminarFase,
-    actualizarFaseEstado
+    actualizarFaseEstado,
+    obtenerEstadoEquipo
 }
