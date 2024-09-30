@@ -6,7 +6,7 @@ import {
   getItems,
   postItem,
   updateItem,
-  getCampeonatosByYearController
+  getInterfichasByYearController
 } from "../controllers/campeonato";
 
 import { validacionCampeonato } from "../middleware/validacionCampeonato";
@@ -15,7 +15,7 @@ import { validacionCampeonato } from "../middleware/validacionCampeonato";
 
 const router = Router();
 
-router.get("/año/:id", getCampeonatosByYearController);
+router.get("/year/:year", getInterfichasByYearController);
 router.get("/",  getItems);
 
 router.get("/:id",  getItem);

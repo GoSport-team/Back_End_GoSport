@@ -12,24 +12,35 @@ import {
 } from "../services/campeonato";
 import { requestExtend } from "../interfaces/request.interface";
 
- const getCampeonatosByYearController = async (req: Request, res: Response): Promise<Response> => {
-  try {
-    const { year } = req.params;
-    const campeonatos = await getCampeonatosByYear(Number(year));
+const getInterfichasByYearController = async (req: Request, res: Response): Promise<Response> => {
+  const yearParam = req.params.year; // Obtén el parámetro de la ruta
+  const year = Number(yearParam); // Convierte a número
 
-    if (!campeonatos || campeonatos.length === 0) {
-      // Retorna una respuesta en caso de que no se encuentren campeonatos
-      return res.status(404).json({ message: "No campeonatos found for this year" });
+  if (isNaN(year)) {
+    return res.status(400).json({ message: "El año proporcionado no es válido." });
+  }
+
+  try {
+    // Llama al servicio para obtener los campeonatos por año
+    const campeonatos = await getCampeonatosByYear(year);
+
+    // Filtra campeonatos que sean de tipo "interfichas"
+    const interfichasCampeonatos = campeonatos.filter(campeonato => campeonato.tipoCampeonato === "Interfichas");
+
+    // Limita los resultados a 3 campeonatos
+    const limitedCampeonatos = interfichasCampeonatos.slice(0, 3);
+
+    // Manejo de la respuesta
+    if (!limitedCampeonatos || limitedCampeonatos.length === 0) {
+      return res.status(404).json({ message: "No campeonatos encontrados para este año con tipo 'interfichas'." });
     }
 
-    // Retorna una respuesta en caso de éxito
-    return res.status(200).json(campeonatos);
+    return res.status(200).json(limitedCampeonatos);
     
   } catch (error) {
-    // Retorna una respuesta en caso de error
-    handleHttp(res, "ERROR AL OBTENER EL CAMPEONATO by año");
+    console.error(error); 
+    return res.status(500).json({ message: "Error al optener por año " });
   }
-  return res.status(500).json({ message: "Unexpected error" });
 };
 const getItem = async ({ params }: Request, res: Response) => {
   try {
@@ -102,4 +113,4 @@ const getDetallesCampeonato = async (req: Request, res: Response) => {
 };
 
 
-export { getItems, getItem, updateItem, postItem, deleteItem, getDetallesCampeonato,getCampeonatosByYearController};
+export { getItems, getItem, updateItem, postItem, deleteItem, getDetallesCampeonato,getInterfichasByYearController};

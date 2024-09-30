@@ -6,14 +6,16 @@ const insertCampeonato = async (item: Campeonato) => {
     const responseInsert = await CampeonatoModel.create(item);
     return responseInsert;
   };
-   const getCampeonatosByYear = async (year: number) => {
+
+   const getCampeonatosByYear = async (year: number): Promise<any[]> => {
     try {
-      const campeonatos = await CampeonatoModel.find({ añoCreacion: year });
-      return campeonatos;
+      return await CampeonatoModel.find({ añoCreacion: year });
     } catch (error) {
-      throw new Error("Error fetching campeonatos by year");
+      console.error("Error fetching campeonatos:", error);
+      throw error;  // Lanza el error para que sea manejado en el controlador
     }
   };
+
   const getCampeonatos = async () => {
     const responseItem = await CampeonatoModel.find({});
     return responseItem;
