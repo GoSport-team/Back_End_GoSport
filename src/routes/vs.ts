@@ -9,6 +9,7 @@ import {
     mejorPerdedor,
     obtenerlosVsAsignadosAPlanillero,
     buscarVS,
+    obtenerVSCampeonato,
 
    
 } from '../controllers/vs'
@@ -16,6 +17,7 @@ import {
 const router = Router()
 router.get('/vsAsignadosPlanillero',obtenerlosVsAsignadosAPlanillero)
 router.get('/planillero/:id', obtenerVSPlanillero)
+router.get('/vscampeonato', obtenerVSCampeonato)
 router.get('/', obtenerVS);
 router.get('/:id', obtenerVS1)
 router.post('/', guardarVS)
