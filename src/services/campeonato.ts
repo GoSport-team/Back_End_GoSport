@@ -6,7 +6,14 @@ const insertCampeonato = async (item: Campeonato) => {
     const responseInsert = await CampeonatoModel.create(item);
     return responseInsert;
   };
-  
+   const getCampeonatosByYear = async (year: number) => {
+    try {
+      const campeonatos = await CampeonatoModel.find({ añoCreacion: year });
+      return campeonatos;
+    } catch (error) {
+      throw new Error("Error fetching campeonatos by year");
+    }
+  };
   const getCampeonatos = async () => {
     const responseItem = await CampeonatoModel.find({});
     return responseItem;
@@ -37,4 +44,4 @@ const insertCampeonato = async (item: Campeonato) => {
     return campeonato;
 };
   
-export {insertCampeonato, getCampeonatos,getCampeonato,updateCampeonato, deleteCampeonato, obtenerDetalleCampeonato }
+export {insertCampeonato, getCampeonatos,getCampeonato,updateCampeonato, deleteCampeonato, obtenerDetalleCampeonato,getCampeonatosByYear }

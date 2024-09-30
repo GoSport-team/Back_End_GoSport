@@ -11,7 +11,12 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://front-end-go-sport.vercel.app/", `http://localhost:${PORT}`],
+    origin: [
+      "http://localhost:5173", 
+      `http://localhost:${PORT}`,
+      "https://front-end-go-sport.vercel.app/"
+    
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

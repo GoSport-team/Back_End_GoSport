@@ -8,10 +8,29 @@ import {
   updateCampeonato,
   deleteCampeonato,
   obtenerDetalleCampeonato,
+  getCampeonatosByYear
 } from "../services/campeonato";
 import { requestExtend } from "../interfaces/request.interface";
 
+ const getCampeonatosByYearController = async (req: Request, res: Response): Promise<Response> => {
+  try {
+    const { year } = req.params;
+    const campeonatos = await getCampeonatosByYear(Number(year));
 
+    if (!campeonatos || campeonatos.length === 0) {
+      // Retorna una respuesta en caso de que no se encuentren campeonatos
+      return res.status(404).json({ message: "No campeonatos found for this year" });
+    }
+
+    // Retorna una respuesta en caso de éxito
+    return res.status(200).json(campeonatos);
+    
+  } catch (error) {
+    // Retorna una respuesta en caso de error
+    handleHttp(res, "ERROR AL OBTENER EL CAMPEONATO by año");
+  }
+  return res.status(500).json({ message: "Unexpected error" });
+};
 const getItem = async ({ params }: Request, res: Response) => {
   try {
     const { id } = params;
@@ -83,4 +102,4 @@ const getDetallesCampeonato = async (req: Request, res: Response) => {
 };
 
 
-export { getItems, getItem, updateItem, postItem, deleteItem, getDetallesCampeonato};
+export { getItems, getItem, updateItem, postItem, deleteItem, getDetallesCampeonato,getCampeonatosByYearController};

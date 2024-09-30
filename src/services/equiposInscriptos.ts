@@ -31,6 +31,10 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
 
     return existeEquipo;
   }
+  const validarEquipoEstado = async(cedula:string)=>{
+    const equipo = await IncripcionEquiposModel.find({cedula:cedula})
+    return equipo
+  }
 
   const validarSiEquipoYaEstaInscritoo = async (cedula:string)=>{
     
@@ -53,6 +57,7 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
     return equipoValidado
 
   }
+  
 
   const getEquiposInscriptos  = async (id: String ) => {
     const responseItem = await EquiposInscriptosModel.find({idCampeonato : id});
@@ -94,6 +99,7 @@ const insertEquipoInscripto = async (item: EquiposInscriptos) => {
   
 
 export {
+  validarEquipoEstado,
         validarSiEquipoYaEstaInscritoo,
         validarInscripcionIntegrante,
         getEquipoInscritoCedula,

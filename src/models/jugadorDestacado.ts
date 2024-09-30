@@ -1,20 +1,18 @@
-import { Schema , model } from "mongoose";
-import {JugadorDestacado} from'../interfaces/jugadorDestacado'
+import { Schema, model } from "mongoose";
+import { JugadorDestacado } from "../interfaces/jugadorDestacado";
 // import UsuarioModel from "../models/usuario";
-const JugadorDestacadoSchema = new Schema<JugadorDestacado>(
+const JugadorDestacadoSchema = new Schema<JugadorDestacado>({
+  jugadorDestacado: [
     {
-        jugadorDestacado:[{
-            type: Schema.Types.Mixed,
-            required: true
-        }],
-
-        Campeonato: {
-            type: String,
-            required: true
-        }
+      type: Schema.Types.Mixed,
+      required: true,
     },
-    
+  ],
 
-)
-const jugadorDestacdoModel = model('jugadorDestacado',JugadorDestacadoSchema);
+  isSelected: {
+    type: Boolean,
+    default: false,
+  },
+});
+const jugadorDestacdoModel = model("jugadorDestacado", JugadorDestacadoSchema);
 export default jugadorDestacdoModel;
